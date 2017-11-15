@@ -1,0 +1,62 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,531756,轨迹检测,山西省|晋中市|太谷县|G108|,"锤子  坚果手机","Android 4.4.4","WIFI ",中国联通,4.4.058.P0.150407.8675-A,"打开app，点击左下角的“poi”,然后点击“系统检测”，等待一分钟后，提示“手机已经通过了检测，请登录”，点击登录，提示“No such user”","打开app，点击左下角的“poi”,然后点击“系统检测”，等待一分钟后，提示“手机已经通过了检测，请登录”，点击登录，提示“No such user”","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6206618_410bc12d-4dd9-4d06-880d-d03e75dadf77.jpg""]",未知,P0,审核通过,"2015-10-27 21:47:11"
+0,647500,轨迹检测,四川省|内江市|资中县|G321|,"Xiaomi  MI 4LTE","Android 4.4.4","WIFI ",中国联通,KTU84P,无法登陆，可以正常检测,无法登陆，可以正常检测无法登陆，可以正常检测无法登陆，可以正常检测,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6525610_d5ef11c7-4933-4408-88da-2696ca508396.jpg""]",未知,P0,审核不通过,"2015-11-05 01:50:44"
+0,1865384,轨迹检测,河北|衡水,"Xiaomi  2013022","Android 4.4.2","WIFI ",中国移动,"MIUI HBJ2.0",测试气压不足，这是个什么鬼，没通过测试,"1、点击poi系统检测
+2、点击轨迹系统检测
+没有通过测试，需要换一台手机，是由于手机问题，还是app本身不够完善","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6483677_aa92f9c5-b384-45d8-8cdf-cc8473db6ee1.jpg""]",未知,P0,审核不通过,"2015-11-04 08:41:41"
+0,2224714,轨迹检测,江苏省|南京市|鼓楼区|上海路|21号-2,"Xiaomi  HM 1S","Android 4.4.4","WIFI ",中国联通,KTU84P,检测结果空白，没有任何内容！！！！！！！！！,检测结果空白，没有任何内容！！！！！！！！！,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6499088_f73333af-e9f4-4962-9bac-ae0c593a904d.jpg""]",未知,P0,审核不通过,"2015-11-04 14:38:12"
+0,2295397,轨迹检测,河南省|郑州市|金水区|水环路|,"Huawei  PE-TL10","Android 4.4.2","WIFI ",中国移动,PE-TL10V100R001CHNC00B260,手机气压计不满足采集要求,点“轨迹”--“系统测试”。结果里边，气压计不满足采集要求，其他都满足,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6533155_85d1702d-3d9a-425c-8ad9-d9d0220f8e2a.jpg""]",未知,P0,审核不通过,"2015-11-05 10:11:47"
+0,2973722,轨迹检测,广东省|惠州市|惠城区|东江中路|,"Meizu  MX4 Pro","Android 5.0.1","WIFI ",中国移动,"Flyme OS 4.5.3.1A (体验版)","未能通过测试；
+打开app，进入软件首页，根据任务完成测试步骤，点击轨迹和系统测试，页面显示是未能通过测试。
+测试手机：魅族4pro；
+测试系统：安卓5.0.",打开app-->进入软件首页-->根据任务完成测试步骤-->点击轨迹和系统测试-->最后页面显示是未能通过测试。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6563386_e923ef84-72e0-409b-8747-6e74448e5f8c.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6563385_fda54389-70c9-4e75-8eb7-62a2c388c746.jpg""]",未知,P0,审核不通过,"2015-11-05 18:28:16"
+0,2973722,轨迹检测,广东省|惠州市|惠城区|东江中路|,"Meizu  MX4 Pro","Android 5.0.1","WIFI ",中国移动,"Flyme OS 4.5.3.1A (体验版)","没有用户可登陆，“登陆”多余；
+打开app，进入软件首页，poi测试通过后，提示登陆，但是没有用户可登陆，也不能够注册，属于功能残缺，“登陆”多余。
+测试手机：魅族4pro；
+测试系统：安卓5.0.",打开app-->进入软件首页-->poi测试通过后，提示登陆-->但是没有用户可登陆，也不能够注册。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6563386_e923ef84-72e0-409b-8747-6e74448e5f8c.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6563385_fda54389-70c9-4e75-8eb7-62a2c388c746.jpg""]",未知,P0,审核通过,"2015-11-05 18:28:16"
+0,13984604,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,"通过检测后，点击登录，提示no user","1、点击pio或者轨迹选项
+2、点击系统检测
+3、等待完成检测后，点击登录","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6255460_53bc0367-f0f0-4602-b8bb-1089cb1aeaa3.jpg""]",未知,P0,审核通过,"2015-10-29 14:39:32"
+0,13984604,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,在检测的过程中，手机横屏，停止检测了,"1、将手机横屏显示开启
+2、点击pio或者轨迹选项
+3、点击系统检测
+4、将手机横屏","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6255460_53bc0367-f0f0-4602-b8bb-1089cb1aeaa3.jpg""]",未知,P0,审核通过,"2015-10-29 14:39:32"
+0,14206876,轨迹检测,江苏省|南京市|鼓楼区|凤凰街|56号,"Honor  Che1-CL10","Android 4.4.4","WIFI ",中国电信,Che1-CL10V100R001CHNC92B248,华为荣耀4X，安卓4.4.4系统，手机设置自动横屏，开启轨迹检测，检测出结果后，手机横过来，再竖过来，检测结果自动消失了，问题可复现,华为荣耀4X，安卓4.4.4系统，手机设置自动横屏，开启轨迹检测，检测出结果后，手机横过来，再竖过来，检测结果自动消失了，问题可复现,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6210727_309f9877-7814-48ac-987c-59ed9a5f0baa.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6210726_20ed5e4e-f191-430d-a235-b454ac5f4fca.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6210725_9b171fed-c85c-40a9-8837-8fbd3c43d735.jpg""]",未知,P0,审核通过,"2015-10-28 08:32:15"
+0,14799708,轨迹检测,广东|惠州,"Xiaomi  MI-ONE Plus","Android 4.1.2","WIFI ",无SIM卡,JZO54K,"开启app进入首页，点击poi进行测试通过后，提示登陆登陆，点击登陆，并没有用户，也没得注册，登陆不了。 测试：小米1plus，安卓4.0。",开启app进入首页，点击poi进行测试通过后，提示登陆登陆，点击登陆，并没有用户，也没得注册，登陆不了。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6579482_bd26e3b3-2659-449e-bcb3-2749e2e1db23.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6579481_de34d3df-fbc6-42a1-a3f1-532b6037171e.jpg""]",未知,P0,审核通过,"2015-11-06 00:41:57"
+0,14799708,轨迹检测,广东|惠州,"Xiaomi  MI-ONE Plus","Android 4.1.2","WIFI ",无SIM卡,JZO54K,任务测试不通过，点击轨迹和系统测试，页面显示是未能通过测试。,开启软件，进入首页，点击轨迹后再点击系统测试，页面显示未能通过测试。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6579482_bd26e3b3-2659-449e-bcb3-2749e2e1db23.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6579481_de34d3df-fbc6-42a1-a3f1-532b6037171e.jpg""]",未知,P0,审核不通过,"2015-11-06 00:41:57"
+0,14999424,轨迹检测,广东省|深圳市|南山区|科艺路|3-6,"Xiaomi  MI-ONE","Android 4.0.4","WIFI ",无SIM卡,M1_newbee_4.03.14.15_V2.2,无法登录，无法登录！！,"打开软件，点击左下角的“poi”,然后点击“系统检测”，系统提示登录，然而登录不了，提示“No such user”","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6217445_b1e7a427-3394-4db5-89cd-afa5cc58c1c7.jpg""]",未知,P0,审核通过,"2015-10-28 12:20:51"
+0,15282844,轨迹检测,广东省|中山市|中山市市辖区|同福中路|,"vivo  vivo Y923","Android 4.4.4","WIFI ",中国移动,"KTU84P dev-keys",点击“轨迹”，然后点击“系统检测”，等待一分钟，测试不合格,打开app点击“轨迹”，然后点击“系统检测”，等待一分钟，测试不合格,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6211002_1204a143-beb6-4de6-b7a1-9517dc41daf1.jpg""]",未知,P0,审核不通过,"2015-10-28 09:47:24"
+0,15287469,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,红米note：轨迹检测失败（气压计不满足采集要求）,"1、点击轨迹
+2、点击系统检测
+3、查看检测结果","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323480_a29216d2-7e13-4a01-b05d-cd440dd76169.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323479_e667437a-d9f9-4b48-b6fb-14f8f543c468.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323478_916a1144-e910-4fa5-b4b8-4b3a9540fba5.jpg""]",未知,P0,审核不通过,"2015-10-30 18:08:17"
+0,15287469,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,手机横竖屏后，检测就停止了,"1.手机开启横屏功能
+2、点击poi或者轨迹
+3、点击系统检测
+4、将手机横屏显示，查看检测结果
+结果检测停止了","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323480_a29216d2-7e13-4a01-b05d-cd440dd76169.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323479_e667437a-d9f9-4b48-b6fb-14f8f543c468.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323478_916a1144-e910-4fa5-b4b8-4b3a9540fba5.jpg""]",未知,P0,审核通过,"2015-10-30 18:08:17"
+0,15287469,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,"检测通过后，点击登录，提示no such user","1、点击poi或者轨迹
+2、点击系统检测
+3、检测通过后，点击登录按钮","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323480_a29216d2-7e13-4a01-b05d-cd440dd76169.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323479_e667437a-d9f9-4b48-b6fb-14f8f543c468.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6323478_916a1144-e910-4fa5-b4b8-4b3a9540fba5.jpg""]",未知,P0,审核通过,"2015-10-30 18:08:17"
+0,15313122,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,"检查通过后，点击登录，提示no such user","1、点击pio
+2、点击系统检测
+3、等待一分钟后，检测成功后，点击登录按钮","[""null""]",未知,P0,审核通过,"2015-10-29 14:35:58"
+0,15313122,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,进行系统检测时，手机横屏切换后，停止检测了,"前提：手机开启横竖屏切换模式
+1、点击pio
+2、点击系统检测
+3、在检测的过程中，将手机横竖屏切换下","[""null""]",未知,P0,审核通过,"2015-10-29 14:35:58"
+0,15313122,轨迹检测,北京市|北京市|朝阳区|安家楼村路|,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,中兴N918st：轨迹检测没有通过,"1、点击轨迹
+2、点击系统检测
+3、等待一分钟后，检测完成后，查看结果","[""null""]",未知,P0,审核不通过,"2015-10-29 14:35:58"
+0,15315078,轨迹检测,北京|北京,"Xiaomi  MI 4W","Android 4.4.4","WIFI ",无SIM卡,KTU84P,"手机通过检测后，登录时显示no such user","1.点击pio
+2.系统检测
+3.检测通过后，点击登录按钮","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6237069_e7e10ac4-4aee-4dda-9cf0-415890015577.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6237068_19631c1e-4fc7-4996-9b86-385fb5343b21.jpg""]",未知,P0,审核通过,"2015-10-28 21:52:48"
+0,15315078,轨迹检测,北京|北京,"Xiaomi  MI 4W","Android 4.4.4","WIFI ",无SIM卡,KTU84P,手机横竖屏切换后，系统检测停止了,"1.点击poi/轨迹
+2.点击系统检测
+3.将手机横竖屏转换
+结果：文字消失了，检测也停止了","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6237069_e7e10ac4-4aee-4dda-9cf0-415890015577.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6237068_19631c1e-4fc7-4996-9b86-385fb5343b21.jpg""]",未知,P0,审核通过,"2015-10-28 21:52:48"
+0,15414557,轨迹检测,江苏省|苏州市|昆山市|新竹路|,"Letv  Letv X500","Android 5.0.2","WIFI ",无SIM卡,"DBXCNOP5500710211S release-key",检测界面旋转屏幕，app会回到初始未检测状态,打开APP-->系统检测-->旋转手机屏幕-->查看界面,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6486042_5005c8ca-0eed-422e-9793-177efc68daaa.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6486041_fe219cfd-3ca5-440a-bcc0-626491d5daa2.jpg""]",未知,P0,审核通过,"2015-11-04 09:59:12"
+0,15468189,轨迹检测,河北省|衡水市|武邑县|S385|,"Xiaomi  HM NOTE 1S","Android 4.4.4","mobile CDMA - EvDo rev. A",中国电信,KTU84P,应该接受软件的用途！,打开软件就几个字，应该在显眼处说明此软件的用途！,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6610653_85a896b4-758c-45f0-a71b-c012ff729911.jpg""]",未知,P0,审核不通过,"2015-11-06 16:19:46"
+0,15468189,轨迹检测,河北省|衡水市|武邑县|S385|,"Xiaomi  HM NOTE 1S","Android 4.4.4","mobile CDMA - EvDo rev. A",中国电信,KTU84P,太过“简陋”，字太过概括太专业化,"打开软件，就几个字，“poi”""轨迹""这些词语都太专业化，很多新人应该都不懂","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6610653_85a896b4-758c-45f0-a71b-c012ff729911.jpg""]",未知,P0,审核不通过,"2015-11-06 16:19:46"
+0,15471034,轨迹检测,河南省|郑州市|金水区|北环路|61号,"Huawei  HUAWEI G750-T01","Android 4.2.2","WIFI ",中国移动,"G750-T01 V100R001CHNC00B152",系统检测时长及检测结果的证据,"1.两项系统检测时长太久，可以缩短
+2.轨迹系统检测完的结果没有很好的说服力",[],未知,P0,审核不通过,"2015-10-28 10:25:54"
+0,16484711,轨迹检测,江苏省|盐城市|大丰市||,"vivo  vivo Y22L","Android 4.3","WIFI ",中国移动,JLS36C,手机陀螺仪，气压计不满足采集要求,手机的陀螺仪不满足采集要求和手机的气压计也不符合采集要求,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6377545_bb7e1d38-bafa-4502-8e6d-7fab5e3f5217.jpg""]",未知,P0,审核不通过,"2015-11-01 10:27:37"

@@ -1,0 +1,2 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,14927138,"分享 ,功能测试",北京市|北京市|海淀区|上地十街|10号,"google  Nexus 5","Android 4.4.3","WIFI ",无SIM卡,KTU84M,评论功能有bug，提示必须3个字以上，但是明明有3个还是发不了,评论功能有bug，提示必须3个字以上，但是明明有3个还是发不了。当4个及以上时才会发送成功。所以提示语有错误。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6903047_bd2a28be-d4ba-423e-9c14-1f0d88175987.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6903046_934ced1f-5654-4b1f-b859-48ee619350d2.jpg""]",未知,P0,审核通过,"2015-11-12 21:47:28"

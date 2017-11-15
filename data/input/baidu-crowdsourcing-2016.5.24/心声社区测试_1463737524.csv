@@ -1,0 +1,29 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,18755,心声社区自动化测试,湖北省|襄阳市|襄城区|西巷子|,"Xiaomi  2014811","Android 4.4.4","WIFI ",中国移动,KTU84P,金一南教授全程视频是个烂链接,"1、安装软件；
+2、游客登录；
+3、在首页点击金一南讲课的全程视频，提示get info error，链接是个烂链接，请参见截图，谢谢！","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7755739_71f43728-7f23-4842-bbbf-c317a19be10c.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7755738_095ed463-48b3-4d22-b7bc-bbb3502638f2.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7755737_2ee7acf1-254c-4c8c-a3b6-391b2b03b197.jpg""]",未知,P0,审核通过,"2015-12-04 07:17:16"
+0,18755,心声社区自动化测试,湖北省|襄阳市|襄城区|西巷子|,"Xiaomi  2014811","Android 4.4.4","WIFI ",中国移动,KTU84P,UI在红米2手机MIUI7系统超大字号设置下有图标数字被遮挡情况,"1、安装软件；
+2、打开软件；
+3、在首页或者其他页面打开一则消息的详细报道，点赞的手型图标和点赞数有部分遮挡。请参见截图，谢谢！","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7755739_71f43728-7f23-4842-bbbf-c317a19be10c.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7755738_095ed463-48b3-4d22-b7bc-bbb3502638f2.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7755737_2ee7acf1-254c-4c8c-a3b6-391b2b03b197.jpg""]",未知,P0,审核通过,"2015-12-04 07:17:16"
+0,753702,心声社区自动化测试,辽宁省|铁岭市|银州区|繁荣路|,"Xiaomi  MI 2S","Android 5.0.2","WIFI ",中国联通,LRX22G,"以游客身份登录,执行某些操作时会转到登录界面,但是无法返回到之前的页面","启动APP后,在""论坛""模块,任意点开一篇文章,在屏幕下方的工具栏中找到收藏图标(五角星),点击后转向登录界面,该界面没有提供返回上一页的链接或功能按钮,点按手机返回键弹出退出确认对话框.只能重新点""游客登录"",如果游客身份时误触到该收藏图标,则可能影响阅读体验(还得自己去找刚读了一半的文章).同样的情况还发生在""报纸""模块文章内容页的收藏,""视频""模块视频播放页的点赞和评论(为什么论坛和报纸可以游客评论???),""圈子""模块的点赞和评论.但同是转向登录页面,在""我""模块点右上角""设置""按钮(齿轮图标),再点""昵称管理""转向登录页后就可以通过返回键回到设置界面.","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7750262_4d8aa8f1-33d5-41f1-9e72-ab245be58513.jpg""]",未知,P0,审核通过,"2015-12-03 22:41:44"
+0,779468,心声社区自动化测试,北京市|北京市|昌平区|太平庄北街|,"Huawei  S8-701u","Android 4.3","WIFI ",unknown,S8-701uV100R001C233B008,首页-》游客登陆-》论坛，列表中随便选择一项查看，在帖子页面中，随便点赞，页面会跳转到登陆页面，如果不登陆，就没法回退到帖子页面了。手机自带返回键无效，登陆页面中也不存在返回键。,首页-》游客登陆-》论坛，列表中随便选择一项查看，在帖子页面中，随便点赞，页面会跳转到登陆页面，如果不登陆，就没法回退到帖子页面了。手机自带返回键无效，登陆页面中也不存在返回键。,[],未知,P0,审核通过,"2015-12-03 23:16:36"
+0,14519399,心声社区自动化测试,四川省|成都市|武侯区|天华路|151号,"Xiaomi  HM 1S","Android 4.4.4","ETHERNET ",中国电信,KTU84P,页数的滑动块有误，第一页和第二页所处的位置是一样的,进入app主页，点击任意一个帖子进入详细页面。点击右下角的页数，检查当页数为1/3时，滑动块的位置；选择到第二页，检查当页数为2/3时，滑动块的位置。目前的表现是1/3与2/3的位置是一样的，请参考截图。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7759347_d4e30cb4-0009-48de-a9f3-3943fcbadce8.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7759346_accd91a0-797f-4928-949e-0d6ebb508def.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7759345_e6a22199-ac81-4673-ab67-efa3680393df.jpg""]",未知,P0,审核通过,"2015-12-04 09:31:27"
+0,14519399,心声社区自动化测试,四川省|成都市|武侯区|天华路|151号,"Xiaomi  HM 1S","Android 4.4.4","ETHERNET ",中国电信,KTU84P,从帖子中跳转到登录页面，无法返回帖子；而‘我的’页面中跳转到等路页面则可以返回到原页面,游客登录进入app主页，点击任意一个帖子进入详细页面。点击下方的评论或者点赞，会跳转到登录页面，此时若点击返回，则会提示退出app，无法返回刚才的帖子，而登录后就进入首页，会找不到刚才浏览的帖子了。但是若是在‘我的’页面中点击‘我的消息’，跳转到登录页面，是可以返回到刚才的页面，供用户继续操作的。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7759347_d4e30cb4-0009-48de-a9f3-3943fcbadce8.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7759346_accd91a0-797f-4928-949e-0d6ebb508def.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7759345_e6a22199-ac81-4673-ab67-efa3680393df.jpg""]",未知,P0,审核通过,"2015-12-04 09:31:27"
+0,15315078,心声社区自动化测试,北京市|北京市|朝阳区|朝阳北路|,"vivo  vivo X5M","Android 5.0.2","WIFI ",无SIM卡,"LRX22G release-keys",进入浏览历史页面，更换分类页面，应用闪退,"1.点击视频
+2.点击视频首页下拉框，选择公司动态
+3.点击返回键退出公司动态页面，回到视频首页
+4.点击历史纪录按钮，
+5.进入历史页面，切换分类
+结果:应用闪退","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7750430_0d28ea9f-9694-48a5-9c14-7bed99f87048.jpg""]",未知,P0,审核不通过,"2015-12-03 22:58:45"
+0,15342275,心声社区自动化测试,海南|海口,"vivo  vivo X3L","Android 4.3","WIFI ",中国移动,JLS36C,成功点赞后，取消点赞，无法取消,"1.打开软件
+2.打开查看文章详细页面
+3.对文章点赞，再次点击取消点赞
+取消失败","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7785978_a21d848c-5f51-4057-b370-831f69daa599.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7785975_29962acd-c8f4-4be8-9c2d-04a3c297591f.jpg""]",未知,P0,审核通过,"2015-12-04 21:01:41"
+0,15342275,心声社区自动化测试,海南|海口,"vivo  vivo X3L","Android 4.3","WIFI ",中国移动,JLS36C,登录页面，输入错误的帐号和密码进行登录，黑屏，无法显示页面,"1.打开软件
+2.进入登录页面
+3.输入错误的帐号和密码，点击登录
+黑屏，无法显示页面","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7785978_a21d848c-5f51-4057-b370-831f69daa599.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7785975_29962acd-c8f4-4be8-9c2d-04a3c297591f.jpg""]",未知,P0,审核通过,"2015-12-04 21:01:41"
+0,15471034,心声社区自动化测试,河南省|郑州市|金水区|北环路|61号,"Huawei  HUAWEI G750-T01","Android 4.2.2","WIFI ",中国移动,"G750-T01 V100R001CHNC00B152",APP整个版面设计过于空洞,APP整个版面设计过于空洞，像报纸版面就两条新闻报道，影响第二次的浏览度,[],未知,P0,审核不通过,"2015-12-04 21:06:02"
+0,16575683,心声社区自动化测试,辽宁省|本溪市|桓仁满族自治县|文化路|,"Xiaomi  MI4","Android 4.3.0","WIFI ",无SIM卡,L1QTW81.JXD3.QHD.S9T8H8.0401.V,"非BUG,只是一个老网民的一个操作建议.
+用户输入框和密码输入框,应该为光标所在行,底部提示文字消失.而不应该是现在这样,输入文本后消失.一个操作习惯和视觉习惯,不是BUG.","非BUG,只是一个老网民的一个操作建议.
+用户输入框和密码输入框,应该为光标所在行,底部提示文字消失.而不应该是现在这样,输入文本后消失.一个操作习惯和视觉习惯,不是BUG.","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7758064_56a38ce0-8bfe-4998-b33f-6a4f19093bea.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/7758063_2ae70b21-d801-4658-806e-a59b69b105f6.jpg""]",未知,P0,审核不通过,"2015-12-04 08:57:14"

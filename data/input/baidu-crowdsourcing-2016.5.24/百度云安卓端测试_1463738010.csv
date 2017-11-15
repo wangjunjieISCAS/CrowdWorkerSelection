@@ -1,0 +1,186 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,198643,添加任务,北京市|北京市|西城区|宣武门内大街|169号,"nubia  NX507J","Android 4.4.2","WIFI ",中国移动,NX507J_CNCommon_V1.76,点击下载后，传输列表中没有下载任务,点击下载，选择原画，软件显示加密传输，但是传输列表中没有下载任务,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19371119_2651a76b-48f6-4225-8ed2-bf3fb59975b5.jpg""]",未知,P2,审核通过,"2016-04-07 12:16:51"
+1,198643,暂停任务,北京市|北京市|西城区|宣武门内大街|169号,"nubia  NX507J","Android 4.4.2","WIFI ",中国移动,NX507J_CNCommon_V1.76,传输列表中没有任务，无法执行操作,传输列表中没有任务，无法执行操作，无法完成该项测试,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19371122_90763456-be71-4f92-b49c-c669cce704b4.jpg""]",未知,P0,审核不通过,"2016-04-07 12:17:06"
+2,198643,继续任务,北京市|北京市|西城区|宣武门内大街|169号,"nubia  NX507J","Android 4.4.2","WIFI ",中国移动,NX507J_CNCommon_V1.76,传输列表中没有任务，无法操作,传输列表中没有任务，无法操作，无法完成该项测试,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19371118_f69d0976-0c15-4b3a-91ce-d2718846db17.jpg""]",未知,P0,审核不通过,"2016-04-07 12:17:15"
+3,198643,删除任务,北京市|北京市|西城区|宣武门内大街|169号,"nubia  NX507J","Android 4.4.2","WIFI ",中国移动,NX507J_CNCommon_V1.76,传输列表中没有任务，无法操作,传输列表中没有任务，无法操作，无法完成该项测试,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19371125_331f185c-379f-446f-b8de-2fc4361760cc.jpg""]",未知,P0,审核不通过,"2016-04-07 12:17:22"
+0,1050472,添加任务,河北省|邢台市|桥东区|河北路|,"Xiaomi  HM NOTE 1LTE","Android 4.4.4","WIFI ",中国移动,KTU84P,添加任务后手动选择画质不方便,在百度云里我的视频文件夹中选择保存的四个文件，点击下载，选择画质时有两种一个是流畅和原画，上下进行增加用户的时间，降低用户的活跃度及其的不方便。未来根据用户的喜好自动为用户下载的视频支持的画质。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18998237_0333e335-c01d-4a50-ae0d-2bb1bc82a70b.jpg""]",未知,P3,审核通过,"2016-04-07 12:10:19"
+1,1050472,暂停任务,河北省|邢台市|桥东区|河北路|,"Xiaomi  HM NOTE 1LTE","Android 4.4.4","WIFI ",中国移动,KTU84P,暂停四个视频任务需手动逐个回复,下载时点击四个视频任务暂停，要想在继续下载，必须手动逐个的恢复四个视频才能正常进行下载。,[],已知,P3,审核通过,"2016-04-07 12:18:29"
+3,1077716,删除任务,四川省|成都市|锦江区|大田坎街|162号-8号-临,"samsung  GT-I9260","Android 4.1.1","WIFI ",中国移动,JRO03C.I9260ZCALL2,"选定任务准备删除的时候 软件无响应 自动退出","选定任务准备删除的时候 软件无响应 自动退出 然后重启 再次操作删除成功","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19912949_523a3734-5ab8-4d26-a9ba-5b4457bbf311.jpg""]",已知,P2,审核通过,"2016-04-07 12:11:12"
+4,1077716,断网重连,四川省|成都市|锦江区|大田坎街|162号-8号-临,"samsung  GT-I9260","Android 4.1.1","WIFI ",中国移动,JRO03C.I9260ZCALL2,"显示储存空间不足 但是还有6个G绰绰有余的说","显示储存空间不足 但是还有6个G绰绰有余的说 然后怎么也恢复不了下载……一个视频也就900M的样子","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19912946_49ed3be7-640a-4a57-b487-bb875e78a51b.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19912945_bafa63da-9983-4cc3-8324-77f59da8c65a.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19912944_4616fa0d-8f17-4c3e-90d5-8b33eb118339.jpg""]",未知,P2,审核通过,"2016-04-07 12:18:55"
+1,2135150,暂停任务,云南省|昆明市|呈贡区|广田西路|,"Xiaomi  2014501","Android 4.4.2","WIFI ",无SIM卡,KOT49H,"暂停任务有时候会发生跳转至首页（红米 WIFI Android4.4.2）",多次暂停任务时，偶尔会发生页面跳转至网盘首页,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19088744_3195a519-b4a1-428d-961c-7022c59a3684.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19088743_0076e4a4-9ad5-4b90-b781-b845012b6cf0.jpg""]",已知,P3,审核通过,"2016-04-07 12:11:58"
+4,2135150,断网重连,云南省|昆明市|呈贡区|广田西路|,"Xiaomi  2014501","Android 4.4.2","WIFI ",无SIM卡,KOT49H,"多次重复后，其中一次未显示等待下载。（红米 WIFI Android4.4.2）",关闭WIFI后（手机没有话卡）任然显示流量，只是数字不断减少至最后空白显示,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19088741_0c175d86-e7d4-488a-b34f-d46e4cf5a352.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19088740_a8910f00-ecca-4026-8284-7f528150f46c.jpg""]",已知,P3,审核通过,"2016-04-07 12:12:41"
+0,2737722,添加任务,天津市|天津市|滨海新区|北京道|null,"samsung  SM-G3588V","Android 4.3","WIFI ",中国移动,JLS36C.G3588VZMUANL1,百度云安卓系统再次登录时崩溃,正常操作，点击百度云安卓系统，手机APP中没有同步视频，再次登录，系统崩溃，手机是三星3588V，已ROOT,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20037456_7c6def42-d459-42ca-8112-ec2c4daf8878.jpg""]",已知,P3,审核通过,"2016-04-07 12:13:31"
+1,2760016,暂停任务,江苏省|南京市|建邺区|江东中路|359号,"ZTE  ZTE Grand S II LTE","Android 4.3","WIFI ",中国移动,JLS36C,状态切换迟缓，并且有低几率出现黑屏，并退回百度云首页,随机切换各任务的暂停与开始，能够发现状态切换迟缓的情况，点击失效，确认不是点偏了，此外，在切换过程中，低几率会出现界面崩溃，短暂卡顿、黑屏后，退回百度云首页，并重新开始任务。测试机型为中兴S291，安卓4.3版本。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19525252_bfc7d3b5-fbab-4dad-95cf-84afda4298a9.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19525251_e7e9f84c-f8c3-49cb-83ba-459cfb708c37.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19525250_c7d8181f-8b3f-41a9-8513-718663bc3c09.jpg""]",未知,P2,审核通过,"2016-04-07 12:19:31"
+4,2872823,断网重连,福建省|福州市|马尾区|马江路|8号,"Xiaomi  HM 2A","Android 4.4.4","WIFI ",中国联通,KTU84P,手机wifi关闭然后重连，没有继续下载,"手机wifi关闭然后重连，没有继续下载。点击也无用，删除之
+手机wifi关闭然后重连，没有继续下载。点击也无用，删除之","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838530_c6c39346-6e50-413c-a24e-6e6bab82f6fd.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838529_3429706c-fe37-4746-8648-adfff2f839e4.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838528_fde67d38-7fdf-439c-a8fb-1ab4ad72d799.jpg""]",已知,P1,审核通过,"2016-04-07 12:20:31"
+0,3001819,添加任务,广西壮族自治区|南宁市|西乡塘区|火炬路|17-40号,"Lenovo  Lenovo K30-T","Android 4.4.4","WIFI ",中国移动,K30-T_S048_150805,任务无法加入传输列表，其他的文件也是一样,按照你们的测试要求进行操作，添加后还没打开传输列表的时候，在列表那会有一个小红点提示有新文件，但是点开列表后却没有。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19014707_2d1fadae-f21c-43c7-8bb4-7b97b419fe13.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19014706_84be6003-9b51-46f8-a5db-e4d38a1499e4.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19014705_e819e987-dc0e-4184-b0e5-6b2979095c49.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19014704_bfab8faf-ac48-4602-bcb1-4ca9a94c0570.jpg""]",已知,P2,审核通过,"2016-04-07 12:23:07"
+0,3463911,添加任务,四川省|成都市|大邑县|甲子东道|192号,"Xiaomi  HM 1S","Android 4.4.4","WIFI ",中国电信,KTU84P,手机之前下载有百度云，安装的时候提示不能安装,我使用的是红米1S电信版，手机之前下载有百度云，安装的时候提示不能安装,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19282002_0b3959e5-33f1-44ba-99ec-0c2803729015.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19282001_ad01e7a3-e7b9-4272-9322-a4e2311291bc.jpg""]",已知,P3,审核通过,"2016-04-07 12:23:57"
+2,6147269,继续任务,四川省|成都市|金牛区|蜀汉路|490号,"GiONEE  M5","Android 5.1","WIFI ",中国电信,amigo3.0.6,在继续任务时，单击按钮无反应,根据测试的步骤进行操作，开启传输任务没有问题，暂停任务也没有问题，就是继续任务时的单击按钮无反应，还以为是手机问题，不过从手机端启动百度云却可以继续任务的。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19851158_9762ba17-6d0e-4433-9170-d20e7a665c6e.jpg""]",已知,P2,审核通过,"2016-04-07 12:24:41"
+4,6325887,断网重连,河北省|石家庄市|长安区|和平东路|522号,"Lenovo  Lenovo S868t","Android 4.0.3","WIFI ",无SIM卡,S-2-02,选择四个文件后，点击下方下载，点击原画下载，传输列表上有红点，但进入传输列表后，里边无内容，待好几分钟后，仍然空白。,选择四个文件后，点击下方下载，点击原画下载，传输列表上有红点，但进入传输列表后，里边无内容，待好几分钟后，仍然空白。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19984571_28697f89-b364-491c-8210-fb70e8041b7e.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19984570_bef2b837-4de0-4847-aa1c-8354da6757ec.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19984569_7f6afcbb-2de5-4e91-b32e-1d40d9b1ee84.jpg""]",已知,P2,审核通过,"2016-04-07 12:25:55"
+4,9258933,断网重连,宁夏回族自治区|银川市|金凤区|凤翔街|,"Huawei  HUAWEI G750-T01","Android 4.2.2","WIFI ",中国移动,"G750-T01 V100R001CHNC00B152",导致WLAN无法再连接wifi不可用，需要重新启动手机！,关闭wifi后，再次打开时，WLAN无法再连接wifi不可用，需要重新启动手机！,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20180925_350aca0e-6364-4a1f-b159-4dcb836a2812.jpg""]",未知,P3,审核通过,"2016-04-07 12:26:37"
+1,9504441,暂停任务,河北省|沧州市|沧县|S283|,"Xiaomi  2014813","Android 4.4.4","WIFI ",中国移动,KTU84P,百度云客户端正常运行的情况下微任务里面提示先安装百度云,微任务功能点一操作完成后点击下一步进入功能点2测试界面，百度云安卓端不能从微任务界面打快提示安装,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496797_3a3e13cf-5f4e-4adf-a52e-6eab604f14cb.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496796_c33316e3-c198-4d78-9b10-9de96b44b108.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496795_0144f186-159d-42f4-9a28-4540bca01f28.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496794_7848b524-82dd-44ff-a692-a6a3d79d4126.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496793_ccb1e522-deec-47d2-8e65-bb708e3303f6.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496792_509242e5-c9cf-46ef-8ef4-e7e43017a0a9.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496791_d9b5e3ce-10d0-4135-8233-161d7c8802f1.jpg""]",未知,P3,审核通过,"2016-04-07 12:27:27"
+2,9504441,继续任务,河北省|沧州市|沧县|S283|,"Xiaomi  2014813","Android 4.4.4","WIFI ",中国移动,KTU84P,在微任务界面选择安装百度云安卓端，安装失败,在微任务界面选择安装百度云安卓端，按照提示点击仅允许一次，点击安装，提示安装失败,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496785_a8d626f2-3914-4059-bd55-a76a03724f38.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496784_eafeef53-8cab-47db-8e2b-87be435b8c9e.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19496783_ea266fe9-f096-4084-89b7-aa95699d5b1c.jpg""]",已知,P2,审核通过,"2016-04-07 12:28:41"
+0,11333447,添加任务,山西省|忻州市|神池县|神保线|,"Xiaomi  2013022","Android 4.4.2","WIFI ",中国移动,"MIUI HBJ2.0",下载时选择原画后提示正在为你加密传输，但是传输列表并没有任务列表，实际也没有下载，后来选择优先流畅下载也没有执行下载命令,在主界面选择文件，这里是多选，选择四个视频文件，点击下载，在弹出的弹框选择原画，之后就有提示正在为你加密传输，实际并没有下载。,[],已知,P2,审核通过,"2016-04-07 12:29:06"
+0,12767243,添加任务,江苏省|南京市|鼓楼区|龙园南路|,"ONEPLUS  A0001","Android 4.3","WIFI ",中国移动,A0001_12_150525,通知栏进度描述不准确。进度百分比不随着下载进度更新。,"1. 选择保存的四个文件，点击下载，选择原画
+2. 前提：确认下载列表中文件在下载，每隔一段时间下拉通知栏，查看进度","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210386_22182be0-b3d7-402c-92fc-3d5070ea7635.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210383_f889ef60-3aee-47df-9e1d-5dbffa1eaa80.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210381_8109d843-322e-4016-82f8-81950d114f31.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210378_62de6c76-16ee-41d6-b184-958495a33c03.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210376_3dbf3344-4696-47f8-9756-a6ff1cb7510d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210375_de04c628-22ae-4b0c-b291-2ca96a366628.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210373_9c67281d-c08f-44ef-b2a1-56d65f91d2f0.jpg""]",未知,P2,审核通过,"2016-04-07 12:29:50"
+0,12767243,添加任务,江苏省|南京市|鼓楼区|龙园南路|,"ONEPLUS  A0001","Android 4.3","WIFI ",中国移动,A0001_12_150525,网速正常，但下载龟速（第一个文件除外）,"1. 选择4个视频下载
+2. 观察下载速度
+3. 除了第一个文件较为正常（800KB/S）。剩余的3个文件以龟速在下载（ 50M电信宽带）","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210386_22182be0-b3d7-402c-92fc-3d5070ea7635.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210383_f889ef60-3aee-47df-9e1d-5dbffa1eaa80.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210381_8109d843-322e-4016-82f8-81950d114f31.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210378_62de6c76-16ee-41d6-b184-958495a33c03.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210376_3dbf3344-4696-47f8-9756-a6ff1cb7510d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210375_de04c628-22ae-4b0c-b291-2ca96a366628.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210373_9c67281d-c08f-44ef-b2a1-56d65f91d2f0.jpg""]",已知,P1,审核通过,"2016-04-07 12:30:49"
+2,12767243,继续任务,江苏省|南京市|鼓楼区|龙园南路|,"ONEPLUS  A0001","Android 4.3","WIFI ",中国移动,A0001_12_150525,继续下载时，已下载量会减少,"1. 点击暂停，继续当前下载进度，例如6M/50M
+2. 点击继续下载。 进度变成 5M/50M 下载。 
+会丢掉部分已下载的进度","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210371_201fb35f-03bd-4d37-b179-7930247a8217.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20210370_d30a25c5-acda-4ee5-af65-e9081577eb70.jpg""]",已知,P3,审核通过,"2016-04-07 12:31:44"
+4,12767243,断网重连,江苏省|南京市|鼓楼区|龙园南路|,"ONEPLUS  A0001","Android 4.3","WIFI ",中国移动,A0001_12_150525,"通知栏跳出“显示等待网络”后自动消失。
+若有此通知功能，建议停留时间长一点。目前1秒不到就消失","1.选中一个视频，进行下载
+2. 到设置中关闭 手机的wifi网络，不要打开",[],已知,P2,审核通过,"2016-04-07 12:32:15"
+4,13585076,断网重连,河南省|南阳市|卧龙区|G40(沪陕高速公路)|,"WEIBI  F1","Android 4.4.4","WIFI ",中国移动,T1795AN_JIAC_JC070_C_ALIYUN_SE,断网后，WIFI已经连接上了至少十几秒，下载中却还显示等待WIFI连接。,断网后，WIFI已经连接上了至少十几秒，下载中却还显示等待WIFI连接。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18991085_045f2af1-5e8d-4d02-8e20-683f69d736f3.jpg""]",未知,P0,审核不通过,"2016-04-07 12:33:02"
+3,14376974,删除任务,广东省|广州市|越秀区|菜园东|11号,"Xiaomi  Redmi Note 3","Android 5.0.2","WIFI ",中国联通,LRX22G,"在下载这几个视频的时候 点击删除文件 操作无效","在下载这几个视频的时候 点击删除文件 操作无效",[],已知,P1,审核通过,"2016-04-07 12:33:21"
+0,14539706,添加任务,北京市|北京市|海淀区|友谊路|102号,"Xiaomi  MI NOTE LTE","Android 4.4.4","mobile LTE",中国移动,KTU84P,打开app输入登陆账户密码后异常退出,打开app输入登陆账户密码后异常退出，无法进行测试,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19481323_df4086fb-e85e-4b9b-b8a1-35fc500e6ff0.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19481321_5344f7ea-7098-46da-bbf4-f9fa4c5c02fd.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19481320_200276b5-93e0-4c53-8eeb-a59a7b8997ac.jpg""]",已知,P3,审核通过,"2016-04-07 12:33:46"
+0,14539706,添加任务,北京市|北京市|海淀区|友谊路|102号,"Xiaomi  MI NOTE LTE","Android 4.4.4","mobile LTE",中国移动,KTU84P,异常退出后，不断提示app奔溃信息，干扰正常使用,异常退出后，不断提示app奔溃信息，点击确认后仍不断弹出提示，干扰正常使用,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19481323_df4086fb-e85e-4b9b-b8a1-35fc500e6ff0.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19481321_5344f7ea-7098-46da-bbf4-f9fa4c5c02fd.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19481320_200276b5-93e0-4c53-8eeb-a59a7b8997ac.jpg""]",未知,P0,审核不通过,"2016-04-07 12:34:06"
+4,14601012,断网重连,浙江省|杭州市|滨江区|建业路|511,"Huawei  HUAWEI P7-L00","Android 4.4.2","WIFI ",中国联通,P7-L00V100R001C17B620,反馈中输入表情提交失败,"1、打开软件
+2、点击进入关于我
+3、点击反馈
+4、输入表情，点击提交；
+预期结果：提交成功；
+实际结果：提交失败","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838856_86f20cc9-15ac-4f76-8423-7e7304df79e0.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838855_d2e3392f-d890-4cf1-a167-0d98113ba89d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838854_1fb51f25-8e18-44a6-b582-0354b5188ad3.jpg""]",未知,P3,审核通过,"2016-04-07 12:34:28"
+4,14601012,断网重连,浙江省|杭州市|滨江区|建业路|511,"Huawei  HUAWEI P7-L00","Android 4.4.2","WIFI ",中国联通,P7-L00V100R001C17B620,反馈中未对输入的联系方式进行校验,"1、打开软件
+2、点击进入关于我
+3、点击反馈
+4、联系方式中随意进行输入，点击提交；
+预期结果：提交失败，弹出提示；
+实际结果：提交成功","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838856_86f20cc9-15ac-4f76-8423-7e7304df79e0.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838855_d2e3392f-d890-4cf1-a167-0d98113ba89d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18838854_1fb51f25-8e18-44a6-b582-0354b5188ad3.jpg""]",未知,P0,审核不通过,"2016-04-07 12:34:49"
+0,15140900,添加任务,四川省|南充市|西充县|G212|,"Xiaomi  2014813","Android 4.4.4","WIFI ",中国移动,KTU84P,下载完了第一个cartoon5这个视频，但是播放时候，自动播放到45秒左右的时候，出现暂停播放，自动从前又开始播放了一遍,下载完了第一个cartoon5这个视频，但是播放时候，自动播放到45秒左右的时候，出现暂停播放，自动从前又开始播放了一遍,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18858669_d1cd8594-70bd-4e79-adb0-cd113761c833.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18858668_3a3ab29d-a521-4878-9a09-8bd9c9425c54.jpg""]",已知,P1,审核通过,"2016-04-07 12:35:25"
+4,15140900,断网重连,四川省|南充市|西充县|G212|,"Xiaomi  2014813","Android 4.4.4","WIFI ",中国移动,KTU84P,更改头像图片，显示更改好了，但是图片没有更改，第二次更改才改起,更改头像图片，显示更改好了，但是图片没有更改，第二次更改才改起,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/18858671_927fe0e3-0846-452e-a9f1-5c6cc1aba339.jpg""]",未知,P0,审核不通过,"2016-04-07 12:36:01"
+0,15275851,添加任务,北京市|北京市|海淀区|学院路|7号,"vivo  vivo X6D","Android 5.1","WIFI ",中国联通,"LMY47I release-keys",文件未下载前的列表中每个文件后的选择按钮是小圆点不明显，不知道怎么下载，建议改为未选中的对勾更容易操作,"步骤1：登录百度云
+步骤2：在列表中找到要下载的4个文件保存的文件夹，点击进入
+步骤3：选中文件标题后的小圆圈","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19923990_463dafab-6b81-4d2e-9abb-10a61232b3cb.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19923989_cf41db6f-ac56-4665-8bab-ccd1d48da36f.jpg""]",已知,P2,审核通过,"2016-04-07 12:36:24"
+0,15275851,添加任务,北京市|北京市|海淀区|学院路|7号,"vivo  vivo X6D","Android 5.1","WIFI ",中国联通,"LMY47I release-keys",下载列表中的闪电互传在点击右上角的全选后还是提示“没有可传输的文件”,"步骤1：登录
+步骤2：进入文件所在的文件夹
+步骤3：选择要下载的文件，点击下载
+步骤4：在下载列表界面长按，选择右上角的全选
+步骤5：点击“闪电互传”","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19923990_463dafab-6b81-4d2e-9abb-10a61232b3cb.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19923989_cf41db6f-ac56-4665-8bab-ccd1d48da36f.jpg""]",未知,P0,审核不通过,"2016-04-08 11:58:46"
+4,15275851,断网重连,北京市|北京市|海淀区|学院路|7号,"vivo  vivo X6D","Android 5.1","WIFI ",中国联通,"LMY47I release-keys",由wifi切换到流量传输后没有给出提示，也不能下载提示“等待wifi网络”,"由wifi切换到流量传输后没有给出提示，也不能下载提示“等待wifi网络”
+步骤1：登录并进入下载列表
+步骤2：点击下载
+步骤3：切换网络由wifi到数据流量传输",[],已知,P3,审核通过,"2016-04-08 12:00:07"
+0,15342275,添加任务,海南省|海口市|美兰区|和平南路|59号,"vivo  vivo X3L","Android 4.3","WIFI ",中国移动,JLS36C,打开百度云，点击闪电互传，系统崩溃,"1.点击打开软件，
+2.打开发现页面，
+3.点击闪电互传，
+系统崩溃，停止运行",[],未知,P0,审核不通过,"2016-04-08 12:00:24"
+0,15419237,添加任务,广东省|广州市|番禺区|大学城外环西路|,"Huawei  G620S-UL00","Android 4.4.4","WIFI ",中国联通,G620S-UL00V100R001C17B382,切换下载位置，视频下载不产生任何反应,在视频下载过程中切换视频的保存位置，居然对下载视频不造成任何影响，数据保存路径都改变了，应该会报错或者提示重新下载。,[],已知,P3,审核通过,"2016-04-08 12:01:06"
+0,15422630,添加任务,辽宁|大连,"Sony  L39u","Android 4.2.2","WIFI ",中国移动,14.1.N.0.63,选择原画下载以后下载的内容并没有出现在下载列表里,选择原画下载以后下载的内容并没有出现在下载列表里，没有开始下载。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19010986_a980242a-e009-42db-a2be-4b66c7d335fc.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19010985_6bf43c08-207c-4a5d-81bf-94b3692ee4de.jpg""]",已知,P3,审核通过,"2016-04-08 12:02:18"
+4,16558080,断网重连,河南省|南阳市|卧龙区|G40(沪陕高速公路)|,"CMDC  M623C","Android 5.1.1","WIFI ",无SIM卡,02.03.28RPD,选择原画下载，几乎每次暂停它都会出现一个上面有一个百度云的横条下面是一片空白的界面，暂停再开始也会，不过有几次没有出现这种界面。,选择原画下载，几乎每次暂停它都会出现一个上面有一个百度云的横条下面是一片空白的界面，暂停再开始也会，不过有几次没有出现这种界面。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908231_2f84b3f9-cb77-46cf-8478-044d0fee022d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908230_5cc631ec-6a88-4dbc-993e-0845289f8d72.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908229_6af5142c-0a89-4af2-8df5-e4406455e1ab.jpg""]",已知,P2,审核通过,"2016-04-08 12:03:02"
+4,16558080,断网重连,河南省|南阳市|卧龙区|G40(沪陕高速公路)|,"CMDC  M623C","Android 5.1.1","WIFI ",无SIM卡,02.03.28RPD,断网后，出现断网提示并跳到了主页，但我把wifi关闭的时候是在下载界面关闭的，正常来说断网提示应该还是在下载界面出现才对。,断网后，出现断网提示并跳到了主页，但我把wifi关闭的时候是在下载界面关闭的，正常来说断网提示应该还是在下载界面出现才对。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908231_2f84b3f9-cb77-46cf-8478-044d0fee022d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908230_5cc631ec-6a88-4dbc-993e-0845289f8d72.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908229_6af5142c-0a89-4af2-8df5-e4406455e1ab.jpg""]",已知,P2,审核通过,"2016-04-08 12:03:42"
+4,16558080,断网重连,河南省|南阳市|卧龙区|G40(沪陕高速公路)|,"CMDC  M623C","Android 5.1.1","WIFI ",无SIM卡,02.03.28RPD,断网后重连继续下载，有一个下载我没有点击暂停它显示也是没有暂停，但是下载半天进度还是一点也没有变，而且它也不显示下载的网速，实际上跟暂停了没什么两样，直到重新点击暂停又点击开始，下载才正常。,断网后重连继续下载，有一个下载我没有点击暂停它显示也是没有暂停，但是下载半天进度还是一点也没有变，而且它也不显示下载的网速，实际上跟暂停了没什么两样，直到重新点击暂停又点击开始，下载才正常。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908231_2f84b3f9-cb77-46cf-8478-044d0fee022d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908230_5cc631ec-6a88-4dbc-993e-0845289f8d72.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19908229_6af5142c-0a89-4af2-8df5-e4406455e1ab.jpg""]",已知,P1,审核通过,"2016-04-08 12:05:10"
+1,16593011,暂停任务,河北省|石家庄市|新华区|誉宏路|,"GiONEE  GN709L","Android 4.3","WIFI ",中国移动,amigo2.0.7,就没找到暂停键在哪?,在传输当中，不知是传输快，还是什么，就没看见暂停键。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19717445_f7d0e459-cf89-4f55-a3bd-7c43177c3189.jpg""]",未知,P0,审核不通过,"2016-04-08 12:06:23"
+0,16783218,添加任务,湖北省|武汉市|洪山区|洪山街道口商圈武珞路|717号,"Huawei  PE-TL00M","Android 4.4.2","WIFI ",中国移动,PE-TL00MV100R001C01B200,邀请方式中选择其他应用，提示“百度云”停止运行,"1.在“分享”页面中点击“给好友分享文件”。
+2.在分享文件页面中点击“选择文件”。
+3在分享文件中的“网盘文件”页面中选择一个大文件，点击“分享”。
+4.跳转到“我的好友”页面，点击“邀请朋友加入”。
+5.弹出“请选择邀请方式”，选择“其他应用”。
+6.提示“百度云”停止运行。","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185988_8d251e11-a813-439e-81bb-6fefc665a2ba.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185987_b62cc96b-1944-4951-856d-077f7e4c8cea.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185986_f72d78be-09bc-4925-bb66-2d64c1b7eea7.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185985_14a69e91-a7b2-4652-a3b2-32ea58ad0216.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185984_88a0a0bd-5db2-4c7d-9e1c-703089c22fb2.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185983_8d903d5e-9c36-466b-90ea-8ebe939fd36d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185982_f8d2dcf3-28f3-433d-9e9c-2d059b3b4277.jpg""]",未知,P2,审核通过,"2016-04-08 12:06:49"
+0,16783218,添加任务,湖北省|武汉市|洪山区|洪山街道口商圈武珞路|717号,"Huawei  PE-TL00M","Android 4.4.2","WIFI ",中国移动,PE-TL00MV100R001C01B200,在网盘页面中选择带特殊字符“.@!”的文件名，进行重命名，重命名页面中的文件名没有显示全。,"1.在网盘页面中选择一个文件“eeed.@!”,点击“更多”。
+2.选择“重命名”，弹出的重命名文本框中只显示了“eeed”，没有显示后面的“.@!”，与之前的名字不符。","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185988_8d251e11-a813-439e-81bb-6fefc665a2ba.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185987_b62cc96b-1944-4951-856d-077f7e4c8cea.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185986_f72d78be-09bc-4925-bb66-2d64c1b7eea7.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185985_14a69e91-a7b2-4652-a3b2-32ea58ad0216.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185984_88a0a0bd-5db2-4c7d-9e1c-703089c22fb2.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185983_8d903d5e-9c36-466b-90ea-8ebe939fd36d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185982_f8d2dcf3-28f3-433d-9e9c-2d059b3b4277.jpg""]",未知,P0,审核不通过,"2016-04-08 12:06:58"
+0,16783218,添加任务,湖北省|武汉市|洪山区|洪山街道口商圈武珞路|717号,"Huawei  PE-TL00M","Android 4.4.2","WIFI ",中国移动,PE-TL00MV100R001C01B200,"在百度云推荐页面中点击""点击加载更多""，没有显示更多的信息","1.点击“发现”，跳转到“发现”页面。
+2.点击“增强工具”，跳转到“增强工具”页面。
+3.点击“查看更多百度云推荐工具”，跳转到“百度云推荐”页面。
+4.在百度云推荐页面中点击""点击加载更多""，没有显示更多的信息。","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185988_8d251e11-a813-439e-81bb-6fefc665a2ba.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185987_b62cc96b-1944-4951-856d-077f7e4c8cea.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185986_f72d78be-09bc-4925-bb66-2d64c1b7eea7.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185985_14a69e91-a7b2-4652-a3b2-32ea58ad0216.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185984_88a0a0bd-5db2-4c7d-9e1c-703089c22fb2.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185983_8d903d5e-9c36-466b-90ea-8ebe939fd36d.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20185982_f8d2dcf3-28f3-433d-9e9c-2d059b3b4277.jpg""]",未知,P0,审核不通过,"2016-04-08 12:07:30"
+0,16825099,添加任务,上海市|上海市|浦东新区|Y522(唐安路)|,"Huawei  HUAWEI C8813","Android 4.1.1","WIFI ",中国电信,C8813V100R001C92B167,退出搜索以后，屏幕上仍会有输入对话框.,"【重现步骤】
+1.点击app图标，登录app 
+2.选择首页“搜索”，输入搜索内容，退出搜索，观察是否还有输入对话框。
+【期望结果】 
+2. 退出搜索，退出输入对话框
+
+【实际结果】
+2. 退出搜索，仍存在输入对话框
+
+【测试环境】
+测试设备：huawei C8813
+系统版本：Android版本4.1.1
+网络环境：WIFI
+
+【复现率】
+100%","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082760_890dd2d9-1cf0-487f-9ffd-a225d613f85c.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082759_9305beef-ccae-4283-9316-87c3a7764bb5.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082758_13db536b-c005-4421-8a11-7a34fbdd63e3.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082757_4d5f2bd2-e8ae-4a7d-a62c-c58dc0d4c7d2.jpg""]",未知,P0,审核不通过,"2016-04-08 12:08:21"
+0,16825099,添加任务,上海市|上海市|浦东新区|Y522(唐安路)|,"Huawei  HUAWEI C8813","Android 4.1.1","WIFI ",中国电信,C8813V100R001C92B167,搜索历史记录无法清除,"【重现步骤】
+1.点击app图标，登录app 
+2.选择首页“搜索”，输入说个搜索内容，然后退出在进入，观察是否可以清除搜索记录。
+【期望结果】 
+2. 搜索记录可以清除。
+
+【实际结果】
+2. 搜索记录无法清除。
+
+【测试环境】
+测试设备：huawei C8813
+系统版本：Android版本4.1.1
+网络环境：WIFI
+
+【复现率】
+100%","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082760_890dd2d9-1cf0-487f-9ffd-a225d613f85c.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082759_9305beef-ccae-4283-9316-87c3a7764bb5.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082758_13db536b-c005-4421-8a11-7a34fbdd63e3.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082757_4d5f2bd2-e8ae-4a7d-a62c-c58dc0d4c7d2.jpg""]",未知,P0,审核不通过,"2016-04-08 12:09:16"
+0,16825099,添加任务,上海市|上海市|浦东新区|Y522(唐安路)|,"Huawei  HUAWEI C8813","Android 4.1.1","WIFI ",中国电信,C8813V100R001C92B167,隐私设置没有提示可以关闭密码锁的地方,"【重现步骤】
+1.点击app图标，登录app 
+2.选择首页“关于我”->“设置”->“隐私设置”->“密码锁”，设置好密码锁以后观察是否可以关闭。
+【期望结果】 
+2. 隐私设置有提示可以关闭密码锁的地方关闭密码锁
+
+【实际结果】
+2. 隐私设置没有提示可以关闭密码锁的地方
+
+【测试环境】
+测试设备：huawei C8813
+系统版本：Android版本4.1.1
+网络环境：WIFI
+
+【复现率】
+100%","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082760_890dd2d9-1cf0-487f-9ffd-a225d613f85c.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082759_9305beef-ccae-4283-9316-87c3a7764bb5.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082758_13db536b-c005-4421-8a11-7a34fbdd63e3.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082757_4d5f2bd2-e8ae-4a7d-a62c-c58dc0d4c7d2.jpg""]",未知,P0,审核不通过,"2016-04-08 12:09:38"
+0,16825099,添加任务,上海市|上海市|浦东新区|Y522(唐安路)|,"Huawei  HUAWEI C8813","Android 4.1.1","WIFI ",中国电信,C8813V100R001C92B167,隐私设置没有添加黑名单的地方,"【重现步骤】
+1.点击app图标，登录app 
+2.选择首页“关于我”->“设置”->“隐私设置”->“黑名单”，没有添加黑名单的地方
+
+【期望结果】 
+2. 隐私设置提示可以将部分好友添加进黑名单
+
+【实际结果】
+2. 隐私设置没有添加黑名单的地方
+
+【测试环境】
+测试设备：huawei C8813
+系统版本：Android版本4.1.1
+网络环境：WIFI
+
+【复现率】
+100%","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082760_890dd2d9-1cf0-487f-9ffd-a225d613f85c.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082759_9305beef-ccae-4283-9316-87c3a7764bb5.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082758_13db536b-c005-4421-8a11-7a34fbdd63e3.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082757_4d5f2bd2-e8ae-4a7d-a62c-c58dc0d4c7d2.jpg""]",未知,P0,审核不通过,"2016-04-08 12:10:04"
+0,16825099,添加任务,上海市|上海市|浦东新区|Y522(唐安路)|,"Huawei  HUAWEI C8813","Android 4.1.1","WIFI ",中国电信,C8813V100R001C92B167,选择默认下载位置的路径不能确定成功,"【重现步骤】
+1.点击app图标，登录app 
+2.选择首页“关于我”->“设置”->“默认下载位置”，选择本地一个路径，点击确定
+
+【期望结果】 
+2. 选择默认下载位置的路径确定成功
+
+【实际结果】
+2. 选择默认下载位置的路径不能确定成功
+
+【测试环境】
+测试设备：huawei C8813
+系统版本：Android版本4.1.1
+网络环境：WIFI
+
+【复现率】
+100%","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082760_890dd2d9-1cf0-487f-9ffd-a225d613f85c.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082759_9305beef-ccae-4283-9316-87c3a7764bb5.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082758_13db536b-c005-4421-8a11-7a34fbdd63e3.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082757_4d5f2bd2-e8ae-4a7d-a62c-c58dc0d4c7d2.jpg""]",已知,P3,审核通过,"2016-04-08 12:10:33"
+0,16825099,添加任务,上海市|上海市|浦东新区|Y522(唐安路)|,"Huawei  HUAWEI C8813","Android 4.1.1","WIFI ",中国电信,C8813V100R001C92B167,文件下载暂停以后恢复下载，文件下载总量会倒退1MB左右然后再继续下载,"【重现步骤】
+1.点击app图标，登录app 
+2.选择首页选择要下载的文件->“下载”->“传输列表”，暂停以后继续，观察文件下载情况。 
+【期望结果】 
+2. 文件下载暂停以后恢复下载，会直接在原来基础上继续下载
+
+【实际结果】
+2. 文件下载暂停以后恢复下载，文件下载总量会倒退1MB左右然后再继续下载
+
+【测试环境】
+测试设备：huawei C8813
+系统版本：Android版本4.1.1
+网络环境：WIFI
+
+【复现率】
+100%","[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082760_890dd2d9-1cf0-487f-9ffd-a225d613f85c.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082759_9305beef-ccae-4283-9316-87c3a7764bb5.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082758_13db536b-c005-4421-8a11-7a34fbdd63e3.jpg"",""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/20082757_4d5f2bd2-e8ae-4a7d-a62c-c58dc0d4c7d2.jpg""]",已知,P3,审核通过,"2016-04-08 12:11:21"
+0,16938618,添加任务,山西省|太原市|小店区|科学路|,"HUAWEI  HUAWEI GRA-CL00","Android 5.0.1","WIFI ",中国电信,GRA-CL00C92B230,下载过程中重复点击停止下载，继续下载会使下载失败，重新开始下载。,进入百度云对那些音频下载，在重复点击暂停下载继续下载后会使下载的音频下载失败，需要重新下载。,[],未知,P1,审核通过,"2016-04-08 12:11:45"
+4,16938618,断网重连,山西省|太原市|小店区|科学路|,"HUAWEI  HUAWEI GRA-CL00","Android 5.0.1","WIFI ",中国电信,GRA-CL00C92B230,对音频多次暂停下载和继续下载会使音频下载失败需要重新下载,进入百度云对音频进行下载在多次点击暂停下载和继续下载之后会使音频下载失败，并且重新下载。,"[""http:\/\/bj.bcebos.com\/json-api\/v1\/crowdtest-online\/upload\/19775555_80f5d813-e016-4b75-bddc-5a6fc7001188.jpg""]",未知,P0,审核不通过,"2016-04-08 12:11:59"

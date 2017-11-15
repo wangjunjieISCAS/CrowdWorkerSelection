@@ -1,0 +1,100 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+3,309781,浏览达人和榜单，关注达人,江苏省|南通市|启东市|双邻北路|,"Huawei  H60-L01","Android 4.4.2","WIFI ",中国移动,H60-L01V100R001CHNC00B317,在达人推荐里，点开空白，没有什么图片，,点搜索图标，然后点右上角的全部，随便点个，都是空白,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6330903_ec852023-ee6c-49e7-8cc6-060b7c1d1602.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6330902_be89bcb6-9b6f-4fc3-a893-8a61b8c486d3.jpg""]",已知,P3,审核通过,"2015-10-30 20:34:06"
+0,531756,验证首页推荐和关注功能,山西省|晋中市|太谷县|G108|,"锤子  坚果手机","Android 4.4.4","WIFI ",中国联通,4.4.058.P0.150407.8675-A,打开APP，在推荐中找一个图片，看一下这张图片是哪个用户提交的（比如“方面血色”这名用户），点击搜索，点击用户，输入刚才的用户名，点击搜索，无法找到。,打开APP，在推荐中找一个图片，看一下这张图片是哪个用户提交的（比如“方面血色”这名用户），点击搜索，点击用户，输入刚才的用户名，点击搜索，无法找到。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6271985_ce37e67c-5c28-4214-98a8-887b9ea2410b.jpg"",""null""]",已知,P3,审核通过,"2015-10-29 22:16:42"
+4,531756,个人消息和点赞,山西省|晋中市|太谷县|G108|,"锤子  坚果手机","Android 4.4.4","WIFI ",中国联通,4.4.058.P0.150407.8675-A,打开APP，点击下方的照相机图标，发一个照片，点击发布，自己在照片下方点个赞，回到主界面，点击照相机图标右侧的“消息”，点击“获得的赞”，发现没有显示没有被点赞。,打开APP，点击下方的照相机图标，发一个照片，点击发布，自己在照片下方点个赞，回到主界面，点击照相机图标右侧的“消息”，点击“获得的赞”，发现没有显示没有被点赞。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6271989_830a5161-0f2f-45aa-b79b-e9afd5fd1635.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6271988_68e0dd0c-dec8-43f1-8409-37eccad6807e.jpg""]",未知,P0,审核不通过,"2015-10-29 22:16:42"
+0,772901,验证首页推荐和关注功能,北京市|北京市|东城区|灯市口大街|10-2号,"Lenovo  Lenovo A820t","Android 4.1.2","WIFI ",无SIM卡,"Lenovo A820t_S115_130227",图片只显示棕色、绿色、灰色等色块。,点击顶部标签卡片看各种美图、点击顶部搜索按钮搜索用户和图片。,[],已知,P3,审核通过,"2015-10-31 20:16:26"
+1,772901,验证拍照上传功能,北京市|北京市|东城区|灯市口大街|10-2号,"Lenovo  Lenovo A820t","Android 4.1.2","WIFI ",无SIM卡,"Lenovo A820t_S115_130227",不显示我上传的图片。,"1、点击底部照相机按钮
+2、自己拍照
+3、发图",[],未知,P0,审核不通过,"2015-10-31 20:16:27"
+3,772901,浏览达人和榜单，关注达人,北京市|北京市|东城区|灯市口大街|10-2号,"Lenovo  Lenovo A820t","Android 4.1.2","WIFI ",无SIM卡,"Lenovo A820t_S115_130227",达人头像和她发布的图片都不显示。,"1、点击底部照相机左边第一个按钮
+2、浏览达人和榜单，点击一个达人的头像",[],未知,P0,审核不通过,"2015-10-31 20:16:27"
+4,800502,个人消息和点赞,浙江省|金华市|婺城区|北山路|2359,"Huawei  H60-L01","Android 4.4.2","WIFI ",中国移动,H60-L01V100R001CHNC00B317,网络正常的情况下提示“网络异常”,点击底部照相机右边第一个按钮，在消息下面的栏目点击时，出现“网络异常”的提示。,[],已知,P3,审核通过,"2015-10-29 14:48:35"
+0,1313097,验证首页推荐和关注功能,江苏省|常州市|新北区|龙须路|,"Huawei  H60-L03","Android 4.4.2","WIFI ",无SIM卡,H60-L03V100R001C01B316,搜索页面图片搜索时总是出现加载失败的现象,"1.进入搜索页面，图片搜索，输入动漫手绘进行搜索后
+
+预期结果：能正确显示搜索结果
+实际结果：总是出现加载失败的现象","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6252678_4f5233ce-8bbc-4df5-967d-3fea293f9bc8.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6252677_23450535-2427-4343-a6a9-5bc29a451999.jpg""]",未知,P0,审核不通过,"2015-10-29 14:05:59"
+4,1313097,个人消息和点赞,江苏省|常州市|新北区|龙须路|,"Huawei  H60-L03","Android 4.4.2","WIFI ",无SIM卡,H60-L03V100R001C01B316,网络正常，消息页面总是会出现报网路异常的错误,"1.网路连接正常，点击底部照相机右边第一个按钮
+2.进入后，查看点赞，评论等页面
+
+预期结果：页面显示正常
+实际结果：会出现报网络异常的错误","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6252682_a6753c4e-797f-4b94-b169-2acfde43c18b.jpg""]",未知,P0,审核不通过,"2015-10-29 14:05:59"
+1,7472919,验证拍照上传功能,青海省|西宁市|城北区|西海路|,"Lenovo  Lenovo A788t","Android 4.3","WIFI ",中国移动,LenovoA788t_S18251_140829,自己拍照后直接跳转到图片上传界面未显示添加滤镜界面,"1、点击底部照相机按钮
+2、自己拍照
+3、拍好后，点击对勾确定图片
+4、直接跳转到图片上传界面，无法添加滤镜
+多次尝试后发现只有点击底部照相机按钮后在已经拍好的图片中选择图片上传才能够添加滤镜","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6271591_b5aa0afb-481e-4323-a59b-5987b52bb350.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6271590_8e45b90b-66ae-44e5-aa7a-1501362f9e8f.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6271589_4c128af2-e15d-43fc-bd09-b57fd140506c.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6271588_d50c8130-477e-43b0-bdcf-fe4606f98607.jpg""]",已知,P3,审核通过,"2015-10-29 22:04:51"
+0,9210937,验证首页推荐和关注功能,福建省|福州市|晋安区|文博路|97号,"Xiaomi  MI 2SC","Android 4.1.1","mobile CDMA - EvDo rev. A",中国电信,JRO03L,本人使用3g的电信网络进行下拉刷新界面，有时会出现无法加载页面的情况,使用电信3g网络，多次下拉刷新界面，会出现提示加载失败,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6272057_a796cb8d-c358-4454-974b-faef204f7229.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6272056_a25abfcd-7d6d-41ea-a6ae-45bdf5925799.jpg""]",未知,P0,审核不通过,"2015-10-29 22:29:15"
+0,9210937,验证首页推荐和关注功能,福建省|福州市|晋安区|文博路|97号,"Xiaomi  MI 2SC","Android 4.1.1","mobile CDMA - EvDo rev. A",中国电信,JRO03L,今日热搜榜下没有内容,点击搜索，进入搜索界面，今日热搜榜下没有内容,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6272057_a796cb8d-c358-4454-974b-faef204f7229.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6272056_a25abfcd-7d6d-41ea-a6ae-45bdf5925799.jpg""]",未知,P0,审核不通过,"2015-10-29 22:29:15"
+1,9210937,验证拍照上传功能,福建省|福州市|晋安区|文博路|97号,"Xiaomi  MI 2SC","Android 4.1.1","mobile CDMA - EvDo rev. A",中国电信,JRO03L,进行滤镜选择的时候，偶发会出现下方滤镜图片变黑的情况,选择其它滤镜，出现下方滤镜图片变黑的情况,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6272063_6746640f-0508-4c00-9e05-59d00b2b29a9.jpg""]",已知,P3,审核通过,"2015-10-29 22:29:15"
+3,9210937,浏览达人和榜单，关注达人,福建省|福州市|晋安区|文博路|97号,"Xiaomi  MI 2SC","Android 4.1.1","mobile CDMA - EvDo rev. A",中国电信,JRO03L,多次点击关注按钮，有延迟的话，会多次响应,多次点击关注按钮，有延迟的话，会多次响应,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6272065_80c25656-7cce-4dd7-90c9-be607af2aa16.jpg""]",未知,P0,审核不通过,"2015-10-29 22:29:15"
+1,10758809,验证拍照上传功能,河南|郑州,"Xiaomi  HM 1S","Android 4.4.4","WIFI ",中国电信,KTU84P,"点击拍照按钮 拍完之后 自动闪退 回到主页","拍完照片 在图片选择页面停顿1S后 自动闪退回到主页 5次操作均是这样","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6379631_ead14a05-eebc-4a18-9b38-f5fcd0fec1b3.jpg""]",已知,P3,审核通过,"2015-11-01 12:13:17"
+0,10934187,验证首页推荐和关注功能,山东省|济南市|历城区|二环东路|4000号,"Xiaomi  HM 2A","Android 4.4.4","WIFI ",中国移动,KTU84P,图片迷路了，不能显示图片,我搜索搞笑动态图片时，发现有图片不能正常显示，但是在缩略图中可以显示，只有放大的时候不能显示,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6406559_8a678f64-810d-46bc-bf52-a2393ac0600f.jpg""]",未知,P0,审核不通过,"2015-11-02 11:03:51"
+1,11231044,验证拍照上传功能,河北省|保定市|新市区|利家街|,"Meizu  M463C","Android 4.4.4","WIFI ",中国电信,"Flyme OS 4.2.0.3Q","拍照功能无法使用 无法保存自己拍摄的图片","本人手机 魅蓝note1电信版 操作系统版本4.4.4
+按照任务要求 点击底部照相机按钮 拍摄图片 拍摄完成后 点击右下角弯沉按钮 出现黑屏 大约1分钟左右没有任何反应 黑屏结束后 返回原来页面 查找发现拍摄的图片没有被保存 退出程序后 查看本地相机 也没有刚才拍摄的图片 后续添加滤镜等操作无法完成","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6359570_918ae0fe-ad44-4a5b-bd51-b4479bd449b1.jpg""]",已知,P3,审核通过,"2015-10-31 18:02:10"
+0,11796247,验证首页推荐和关注功能,江苏|常州,"htccn_chs  HTC Incredible S","Android 4.0.4","WIFI ",无SIM卡,IMM76D,"按照步骤操作，打开后直接闪退 无法打开","按照步骤操作，打开后直接闪退 无法打开 这个应该属于bug 但是闪退的一瞬间无法截屏",[],已知,P3,审核通过,"2015-10-29 21:17:41"
+1,11796247,验证拍照上传功能,江苏|常州,"htccn_chs  HTC Incredible S","Android 4.0.4","WIFI ",无SIM卡,IMM76D,"按照步骤操作，打开后直接闪退 无法打开","按照步骤操作，打开后直接闪退 无法打开 这个应该属于bug 但是闪退的一瞬间无法截屏，第二步跟第一步一样的，无法操作",[],已知,P3,审核通过,"2015-10-29 21:17:41"
+2,11796247,个人主页使用,江苏|常州,"htccn_chs  HTC Incredible S","Android 4.0.4","WIFI ",无SIM卡,IMM76D,"按照步骤操作，打开后直接闪退 无法打开","按照步骤操作，打开后直接闪退 无法打开 这个应该属于bug 但是闪退的一瞬间无法截屏 第三步也是一样  闪退",[],已知,P3,审核通过,"2015-10-29 21:17:41"
+3,11796247,浏览达人和榜单，关注达人,江苏|常州,"htccn_chs  HTC Incredible S","Android 4.0.4","WIFI ",无SIM卡,IMM76D,"按照步骤操作，打开后直接闪退 无法打开","按照步骤操作，打开后直接闪退 无法打开 这个应该属于bug 但是闪退的一瞬间无法截屏  第四步也是一样  闪退",[],已知,P3,审核通过,"2015-10-29 21:17:41"
+4,11796247,个人消息和点赞,江苏|常州,"htccn_chs  HTC Incredible S","Android 4.0.4","WIFI ",无SIM卡,IMM76D,"按照步骤操作，打开后直接闪退 无法打开","按照步骤操作，打开后直接闪退 无法打开 这个应该属于bug 但是闪退的一瞬间无法截屏第五步也是一样  闪退",[],已知,P3,审核通过,"2015-10-29 21:17:41"
+1,14062970,验证拍照上传功能,江苏省|无锡市|惠山区|惠育路|,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",中国电信,KTU84P,能拍照，但是拍完照不能加载出滤镜页面,"点击拍照按钮，左上角出现拍照的红色，点击进去调出相机，拍完照，就不会跳出滤镜页面和发送页面，直接显示主页。
+手机：红米note1S 标准版，安卓：4.4.4","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6348312_788f46ea-e66b-4f31-bd1e-cc79b2b074bf.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6348311_fd5900eb-9683-4c5c-b27b-9c147329c9c9.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6348310_7a17d118-2050-4b65-99e7-2ec952fa6d3c.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6348309_e6db1f49-3472-4b33-95f8-5baa50d29950.jpg""]",已知,P3,审核通过,"2015-10-31 10:30:39"
+1,14111879,验证拍照上传功能,四川|遂宁,"Xiaomi  HM 1S","Android 4.4.4","WIFI ",中国电信,KTU84P,自己拍照后，没有发布所拍的照片,"1、点击底部照相机按钮，2、自己拍照 3、添加滤镜，确认后，返回到主页面，没有进入发布界面，也找不到图片。","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6291439_3370229a-2f00-4b39-86c3-3b675d188346.jpg""]",已知,P3,审核通过,"2015-10-30 11:07:25"
+0,14834563,验证首页推荐和关注功能,浙江省|温州市|乐清市|大太线|,"Xiaomi  HM NOTE 1LTE","Android 4.4.4","WIFI ",中国移动,KTU84P,所有操作都很流畅，但是所有图片都无法显示,进入app，左右滑动功能正常，上下滑动下拉功能也正常，点击顶部标签搜索也正常，但是上述操作均无法显示任何图片。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6247551_7bdbe3c2-8de9-44d6-add8-f5e3223f0edc.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6247550_af4cf0f3-d502-47a6-a1ec-82349a2557ad.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6247549_f52ad258-e72c-4911-9d5e-d1cd708504cb.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6247548_69423ce2-2741-4580-be07-2e6d3e9a94aa.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6247547_93550820-a43e-435e-aa63-89f28deafe4a.jpg""]",未知,P0,审核不通过,"2015-10-29 10:56:01"
+0,14886086,验证首页推荐和关注功能,浙江省|温州市|乐清市|大太线|,"Lenovo  Lenovo A789","Android 4.0.4","WIFI ",无SIM卡,A789_S_2.1.27.88,打开后，可以进入主页，但是不能显示图片,进入app后，左右滑动能切换推荐和关注，上下滑动能下拉，点击顶部标签和顶部搜索按钮都可以搜索，但是图片均不能显示。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6248978_91016f93-e78a-49d4-91ed-b86285adac47.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6248977_d77a5dc7-f486-403b-a8e9-815296c06983.jpg""]",未知,P0,审核不通过,"2015-10-29 11:52:02"
+0,14886086,验证首页推荐和关注功能,浙江省|温州市|乐清市|大太线|,"Lenovo  Lenovo A789","Android 4.0.4","WIFI ",无SIM卡,A789_S_2.1.27.88,打开后，可以进入主页，但是不能显示图片,进入app后，左右滑动能切换推荐和关注，上下滑动能下拉，点击顶部标签和顶部搜索按钮都可以搜索，但是图片均不能显示。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6248978_91016f93-e78a-49d4-91ed-b86285adac47.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6248977_d77a5dc7-f486-403b-a8e9-815296c06983.jpg""]",未知,P0,审核不通过,"2015-10-29 11:52:15"
+1,14956429,验证拍照上传功能,江苏|镇江,"lge  L-01F","Android 4.2.2-HoneyBear_V7.0","WIFI ",无SIM卡,JDQ39B,拍照结束后无法添加滤镜,点击拍照，拍照结束后点击确认，自动进入添加标签图片上传界面，没有滤镜添加,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6261989_e0ab852d-19be-4253-8e3b-055c1019b2f5.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6261988_912cf2f1-e39e-431c-b780-4199af736c8c.jpg""]",已知,P3,审核通过,"2015-10-29 17:58:13"
+0,15105827,验证首页推荐和关注功能,山西省|运城市|新绛县|新绛汾河大桥|,"Lenovo  Lenovo S868t","Android 4.0.3","WIFI ",无SIM卡,S-2-02,进入百度图片app软件闪退,"1、点击打开百度图片app软件，显示如图界面。
+2、3秒钟后软件闪退。","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6393293_10440027-365d-4624-9ab0-a33a9f0e2b5a.jpg""]",已知,P3,审核通过,"2015-11-01 20:39:24"
+1,15195321,验证拍照上传功能,湖北|武汉,"Xiaomi  MI 3W","Android 4.4.4","WIFI ",中国联通,KTU84P,选择拍照功能不能上传照片,选择拍照功能，拍完照以后，拍照界面就会闪退或者返回后没有刚才拍摄的照片，所以无法上传自己拍摄的照片，小米手机3,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6254749_ce4d35f2-5747-4e09-a342-a587950e2ed0.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6254739_1140c1d9-12e9-4032-8366-8bee616869c6.jpg""]",已知,P3,审核通过,"2015-10-29 14:26:33"
+1,15200451,验证拍照上传功能,江苏省|无锡市|宜兴市|兴业路|,"Huawei  PE-TL20","Android 4.4.2","WIFI ",中国移动,PE-TL20V100R001CHNC00B182,自己拍摄照片后APP并没有添加滤镜的功能,自己拍完照片后，直接就是发送照片的界面，并没有可以添加滤镜的按钮，更没有可供选择的滤镜。,[],已知,P3,审核通过,"2015-10-30 15:10:32"
+0,15287469,验证首页推荐和关注功能,北京|北京,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,搜索页面，今日热搜榜没有资源,"1、点击右上角的搜索按钮
+2、查看今日热搜榜下是否有资源
+结果没有任何资源","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6322328_bbc82511-c8ee-4df1-9dda-ef828ffaeee7.jpg""]",未知,P0,审核不通过,"2015-10-30 17:50:55"
+0,15287469,验证首页推荐和关注功能,北京|北京,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,在最新页面，上传的资源不会自动更新，需要再次进入才更新,"1、点击搜索图标，随便搜索一个内容
+2、点击最新页面，最好找一个该页面没有内容的
+3、新上传一个消息，查看该页面有没有内容","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6322328_bbc82511-c8ee-4df1-9dda-ef828ffaeee7.jpg""]",已知,P3,审核通过,"2015-10-30 17:50:55"
+0,15287469,验证首页推荐和关注功能,北京|北京,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,进入消息详情页面，点赞后首页数量不会更新,"1、点击进入关注
+2、点击进入一个详细的帖子
+3、点赞
+4、退出查看关注下的帖子赞的数量","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6322328_bbc82511-c8ee-4df1-9dda-ef828ffaeee7.jpg""]",已知,P3,审核通过,"2015-10-30 17:50:55"
+1,15287469,验证拍照上传功能,北京|北京,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,通过拍照上传的消息，不应该出现在关注分类下,"1、点击底部照相机按钮
+
+2、自己拍照
+
+3、添加滤镜
+
+4、发图
+5、发送完成后，查看出现的位置，结果在关注下",[],未知,P0,审核不通过,"2015-10-30 17:50:55"
+2,15287469,个人主页使用,北京|北京,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,关注的数量与实际情况不符合,"1点击进入个人中心页面
+2、查看关注的数量，此时显示为6
+3、查看关注列表具体的人数，结果只有3","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6322327_10905e38-06ff-4170-97ed-5e0b286abafe.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6322326_3bc7f723-bceb-4f39-b768-267b23572611.jpg""]",已知,P3,审核通过,"2015-10-30 17:50:55"
+2,15287469,个人主页使用,北京|北京,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,发布的数量统计有误，错误的统计成了图片的数量,"1、点击进入个人中心页面
+2.查看发布的数量，此时显示为3，但我只发布了一个帖子，一个帖子上有3张照片","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6322327_10905e38-06ff-4170-97ed-5e0b286abafe.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6322326_3bc7f723-bceb-4f39-b768-267b23572611.jpg""]",未知,P0,审核不通过,"2015-10-30 17:50:55"
+0,15313122,验证首页推荐和关注功能,北京|北京,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,输入关键字后点击搜索，在搜索结果中点击最新，页面闪退,"1、点击右上角的搜索图标
+2、输入框中输入‘花’，点击搜索
+3、在搜索结果中，点击‘最新’分类
+结果：闪退","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258173_3cd13316-fd36-4e53-83b5-222df1ef5423.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258172_fbbdeb5e-187e-4174-a654-5a247e351ac9.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258171_e7b1c20e-12aa-4e97-a17b-7fab852c0ef3.jpg"",""null"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258169_9c84f113-b0c0-42f8-848f-dce6be7f5e9f.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258168_c6a9ed03-977f-4e7f-9758-152b36592e01.jpg""]",已知,P3,审核通过,"2015-10-29 16:00:34"
+0,15313122,验证首页推荐和关注功能,北京|北京,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,在不断向下滑动加载更多的时候，底部的加载点（3个小红点）位置会随着图片而改变,"1、点击推荐分类
+2、向下滑动不断的加载更多，查看小红点显示位置
+结果：位置可以随图片位置改变，可以而上下滑动，应该固定在最底部","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258173_3cd13316-fd36-4e53-83b5-222df1ef5423.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258172_fbbdeb5e-187e-4174-a654-5a247e351ac9.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258171_e7b1c20e-12aa-4e97-a17b-7fab852c0ef3.jpg"",""null"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258169_9c84f113-b0c0-42f8-848f-dce6be7f5e9f.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258168_c6a9ed03-977f-4e7f-9758-152b36592e01.jpg""]",未知,P0,审核不通过,"2015-10-29 16:00:34"
+0,15313122,验证首页推荐和关注功能,北京|北京,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,点击关注，实际却不起效果,"1、点击任一帖子
+2、点击关注，此时显示已关注
+3、点击楼主头像，查看是否显示已关注
+结果：里面还显示关注图标，且在【关注】分类也没有该内容","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258173_3cd13316-fd36-4e53-83b5-222df1ef5423.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258172_fbbdeb5e-187e-4174-a654-5a247e351ac9.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258171_e7b1c20e-12aa-4e97-a17b-7fab852c0ef3.jpg"",""null"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258169_9c84f113-b0c0-42f8-848f-dce6be7f5e9f.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258168_c6a9ed03-977f-4e7f-9758-152b36592e01.jpg""]",未知,P0,审核不通过,"2015-10-29 16:00:34"
+0,15313122,验证首页推荐和关注功能,北京|北京,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,个人中心下关注数量和实际不符合,"1、点击个人中心头像
+2、点击查看关注，此时显示2，但查看底部却只有一条记录","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258173_3cd13316-fd36-4e53-83b5-222df1ef5423.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258172_fbbdeb5e-187e-4174-a654-5a247e351ac9.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258171_e7b1c20e-12aa-4e97-a17b-7fab852c0ef3.jpg"",""null"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258169_9c84f113-b0c0-42f8-848f-dce6be7f5e9f.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258168_c6a9ed03-977f-4e7f-9758-152b36592e01.jpg""]",已知,P3,审核通过,"2015-10-29 16:00:34"
+1,15313122,验证拍照上传功能,北京|北京,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,拍照上传成功后，出现在了【关注】分类下，不合理,"1、点击中间的拍照
+2、加入图片 标签描述后，点击不显示地理位置
+3、点击发布，发布成功后查看出现的位置
+结果：出现在关注中",[],未知,P0,审核不通过,"2015-10-29 16:00:34"
+2,15313122,个人主页使用,北京|北京,"ZTE  N918St","Android 4.4.4","WIFI ",无SIM卡,N918St_CNCMCC_V1.08,个人主页-发布数量显示有误，不是以帖子数为计算方法，可是以照片数量计算,"1、点击底部最右侧按钮，进入个人主页
+2、查看发布的数量
+结果：我就一个帖子，该帖子有3张照片，结果发布数量就为3了。","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6258167_9891dc7f-78d7-4e21-9c57-9ca8a65442fd.jpg""]",未知,P0,审核不通过,"2015-10-29 16:00:34"
+0,15346918,验证首页推荐和关注功能,辽宁|沈阳,"Huawei  HUAWEI MT1-T00","Android 4.1.2","WIFI ",中国移动,MT1-T00V100R001C01B108,安装的过程中手机自动重启，,"安装的过程中手机自动重启  手机重启之后才能安装成功。",[],未知,P0,审核不通过,"2015-10-29 16:29:35"
+1,15403892,验证拍照上传功能,浙江省|台州市|三门县||,"Meizu  M461","Android 4.4.4","WIFI ",中国联通,"Flyme OS 4.2.0.5U",用相机拍摄一张照片上传，显示“图片格式异常，无法上传！”,用相机拍摄一张照片上传，显示“图片格式异常，无法上传！”,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6251183_63ae9e9e-d660-4e48-9da6-45b5c846010c.jpg""]",已知,P3,审核通过,"2015-10-29 13:34:40"
+3,15403892,浏览达人和榜单，关注达人,浙江省|台州市|三门县||,"Meizu  M461","Android 4.4.4","WIFI ",中国联通,"Flyme OS 4.2.0.5U",浏览榜单时，美图榜一片空白，无法加载。,浏览达人成功，浏览榜单时，美图榜一片空白，无法加载。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6251187_393217d0-76fb-4152-a88d-5c5f213327d1.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6251186_6c59c92c-4c2d-42a8-b8dc-144d9b6e216a.jpg""]",已知,P3,审核通过,"2015-10-29 13:34:40"
+4,15403892,个人消息和点赞,浙江省|台州市|三门县||,"Meizu  M461","Android 4.4.4","WIFI ",中国联通,"Flyme OS 4.2.0.5U",浏览消息时，显示“网络异常”,"浏览消息时，显示“网络异常”
+浏览消息时，显示“网络异常”","[""null"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6251179_80d65145-e929-4f3f-bd46-43eee8692f8e.jpg""]",已知,P3,审核通过,"2015-10-29 13:34:40"
+1,16460706,验证拍照上传功能,广东|广州,"samsung  GT-I9300","Android 4.3","WIFI ",中国联通,JSS15J.I9300UBUGNL1,选用原图会逆时针转90度,拍照发图，选用原图会逆时针转90度，选滤镱就不会，选完滤镱再选回原图就正常了,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6316291_b1089b06-eb8a-41fe-aa07-d35ac4e2bf99.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6316290_6a024df0-9918-4c1d-8f61-739995704e32.jpg""]",已知,P3,审核通过,"2015-10-30 15:53:40"
+0,16461108,验证首页推荐和关注功能,河南省|郑州市|金水区|岗杜街|1号,"Xiaomi  HM NOTE 1TD","Android 4.2.2","WIFI ",中国移动,MIUI-CMCC03,上传照片时，不停刷新缩略图,点击上传图片时，进入手机图片库时，不停刷新手机图片库。,[],未知,P0,审核不通过,"2015-11-01 19:28:57"
+1,16461108,验证拍照上传功能,河南省|郑州市|金水区|岗杜街|1号,"Xiaomi  HM NOTE 1TD","Android 4.2.2","WIFI ",中国移动,MIUI-CMCC03,点击底部照相机按钮，进入手机图片库，不停刷新图片库,点击底部照相机按钮，进入手机图片库，不停刷新图片库,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6390664_7ca81010-1a53-461e-9281-24dc40a4676f.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6390663_6b6071a0-d1a2-492d-96c1-a579a0a09b99.jpg""]",未知,P0,审核不通过,"2015-11-01 19:28:57"

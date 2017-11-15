@@ -1,0 +1,37 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,1857627,首页有无崩溃问题,湖南|长沙,"Xiaomi  2014501","Android 4.4.2","WIFI ",中国移动,KOT49H,新手大礼包页面返回无效,"首页-右上角“神秘礼包”，点击进入后使用手机“返回”按键无法退出“新手大礼包”页面，只能点击左上角返回。
+手机型号红米1S，MIUI7","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4630519_dfc73d5b-86fd-46bc-a51b-09588f2fd7b6.jpg""]",未知,P0,审核通过,"2015-09-03 23:24:41"
+0,2973722,首页有无崩溃问题,广东省|揭阳市|揭西县||,"Meizu  MX4 Pro","Android 5.0.1","WIFI ",中国移动,"Flyme OS 4.5.3.1A (体验版)",打开app，使用微信登陆，当点击后，会弹出加载，但是一直不跳转，一直显示加载,打开app-->微信登陆-->会弹出加载，但是一直不跳转，一直显示加载,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4630546_956a5450-5f98-462b-81f5-443ad5533d1b.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4630545_113ac6fa-c24b-4371-a482-d4df7b567952.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4630544_ba918ed3-1735-42ad-a1fe-3da5002b57dc.jpg""]",未知,P0,审核通过,"2015-09-04 00:00:23"
+0,2973722,首页有无崩溃问题,广东省|揭阳市|揭西县||,"Meizu  MX4 Pro","Android 5.0.1","WIFI ",中国移动,"Flyme OS 4.5.3.1A (体验版)",注册登录后，在“我的”页面上发现可更新软件，点击立即更新，但是丝毫反应都没有，只能退出软件后再打开，使用刚开启软件时的提示更新才能更新,注册登录后-->在“我的”页面上发现可更新软件-->点击立即更新-->但是丝毫反应都没有,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4630546_956a5450-5f98-462b-81f5-443ad5533d1b.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4630545_113ac6fa-c24b-4371-a482-d4df7b567952.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4630544_ba918ed3-1735-42ad-a1fe-3da5002b57dc.jpg""]",未知,P0,审核通过,"2015-09-04 00:00:23"
+0,4565355,首页有无崩溃问题,北京市|北京市|朝阳区|立水桥西路|,"Huawei  HUAWEI A199","Android 4.1.2","mobile GPRS",中国电信,A199V100R001C92B132,选择新浪微博登陆提示出现错误,打开软件--选择新浪微博登陆--提示出现错误,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4620729_6a7b6b79-ad3c-447a-84a7-c5b425f4f7cc.jpg""]",未知,P0,审核通过,"2015-09-02 09:00:00"
+0,13984604,首页有无崩溃问题,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,进入系统消息页面，点击查看消息后，小红点（未读标识）不会自动消失，需要退出后再进入才消失,"1、点击右上角的消息图标
+2、进入系统消息页面（有未读消息，有小红点）
+3、点击未读的信息进行阅读，退出阅读后，查看小红点显示情况
+【预期结果】小红点立即消失
+【实际结果】小红点还在，需退出再进入才消失","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621391_937b4bc4-8de4-4368-b988-7f47bc3a5b72.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621390_95a2ce0b-49a0-4353-82f0-119ba4c7c66f.jpg""]",未知,P0,审核通过,"2015-09-02 10:47:58"
+0,13984604,首页有无崩溃问题,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,"进入系统消息页面，部分系统消息点击右边的>按钮,无法阅读更多","1、点击右上角的消息图标
+2、进入系统消息页面
+3、点击第一条系统消息右边的>按钮，无反应","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621391_937b4bc4-8de4-4368-b988-7f47bc3a5b72.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621390_95a2ce0b-49a0-4353-82f0-119ba4c7c66f.jpg""]",未知,P0,审核通过,"2015-09-02 10:47:58"
+0,13984604,首页有无崩溃问题,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,进入【我的】，点击立即升级，无反应,"1、点击底部我的图标
+2、点击最新版本右边的立即升级，无法弹出对话框","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621391_937b4bc4-8de4-4368-b988-7f47bc3a5b72.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621390_95a2ce0b-49a0-4353-82f0-119ba4c7c66f.jpg""]",未知,P0,审核通过,"2015-09-02 10:47:58"
+0,13984604,首页有无崩溃问题,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,进入【我的】，点击意见反馈，对输入的邮箱没有做限制，随便输入都可以（应该对邮箱后缀进行判断是否为合理的）,"1、进入【我的】，点击意见反馈
+2、点击右上角的>按钮，跳转到底部的邮箱输入页面
+3、随便出入字母，都可以进行保存","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621391_937b4bc4-8de4-4368-b988-7f47bc3a5b72.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621390_95a2ce0b-49a0-4353-82f0-119ba4c7c66f.jpg""]",未知,P0,审核不通过,"2015-09-02 10:47:58"
+0,13984604,首页有无崩溃问题,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,进入资料编辑页面点击车型，当调起输入框时，右边的英文字母显示有误,"1、点击【我的】
+2、点击头像进入个人信息页面
+3、点击右上角的编辑页面，
+4、点击车型，此时会自动调起软键盘，
+5、查看右边英文字母的显示情况","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621391_937b4bc4-8de4-4368-b988-7f47bc3a5b72.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621390_95a2ce0b-49a0-4353-82f0-119ba4c7c66f.jpg""]",未知,P0,审核通过,"2015-09-02 10:47:58"
+0,13984604,首页有无崩溃问题,北京市|北京市|朝阳区|安家楼村路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,当无未读系统消息时，随机出现右上角还有小红点,"1、点击进入系统消息页面，全部阅读未读的信息
+2、此时首页没有小红点了
+3、退出整个app，再次进入，随机出现小红点，但点击进入却没有未读消息","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621391_937b4bc4-8de4-4368-b988-7f47bc3a5b72.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621390_95a2ce0b-49a0-4353-82f0-119ba4c7c66f.jpg""]",未知,P0,审核通过,"2015-09-02 10:47:58"
+0,14388675,首页有无崩溃问题,福建|福州,"samsung  SM-N9008V","Android 4.3","WIFI ",无SIM卡,JSS15J.N9008VZMUBNA2,点击用微信登录，登录不了，没有反应。,用微信登录，登录不了，没有反应。用微博登录，还必须输入手机号码，什么软件，必填那么多。,[],未知,P0,审核不通过,"2015-09-01 22:21:26"
+0,14388675,首页有无崩溃问题,福建|福州,"samsung  SM-N9008V","Android 4.3","WIFI ",无SIM卡,JSS15J.N9008VZMUBNA2,通过百度微任务，下载安装完软件之后，打开，提示更新新的版本，下载完之后，安装不了，做不了任务，只能重新卸载，跳过更新，才能做微任务。,通过百度微任务，下载安装完软件之后，打开，提示更新新的版本，下载完之后，安装不了，做不了任务，只能重新卸载，跳过更新，才能做微任务。,[],未知,P0,审核通过,"2015-09-01 22:21:26"
+0,14562697,首页有无崩溃问题,广东省|广州市|天河区|北环路|4号,"Xiaomi  HM NOTE 1S","Android 4.4.4","WIFI ",无SIM卡,KTU84P,用微信方式登录，性别提取不对,明明在微信上面是男性，可是结果用微信方式登录之后，发现注册页面显示的是女性，反复试了几次都是这样。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4620551_657c4b0e-70da-42e3-b6e2-1f2fd80bda2c.jpg""]",未知,P0,审核通过,"2015-09-02 00:30:51"
+0,14611874,首页有无崩溃问题,山东|烟台,"OPPO  T29","Android 4.0.4","WIFI ",无SIM卡,T29_11_4.09_130603,点开APP，用微信登录。微信登录不上,点开APP，用微信登录。一直提示正在连接，,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4620577_6d9bea7d-0e31-4ade-92dd-11ff827dfc3e.jpg""]",未知,P0,审核通过,"2015-09-02 04:02:46"
+0,14858430,首页有无崩溃问题,青海|西宁,"htc  HTC D820mt","Android 4.4.4","WIFI ",中国移动,"KTU84P release-keys",通过微信登录无法连接,打开--点微信登录--始终是连接微信无法登陆,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4621636_a24882ea-3b5f-4dcf-bed8-4d7b8c23dc2a.jpg""]",未知,P0,审核通过,"2015-09-02 11:11:20"
+0,15065700,首页有无崩溃问题,湖南省|岳阳市|湘阴县|X057(滨江大道)|,"ZTE  ZTE U956","Android 4.1.2","WIFI ",中国移动,U956,点地区。自动定位就报错自动跳出来。,打开客户端，选微信登陆，输入车型选准车主，下面选地区。自动定位就报错了。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4619267_cf51c150-365d-4685-8377-bfcdd4dc24e7.jpg""]",未知,P0,审核通过,"2015-09-01 21:38:39"
+0,15287469,首页有无崩溃问题,北京|北京,"samsung  SCH-I939","Android 4.1.2","WIFI ",中国电信,JZO54K.I939KEEMG1,进入我的，点击立即升级，无反应,"1、点击我的
+2、点击最新版本1.7.0，点击右边的立即升级","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4641383_d29caded-df32-47db-bc05-7f855b75e903.jpg""]",未知,P0,审核通过,"2015-09-06 12:29:32"
+0,15287469,首页有无崩溃问题,北京|北京,"samsung  SCH-I939","Android 4.1.2","WIFI ",中国电信,JZO54K.I939KEEMG1,点击首页右上角的消息小红点，进入系统消息页面，点击查看未读消息后小红点不消失,"1、点击首页右上方的消息小图标（此时有小红点）
+2、进入点击小红点消息，阅读后退出回到系统消息页面，查看小圆点是否消失","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/4641383_d29caded-df32-47db-bc05-7f855b75e903.jpg""]",未知,P0,审核通过,"2015-09-06 12:29:32"

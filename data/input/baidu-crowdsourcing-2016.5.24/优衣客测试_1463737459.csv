@@ -1,0 +1,3 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,2612133,程序的安装启动测试,上海|上海,"SEMC  LT26i","Android 4.1.2","WIFI ",中国移动,6.2.B.1.96,"能安装 启动 注册手机验证码始终收不到 手机同一时间接收其他验证码正常","能安装 启动 注册手机验证码始终收不到 手机同一时间接收其他验证码正常","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6828796_69ef1359-466b-45be-b19a-e8038a8973da.jpg""]",未知,P0,审核通过,"2015-11-11 12:21:30"
+0,14539706,程序的安装启动测试,北京|北京,"Xiaomi  MI NOTE LTE","Android 4.4.4","mobile LTE",中国移动,KTU84P,"建议提供app测试账户 作为测试APP要注册有泄露隐私风险","建议提供app测试账户 作为测试APP要注册有泄露隐私风险","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6801531_9d1e4ca9-144d-4c84-ae4b-15a0f1f85bd4.jpg""]",未知,P0,审核不通过,"2015-11-10 23:41:03"

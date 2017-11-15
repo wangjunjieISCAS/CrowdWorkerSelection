@@ -1,0 +1,2 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,3463911,搜索房源,四川省|成都市|大邑县|滨江西路|北1段,"Xiaomi  HM 1S","Android 4.4.4","WIFI ",中国电信,KTU84P,我用的红米1S电信版，打开APP有提示更新信息，更新后提示不能安装，安装失败,我用的红米1S电信版，打开APP有提示更新信息，更新后提示不能安装，安装失败,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6799573_68587af2-42bc-46a1-81fb-9eb33378c09b.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/6799572_cd46fb67-19d9-415a-8324-e10685122e0a.jpg""]",未知,P0,审核不通过,"2015-11-10 22:17:51"

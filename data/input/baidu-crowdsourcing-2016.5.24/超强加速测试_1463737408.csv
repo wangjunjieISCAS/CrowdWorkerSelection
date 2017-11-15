@@ -1,0 +1,54 @@
+case编号,用户id,case标题,地域,机型,操作系统,网络环境,运营商,ROM信息,bug详情,复现步骤,截图,是否未知,优先级,审核状态,提交时间
+0,18755,开启超强加速,湖北|襄阳,"Xiaomi  2014811","Android 4.4.4","WIFI ",中国移动,KTU84P,没有百度卫士强效加速可以选择,"1、开启超强加速；
+2、按中间的小箭头进入辅助功能；
+3、寻找百度卫士强效加速，无，",[],未知,P3,审核通过,"2015-09-24 20:30:32"
+0,784232,开启超强加速,上海|上海,"fet_tw  HTC Desire S","Android 2.3.5","WIFI ",无SIM卡,GRJ90,打开app，无上述界面,打开app，无上述页面，只有超强加速的一键加速页面,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5215035_738d939a-0f60-478b-a9a8-3926ac093f54.jpg""]",未知,P3,审核通过,"2015-09-28 22:19:10"
+0,1303850,开启超强加速,广东省|揭阳市|榕城区|望江北路|,"Intki  Intki-E78","Android 4.2.2","WIFI ",中国移动,R01,没有显示安全卫士强效加深,点击加速后找不到安全卫士强效加速但仍然可以加深,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5140691_68ed6344-0615-4251-b438-416c7c47961d.jpg""]",未知,P3,审核通过,"2015-09-25 22:26:04"
+0,1582699,开启超强加速,辽宁省|鞍山市|海城市|新东一街|,"Huawei  H30-T10","Android 4.2.2","WIFI ",中国移动,"H30-T10 V100R001CHNC00B149",进入系统界面，找不到百度手机卫士强效加速的开关,进入手机设置的辅助功能里，找不到百度手机卫士强效加速开关，没有这个功能啊！本人手机没有安装百度卫士手机软件，与这个有关吗？,"[""null"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5096756_1ea25465-8c5d-45b6-9f98-7c53f45222db.jpg""]",未知,P3,审核通过,"2015-09-24 20:46:01"
+0,2787376,开启超强加速,河北|石家庄,"Lenovo  Lenovo A750","Android 4.0.3","WIFI ",无SIM卡,A750_S306_120530,怎么用..............,怎么用..............不会用，怎么操作...........,[],未知,P3,审核通过,"2015-10-08 21:04:02"
+1,4487686,一键加速,浙江省|台州市|临海市|云塘路|6号,"Huawei  HUAWEI MT7-TL00","Android 4.4.2","mobile LTE",中国移动,MT7-TL00V100R001C01B133,辅助功能设置界面在超强加速设置之后就找不到了,超强加速设定完成后，就会回到最初的一键加速界面，这个时候就找不到辅助功能界面了，想改的话就只能关掉后重新开启。这设置不科学吧。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5129811_4d6e5f6e-a964-4126-b917-c2f7b3d3054f.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5129810_9f4974ce-fb8a-430e-baa8-aa6026d41b97.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5129809_b365071f-d99e-43ed-9cec-bc52ac190480.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5129808_48208a43-8c43-4f2c-938e-41a8167f9713.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5129807_213ef8fa-2972-4b25-b243-d8674faf6112.jpg""]",未知,P3,审核通过,"2015-09-25 16:56:56"
+0,4850833,开启超强加速,河北|邯郸,"ZTE  U9180","Android 4.3","WIFI ",中国移动,"ZTE U9180_CNMobileCommon_V0.50",立即加速后，辅助功能页面没有百度卫士加速选项,立即加速后，辅助功能页面没有百度卫士加速选项。。。。。。。。。。。。。。。。。。。。。,[],未知,P3,审核通过,"2015-09-24 22:31:06"
+0,8689133,开启超强加速,河北|石家庄,"Huawei  HUAWEI MT1-U06","Android 4.1.2","WIFI ",中国移动,MT1-U06V100R001CHNC00B302,无“百度手机卫士强效加速”功能选项,点击立即开始后，辅助功能页面无“百度手机卫士强效加速”功能选项。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5187013_488a0c8f-9d27-4294-9aaa-53ba19886125.jpg""]",未知,P3,审核通过,"2015-09-27 21:43:57"
+1,13896822,一键加速,山东省|聊城市|东阿县|青年街|,"100jia  100C","Android 4.2.2","WIFI ",中国移动,BL_100C_T01.10201727,超强加速自动关闭页面，返回微任务,点击一键加速后，页面自动退出，返回微任务页面，其他软件无明显影响，百加v6,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5294035_ca174600-66eb-417c-82ec-dd19d015c7b2.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5294034_2ee11767-bd7e-4b74-ab41-a5942afe6967.jpg""]",未知,P3,审核通过,"2015-10-01 19:47:49"
+0,13962098,开启超强加速,上海|上海,"htc_wwe  HTC Incredible S","Android 4.0.4","WIFI ",无SIM卡,IMM76D,进入超强加速后，没有地方可以点击‘立即开启’,就是按照要求的步骤，先进入超强加速的页面，没有出现本题例图中的画面,"[""null""]",未知,P3,审核通过,"2015-09-24 20:54:44"
+1,13984604,一键加速,北京市|北京市|朝阳区|朝阳北路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,一键加速无效，清理后再次进入还在,"小米2  4.1.1
+1.点击进入超强加速
+2.点击一键加速，处理完后点击完成
+3.再次进入超强加速，查看现显示情况
+【错误结婚】再次进入还是之前的应用，一个都没有关闭成功","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5099684_da212e27-1435-4f5d-bc6b-ebf4e5716eac.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5099683_6942e26c-9191-436e-97df-d5b89898760c.jpg""]",未知,P3,审核通过,"2015-09-24 22:15:26"
+1,13984604,一键加速,北京市|北京市|朝阳区|朝阳北路|,"Xiaomi  MI 2","Android 4.1.1","WIFI ",中国移动,JRO03L,点击一键加速后，不停的弹出系统强行关闭的页面，很繁琐，特别是开启的应用多的时候,"1.点击进入超强加速
+2.点击底部一键加速按钮，查看状态，此时一直弹出系统强行关闭页面，十几个页面弹","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5099684_da212e27-1435-4f5d-bc6b-ebf4e5716eac.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5099683_6942e26c-9191-436e-97df-d5b89898760c.jpg""]",未知,P3,审核通过,"2015-09-24 22:15:26"
+1,14519399,一键加速,四川省|成都市|武侯区|天华路|163,"Xiaomi  HM 1S","Android 4.4.4","ETHERNET ",中国电信,KTU84P,点击一键加速后，出现很多程序的应用信息界面，并出现强行停止弹窗,点击一键加速，持续跳转到我的各个app的应用信息界面，并弹出强行停止的弹窗，看上去像是出了大问题，我的软件都有问题不能用了一般，用户体验极差。,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5108666_40eb1aa7-1a15-4038-a54c-49442df03f22.jpg""]",未知,P3,审核通过,"2015-09-25 09:23:14"
+0,14611874,开启超强加速,山东省|烟台市|莱阳市|望石路|,"OPPO  T29","Android 4.0.4","WIFI ",无SIM卡,T29_11_4.09_130603,下载APP，进入超强加速后，无开启超强加速页面，直接就是一键加速，页面,下载APP，进入超强加速后，无开启超强加速页面，直接就是一键加速，页面，,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5134284_fc6381f0-ac3c-4be3-9249-467d7459329f.jpg""]",未知,P3,审核通过,"2015-09-25 18:56:17"
+0,14792892,开启超强加速,浙江省|湖州市|长兴县|紫金路|,"htc_asia_tw  HTC Sensation XL with Beats Audio X31","Android 4.0.3","WIFI ",无SIM卡,IML74K,从始至终都没有出现立即开启的界面,打开超强加速软件后，从始至终都未出现立即开启界面,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5456226_96666f03-e982-4adf-b3b1-f2ae9803d5f7.jpg""]",未知,P3,审核通过,"2015-10-08 20:24:57"
+0,15200451,开启超强加速,江苏省|无锡市|宜兴市|氿滨大道|,"Huawei  PE-TL20","Android 4.4.2","WIFI ",中国移动,PE-TL20V100R001CHNC00B182,按要求步骤操作并没有主界面有显示可选百度卫士强效加速的界面,根据要求下载安装好app后，打开，点击立即开启，后跳到辅助功能页面，直接就是超强加速，点击开启，并没有什么百度安全卫士强效加速的按钮，如截图所示，点击开启后回app主界面就是只有一键加速的按钮，点击一键加速就会把现在正在运行的app都关闭，全程都没有看到辅助功能百度安全卫士超强加速,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5096142_6bb4a66f-c8cc-4252-ae3c-76285c631f73.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5096140_62a9d64b-29d5-4823-9b43-d459f6d822b6.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5096138_8dc0c9e2-7a93-4b2d-bc9d-73591f7d24b2.jpg""]",未知,P3,审核通过,"2015-09-24 20:28:15"
+0,15282844,开启超强加速,广东省|中山市|中山市市辖区|同福中路|,"vivo  vivo Y923","Android 4.4.4","WIFI ",中国移动,"KTU84P dev-keys",点击强效加速后闪退了,安装打开APP后进入超强加速后，点击立即开启，进入系统界面，选择百度手机卫士强效加速后闪退,"[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5127976_2e000845-4721-45f5-9b62-d2d61cc80608.jpg""]",未知,P3,审核通过,"2015-09-25 16:16:54"
+1,15287469,一键加速,北京|北京,"samsung  GT-I9003","Android 2.3.4","WIFI GPRS",无SIM卡,GINGERBREAD.XXKPE,一键清理无效，每次清理完进入还有一样的应用,"三星i9003   2.3.6   480*800
+1、点击进入超强加速
+2、查看一键清理底部有什么应用（例如有豌豆荚和百度助手）
+3、点击一键清理按钮
+4、清理完成后，再次进入超强加速app，查看底部应用
+【错误结果】还有之前的所有应用（豌豆荚和百度助手还有）","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111514_7e2aba8f-bd9f-4614-8f61-a0e8e045e227.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111513_9aed24e7-fa40-441d-adf2-44c4b69c373c.jpg""]",未知,P3,审核通过,"2015-09-25 10:11:22"
+1,15287469,一键加速,北京|北京,"samsung  GT-I9003","Android 2.3.4","WIFI GPRS",无SIM卡,GINGERBREAD.XXKPE,一键清理获取的可清理的应用列表有误,"三星i9003   2.3.6   480*800
+1、点击进入超强加速
+2、查看一键清理的应用列表
+3、进入系统设置页面，查看正在运行的应用，对比下是否一致
+【错误结果】一键清理列表中出现非正在运行的应用","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111514_7e2aba8f-bd9f-4614-8f61-a0e8e045e227.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111513_9aed24e7-fa40-441d-adf2-44c4b69c373c.jpg""]",未知,P3,审核通过,"2015-09-25 10:11:22"
+1,15287469,一键加速,北京|北京,"samsung  GT-I9003","Android 2.3.4","WIFI GPRS",无SIM卡,GINGERBREAD.XXKPE,点击一键清理按钮，在清理过程中点击停止清理，此时底部显示有误（应用图标还显示一半）,"三星i9003   2.3.6   480*800
+1、点击进入超强加速
+2、查看一键清理的应用列表，点击一键清理按钮
+3、正常清理的时候，点击停止清理按钮，查看按钮的显示情况","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111514_7e2aba8f-bd9f-4614-8f61-a0e8e045e227.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111513_9aed24e7-fa40-441d-adf2-44c4b69c373c.jpg""]",未知,P3,审核通过,"2015-09-25 10:11:22"
+1,15287469,一键加速,北京|北京,"samsung  GT-I9003","Android 2.3.4","WIFI GPRS",无SIM卡,GINGERBREAD.XXKPE,同样可清理的应用程序列表，完成时提示已提速却不一样,"三星i9003   2.3.6   480*800
+1、点击进入超强加速
+2、点击一键清理，此时显示加速2%
+3、再次进入查看显示一样的应用列表，点击一键清理，此时提示加速5%","[""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111514_7e2aba8f-bd9f-4614-8f61-a0e8e045e227.jpg"",""http:\/\/bos.bj.baidubce.com\/json-api\/v1\/crowdtest-online\/upload\/5111513_9aed24e7-fa40-441d-adf2-44c4b69c373c.jpg""]",未知,P3,审核通过,"2015-09-25 10:11:22"
+0,15313122,开启超强加速,北京|北京,"China_Telecom  Coolpad 5210D","Android 2.3.5","WIFI ",无SIM卡,2.3.008.P2.130319.5210D,首页上部分原型和百分比显示不全,"酷派5210d  2.3.5  320*480
+1、点击进入超强加速
+2、查看首页显示情况",[],未知,P3,审核通过,"2015-09-24 23:47:20"
+0,15313122,开启超强加速,北京|北京,"China_Telecom  Coolpad 5210D","Android 2.3.5","WIFI ",无SIM卡,2.3.008.P2.130319.5210D,一键加速后再次进入，还是显示之前的应用，即加速无效,"1、点击进入超强加速
+2、查看底部可加速的应用，例如有5个
+3、点击一键加速按钮，
+4、加速完成后，点击完成，退出超强加速应用
+5、重新键入超强加速应用，查看可加速的应用
+【错误结果】还是之前显示的5个加速应用",[],未知,P3,审核通过,"2015-09-24 23:47:20"
+0,15395403,开启超强加速,山东省|烟台市|长岛县||,"Lenovo  Lenovo A320t","Android 4.4.2","WIFI ",中国联通,A320t_S105_140512,进入不了界面而且测试步骤里说的也没有进入系统界面，选择百度手机卫士强效加速，点击开启,上微功能任务里打开app超强加速进入网页有立即开启按了以后就是一键加速，也没有别的,[],未知,P3,审核通过,"2015-09-24 20:36:06"
