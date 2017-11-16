@@ -1,4 +1,4 @@
-package com.workerSelectionAlgorithm;
+package com.selectionObjective;
 
 import java.util.ArrayList;
 

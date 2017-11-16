@@ -12,14 +12,13 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import com.TFIDF.TFIDF;
 import com.data.Constants;
 import com.data.TestProject;
 import com.data.TestReport;
 import com.dataProcess.ReportSegment;
 import com.dataProcess.TestProjectReader;
 import com.dataProcess.WordSegment;
-
-import TFIDF.TFIDF;
 
 /*
  * According to the crowdsourced reports submitted by the crowd worker, generate the test task description using reverse engineering

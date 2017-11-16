@@ -1,4 +1,4 @@
-package com.workerSelectionAlgorithm;
+package com.selectionObjective;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -150,6 +150,7 @@ public class BugProbability {
 	public void prepareWekaData ( TestProject project, ArrayList<TestProject> historyProjectList, HashMap<String, CrowdWorker> workerList ) {
 		TestCasePrepare testCaseTool = new TestCasePrepare();
 		ArrayList<TestCase> caseListTrain = testCaseTool.prepareTestCaseInfo_wekaTrain( historyProjectList, workerList);
+		//this.generateWekaDataFile(caseList);
 		
 		CrowdWokerExtraction workerTool = new CrowdWokerExtraction();
 		CrowdWorker defaultWorker = workerTool.obtainDefaultCrowdWorker( workerList);

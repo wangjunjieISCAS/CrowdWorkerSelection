@@ -3,12 +3,11 @@ package com.testCaseDataPrepare;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.TFIDF.TFIDF;
 import com.data.DomainKnowledge;
 import com.data.TestProject;
 import com.data.TestReport;
 import com.dataProcess.ReportSegment;
-
-import TFIDF.TFIDF;
 
 public class DomainKnowledgeExtraction {
 	
