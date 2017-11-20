@@ -65,7 +65,9 @@ public class MainSelectionApproach {
 	
 	public void storeWorkerInfo ( LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
 		try {
-			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_FILE ));
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.WORKER_CAP_FILE ));
+			
+			
 			for ( String userId: bugProbWorkerResults.keySet() ) {
 				Double prob = bugProbWorkerResults.get( userId );
 				
