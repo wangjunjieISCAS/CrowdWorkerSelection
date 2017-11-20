@@ -3,6 +3,7 @@ package com.testCaseDataPrepare;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 
 import com.data.CrowdWorker;
 import com.data.Phone;
@@ -38,48 +39,39 @@ public class TestCasePrepare {
 		return testCaseList;
 	}
 	
-	/*
+	/* !!! the following illustration is useless
 	 * A user might have no record in workerList, so we need to create the default worker
 	 * for default worker, only generate the capability and domain knowledge using average level, for phone info and userId, use its original
-	 * 
 	 * or can use put the trainSet and testSet together as the trainSet, however this is not so strict
+	 * 
+	 * the parameter workerList is the candidate worker list
 	 */
-	public ArrayList<TestCase> prepareTestCaseInfo_wekaTest ( TestProject project, HashMap<String, CrowdWorker> workerList, CrowdWorker defaultWorker ) {
+	public ArrayList<TestCase> prepareTestCaseInfo_wekaTest ( TestProject project, LinkedHashMap<String, CrowdWorker> workerList ) {
 		ArrayList<TestCase> testCaseList = new ArrayList<TestCase>();
 		TestTask task = project.getTestTask();
 		
-		HashSet<String> workerInProject = new HashSet<String>();
+		HashMap<String, String> userTag = new HashMap<String, String>();
 		for ( int i =0; i < project.getTestReportsInProj().size(); i++  ) {
 			TestReport report = project.getTestReportsInProj().get( i);
 			
 			String userId = report.getUserId();
 			String tag = report.getTag();
-
-			CrowdWorker worker = null;
-			if ( workerList.containsKey( userId )) {
-				worker = workerList.get( userId );
-			}
-			else {
-				worker = defaultWorker;
-	
-				Phone phoneInfo = new Phone ( report.getPhoneType(), report.getOS(), report.getNetwork(), report.getISP() );
-				worker.setPhoneInfo(phoneInfo);
-				worker.setWorkerId( userId );
-			}
 			
-			workerInProject.add( userId );
+			//one user might submit several reports
+			userTag.put( userId, tag );
+		}
+		
+		for ( String userId: workerList.keySet() ) {
+			CrowdWorker worker = workerList.get( userId );
+			
+			String tag = "unknown";
+			if ( userTag.containsKey( userId )) {
+				tag = userTag.get( userId );
+			}
 			TestCase testCase = new TestCase ( task, worker, tag );
 			testCaseList.add( testCase );
 		}
-		
-		for ( String workerId : workerList.keySet() ) {
-			if ( workerInProject.contains( workerId )) {
-				continue;
-			}
-			TestCase testCase = new TestCase ( task, workerList.get( workerId), "unknown");
-			testCaseList.add ( testCase );
-		}
-		
+				
 		return testCaseList;
 	}
 }
