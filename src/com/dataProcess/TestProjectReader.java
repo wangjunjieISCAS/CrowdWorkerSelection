@@ -79,7 +79,7 @@ public class TestProjectReader {
 	        	TestReport report = new TestReport ( id, userId, testCaseId, testCaseName, location, phoneType, OS, network, ISP, ROM, 
 	        			submitTime, bugDetail, reproSteps, isKnown, priority, tag);
 	        	
-	        	System.out.println( report );
+	        	//System.out.println( report );
 	        	
 	        	testProject.getTestReportsInProj().add( report );
 	        }

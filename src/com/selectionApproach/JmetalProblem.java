@@ -37,9 +37,15 @@ public class JmetalProblem extends Problem {
 	public void evaluate(Solution solution) throws JMException {
 		SortedMap<String, Boolean> selectionChoice = this.candidateMap(solution);
 		
-		solution.setObjective(0, SelectionObjectives.extractBugProbability(selectionChoice ));
-		solution.setObjective(1, SelectionObjectives.extractDiversity( selectionChoice));
-		solution.setObjective(2, SelectionObjectives.extractCost( selectionChoice));
+		double bugProb = SelectionObjectives.extractBugProbability(selectionChoice );
+		double diversity = SelectionObjectives.extractDiversity( selectionChoice);
+		double cost = SelectionObjectives.extractCost( selectionChoice);
+		
+		solution.setObjective(0, bugProb );
+		solution.setObjective(1, diversity);
+		solution.setObjective(2, cost);
+		
+		System.out.println ( "bugProb is: " + bugProb + ". Diversity is: " + diversity + ". Cost is: " + cost );
 	}
 
 	public int getLength(int var) {

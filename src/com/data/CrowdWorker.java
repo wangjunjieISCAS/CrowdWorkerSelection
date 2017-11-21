@@ -10,6 +10,10 @@ public class CrowdWorker {
 	Capability capInfo;
 	DomainKnowledge domainKnInfo;
 	
+	public CrowdWorker ( String workerId) {
+		this.workerId = workerId;
+	}
+	
 	public CrowdWorker ( String workerId, Phone phoneInfo, Capability capInfo, DomainKnowledge domainKnInfo) {
 		this.workerId = workerId;
 		this.phoneInfo = phoneInfo;

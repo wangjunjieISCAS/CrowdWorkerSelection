@@ -17,4 +17,5 @@ public class Constants {
 	public final static String WORKER_PHONE_FILE = "data/output/workerPhone.csv";
 	public final static String WORKER_CAP_FILE = "data/output/workerCap.csv";
 	public final static String WORKER_DOMAIN_FILE = "data/output/workerDomain.csv";
+	
 }

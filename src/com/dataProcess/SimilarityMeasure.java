@@ -3,12 +3,17 @@ package com.dataProcess;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import com.data.Constants;
 import com.data.DomainKnowledge;
 import com.data.Phone;
 
 public class SimilarityMeasure {
 	//to compute the relevance between task description and worker's domain knowledge
-	public Double cosinSimilarity ( ArrayList<String> vector1, ArrayList<String> vector2 ) {
+	public Double cosineSimilarity ( ArrayList<String> vector1, ArrayList<String> vector2 ) {
+		if ( vector1.size() == 0 || vector2.size() == 0 ) {
+			return 0.0;
+		}
+		
 		HashSet<String> totalTermList = new HashSet<String>();
 		
 		for ( int i =0; i < vector1.size(); i++ ) {

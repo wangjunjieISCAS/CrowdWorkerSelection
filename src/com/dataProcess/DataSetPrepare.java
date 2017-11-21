@@ -19,6 +19,8 @@ public class DataSetPrepare {
 				TestReport report = project.getTestReportsInProj().get( j);
 				
 				HashMap<String, Integer> termMap = segTool.segmentTestReportMap(report);
+				//System.out.println ( termMap.keySet());
+				
 				totalDataSet.add( termMap );
 			}
 		}

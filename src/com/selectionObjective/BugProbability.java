@@ -64,7 +64,7 @@ public class BugProbability {
 		try {
 			writer = new BufferedWriter( new FileWriter ( fileName ));
 			
-			writer.write( "numProject" + "," + "numReport" + "," + "numBug" + "," + "percBug" + "," + "relevance");
+			writer.write( "numProject" + "," + "numReport" + "," + "numBug" + "," + "percBug" + "," + "relevance" + ",");
 			writer.write( "category" );
 			writer.newLine();
 			
@@ -80,7 +80,7 @@ public class BugProbability {
 				writer.write( capInfo.getNumBug() + ",");
 				writer.write( capInfo.getPercBug() + ",");
 				
-				Double sim = similarityTool.cosinSimilarity( domainInfo.getDomainKnowledge(), task.getTaskDescription() );
+				Double sim = similarityTool.cosineSimilarity( domainInfo.getDomainKnowledge(), task.getTaskDescription() );
 				writer.write( sim + ",");
 				
 				if ( testCase.getTestOracle().equals( "ÉóºËÍ¨¹ý")) {

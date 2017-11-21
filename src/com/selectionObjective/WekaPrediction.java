@@ -139,4 +139,12 @@ public class WekaPrediction {
 		return null;
 	}
 	
+	
+	public static void main ( String[] args ) {
+		String wekaTrainFile = "data/input/weka/train.csv";
+		String wekaTestFile = "data/input/weka/test.csv";
+		
+		WekaPrediction wekaTool = new WekaPrediction();
+		wekaTool.trainAndPredictProb( wekaTrainFile , wekaTestFile, "");
+	}
 }
