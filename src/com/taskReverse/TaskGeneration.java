@@ -114,6 +114,6 @@ public class TaskGeneration {
 	
 	public static void main ( String args[] ){
 		TaskGeneration taskGeneration = new TaskGeneration();
-		taskGeneration.generateTaskDescriptionForAllProjects( "data/input/baidu-crowdsourcing-2016.5.24");
+		taskGeneration.generateTaskDescriptionForAllProjects( "data/input/experimental dataset");
 	}
 }

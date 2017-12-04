@@ -15,13 +15,20 @@ import com.data.TestCase;
 import com.data.TestProject;
 import com.data.TestTask;
 import com.dataProcess.SimilarityMeasure;
+import com.learner.CapRevData;
+import com.learner.WekaDataPrepare;
+import com.learner.WekaPrediction;
 import com.testCaseDataPrepare.TestCasePrepare;
 
 
-
 public class BugProbability {
-	private String wekaTrainFile = "data/input/weka/train.csv";
-	private String wekaTestFile = "data/input/weka/test.csv";
+	private String wekaTrainFile;
+	private String wekaTestFile;
+	
+	public BugProbability ( String projectName ) {
+		wekaTrainFile = "data/input/weka/train-" + projectName + ".csv";
+		wekaTestFile = "data/input/weka/test-" + projectName + ".csv";
+	}
 	
 	public HashMap<String, Double> ObtainBugProbabilityTotal ( TestProject project, ArrayList<TestProject> historyProjectList, 
 			HashMap<String, CrowdWorker> historyWorkerList, LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
@@ -52,50 +59,16 @@ public class BugProbability {
 	public void prepareWekaData ( TestProject project, ArrayList<TestProject> historyProjectList, HashMap<String, 
 			CrowdWorker> workerList, LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
 		TestCasePrepare testCaseTool = new TestCasePrepare();
+		
+		CapRevData dataTool = new CapRevData();
 		ArrayList<TestCase> caseListTrain = testCaseTool.prepareTestCaseInfo_wekaTrain( historyProjectList, workerList);
-		this.generateWekaDataFile(caseListTrain, project.getTestTask(), wekaTrainFile );
+		Object[] attributeNameValue_train = dataTool.prepareAttributeData(caseListTrain , project.getTestTask() );
+		
+		WekaDataPrepare wekaDataTool = new WekaDataPrepare ();
+		wekaDataTool.generateWekaDataFile(attributeNameValue_train, wekaTrainFile );
 		
 		ArrayList<TestCase> caseListTest = testCaseTool.prepareTestCaseInfo_wekaTest(project, candidateWorkerList );
-		this.generateWekaDataFile( caseListTest, project.getTestTask(), wekaTestFile );
-	}
-	
-	public void generateWekaDataFile ( ArrayList<TestCase> caseList, TestTask task, String fileName ) {
-		BufferedWriter writer;
-		try {
-			writer = new BufferedWriter( new FileWriter ( fileName ));
-			
-			writer.write( "numProject" + "," + "numReport" + "," + "numBug" + "," + "percBug" + "," + "relevance" + ",");
-			writer.write( "category" );
-			writer.newLine();
-			
-			for ( int i =0;  i < caseList.size(); i++ ) {
-				TestCase testCase = caseList.get( i);
-				
-				Capability capInfo = testCase.getWorker().getCapInfo();
-				DomainKnowledge domainInfo = testCase.getWorker().getDomainKnInfo();
-				SimilarityMeasure similarityTool = new SimilarityMeasure();
-				
-				writer.write( capInfo.getNumProject() + ",");
-				writer.write( capInfo.getNumReport() + ",");
-				writer.write( capInfo.getNumBug() + ",");
-				writer.write( capInfo.getPercBug() + ",");
-				
-				Double sim = similarityTool.cosineSimilarity( domainInfo.getDomainKnowledge(), task.getTaskDescription() );
-				writer.write( sim + ",");
-				
-				if ( testCase.getTestOracle().equals( "ÉóºËÍ¨¹ý")) {
-					writer.write( "yes");
-				}else {
-					writer.write( "no");
-				}
-				
-				writer.newLine();
-				writer.flush();
-			}
-			writer.close();
-		}catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
+		Object[] attributeNameValue_test = dataTool.prepareAttributeData(caseListTest , project.getTestTask() );
+		wekaDataTool.generateWekaDataFile(attributeNameValue_test, wekaTestFile );
 	}
 }

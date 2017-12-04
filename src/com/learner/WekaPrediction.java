@@ -1,4 +1,4 @@
-package com.selectionObjective;
+package com.learner;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -79,7 +79,7 @@ public class WekaPrediction {
 			int instanceNum = newTest.numInstances();//获取预测实例的总数
 			for( int i=0; i< instanceNum ; i++){//输出预测数据
 				double[] probability = classify.distributionForInstance( newTest.instance( i ) );
-				System.out.println ( "prob " + probability[0] + " || " + probability[1] );   
+				//System.out.println ( "prob " + probability[0] + " || " + probability[1] );   
 				
 				double predicted = 0.0;
 				double predictedResult = classify.classifyInstance( newTest.instance(i) );

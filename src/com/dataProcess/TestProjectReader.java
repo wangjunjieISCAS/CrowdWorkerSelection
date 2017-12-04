@@ -42,7 +42,12 @@ public class TestProjectReader {
 	}
 	
 	public TestProject loadTestProject ( String fileName ){
-		String projectName = fileName.substring( 0, fileName.length() - 4);
+		int begin = 0;
+		if ( fileName.contains( "/"))
+			begin = fileName.lastIndexOf("/") + 1;
+		int end = fileName.length() - 4;
+		String projectName = fileName.substring( begin, end ) ;
+		System.out.println( "projectName is: " + projectName );
 		TestProject testProject = new TestProject ( projectName );
 		
 		try {
@@ -75,9 +80,9 @@ public class TestProjectReader {
 	        	String isKnown = reader.get( "是否未知");
 	        	String priority = reader.get( "优先级");
 	        	String tag =  reader.get( "审核状态");
-	        	
+	        	String duplicate = reader.get( "重复情况");
 	        	TestReport report = new TestReport ( id, userId, testCaseId, testCaseName, location, phoneType, OS, network, ISP, ROM, 
-	        			submitTime, bugDetail, reproSteps, isKnown, priority, tag);
+	        			submitTime, bugDetail, reproSteps, isKnown, priority, tag, duplicate);
 	        	
 	        	//System.out.println( report );
 	        	
@@ -85,7 +90,7 @@ public class TestProjectReader {
 	        }
 			
 	        reader.close();
-			System.out.println ( "testProject size: " + testProject.getTestReportsInProj().size()  );
+			System.out.println ( "testProject is: " + fileName + " size: " + testProject.getTestReportsInProj().size()  );
 			br.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -128,6 +133,21 @@ public class TestProjectReader {
 		return project;
 	}
 	
+	public ArrayList<TestProject> loadTestProjectList ( String projectFolder ){
+		ArrayList<TestProject> projectList = new ArrayList<TestProject>();
+		
+		File projectsFolder = new File ( projectFolder );
+		if ( projectsFolder.isDirectory() ){
+			String[] projectFileList = projectsFolder.list();
+			for ( int i = 0; i< projectFileList.length; i++ ){
+				String projectFileName = projectFolder + "/" + projectFileList[i];
+				
+				TestProject project = this.loadTestProject( projectFileName ); 
+				projectList.add( project );
+			}				
+		}			
+		return projectList;
+	}
 	
 	public ArrayList<TestProject> loadTestProjectAndTaskList ( String projectFolder, String taskFolder ){
 		ArrayList<TestProject> projectList = new ArrayList<TestProject>();

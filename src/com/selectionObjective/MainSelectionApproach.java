@@ -26,6 +26,7 @@ import com.data.TestProject;
 import com.data.TestReport;
 import com.dataProcess.DataSetPrepare;
 import com.dataProcess.TestProjectReader;
+import com.performanceEvaluation.ProbPredictEvaluation;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 
 public class MainSelectionApproach {
@@ -41,6 +42,7 @@ public class MainSelectionApproach {
 		CrowdWokerExtraction workerTool = new CrowdWokerExtraction();
 		HashMap<String, CrowdWorker> historyWorkerList = workerTool.obtainCrowdWokerInfo( historyProjectList, finalTermList);
 		System.out.println ( "HistoryWorkerList is done!");
+		//this.storeWorkerInfo(  historyWorkerList );
 		
 		CrowdWorker defaultWorker = workerTool.obtainDefaultCrowdWorker( historyWorkerList );
 		//obtain candidate worker, besides the history worker, there could be worker who join the platform for the first time in this project
@@ -66,9 +68,27 @@ public class MainSelectionApproach {
 		System.out.println ( "CandidateWorkerList is done!");
 		
 		//obtain the bugProbability of all candidate workers, and store it into related file
-		BugProbability probTool = new BugProbability();
+		String projectName = project.getProjectName();
+		BugProbability probTool = new BugProbability( projectName );
 		HashMap<String, Double> bugProbWorkerResults = probTool.ObtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
-		this.storeBugProb(bugProbWorkerResults);
+		this.storeBugProb(bugProbWorkerResults, "data/output/bugProb/bugProbability-" + projectName + ".csv" );
+		
+		ProbPredictEvaluation evaluationTool = new ProbPredictEvaluation();
+		Double[] performance = evaluationTool.obtainProbPredictionPerformance(bugProbWorkerResults, project);
+		
+		try {
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_PERFORMANCE , true));
+			for ( int i =0; i < performance.length; i++ ) {
+				writer.write( performance[i] + ",");
+			}
+			writer.newLine();
+			writer.flush();
+			
+			writer.close();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
 		
 		System.out.println ( "bugProbWorkerResults is done!");
 	}
@@ -120,9 +140,9 @@ public class MainSelectionApproach {
 		}		
 	}
 	
-	public void storeBugProb ( HashMap<String, Double> bugProbWorkerResults ) {
+	public void storeBugProb ( HashMap<String, Double> bugProbWorkerResults, String fileName ) {
 		try {
-			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_FILE ));
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( fileName ));
 			for ( String userId: bugProbWorkerResults.keySet() ) {
 				Double prob = bugProbWorkerResults.get( userId );
 				
@@ -140,7 +160,7 @@ public class MainSelectionApproach {
 	public static void main ( String[] args ) {
 		TestProjectReader projReader = new TestProjectReader();
 		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskList( "data/input/baidu-crowdsourcing-2016.5.24", "data/input/taskDescription");
-		TestProject project = projReader.loadTestProjectAndTask( "data/input/ÌÏÌÏÍÐ¸£¿ÚÓï²âÊÔ_1463737596.csv", "data/input/ÌÏÌÏÍÐ¸£¿ÚÓï²âÊÔ_1463737596.csv");
+		TestProject project = projReader.loadTestProjectAndTask( "data/input/Öñ¶µÓý¶ù²âÊÔ_1463737902.csv", "data/input/Öñ¶µÓý¶ù²âÊÔ_1463737902.txt");
 		
 		MainSelectionApproach selectionApproach = new MainSelectionApproach();
 		selectionApproach.workSelectionApproach(project, historyProjectList);

@@ -31,6 +31,7 @@ public class TestCasePrepare {
 				String tag = report.getTag();
 				
 				CrowdWorker worker = workerList.get( userId );
+				//System.out.println ( "----------------------------- " + worker.getCapInfo().getNumProject() + " " + worker.getCapInfo().getNumReport() );
 				
 				TestCase testCase = new TestCase( task, worker, tag );
 				testCaseList.add( testCase );
