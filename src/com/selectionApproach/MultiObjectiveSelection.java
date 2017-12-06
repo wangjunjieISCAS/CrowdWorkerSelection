@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import jmetal.core.Algorithm;
+import jmetal.core.Solution;
 import jmetal.core.SolutionSet;
 import jmetal.operators.crossover.SinglePointCrossover;
 import jmetal.operators.mutation.BitFlipMutation;
@@ -26,18 +27,22 @@ import jmetal.util.PseudoRandom;
 // jmetalProblem.See todos to set up the parameters
 
 public class MultiObjectiveSelection {
+	public JmetalProblem problem_ = null;
 
 	public SolutionSet multiObjectiveWorkerSelection(ArrayList<String> candidatesIDs, long seed)
 			throws ClassNotFoundException, JMException {
-		JmetalProblem problem_ = new JmetalProblem(candidatesIDs);
+		problem_ = new JmetalProblem(candidatesIDs, seed);
 		PseudoRandom.setRandomGenerator(new MyRandomGenerator(seed));
 		Algorithm alg = new NsgaiiWithDebug(problem_);
 
 		// TODO change the optimizer here
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
-		alg.setInputParameter("populationSize", 100);
-		alg.setInputParameter("maxEvaluations", 100 * 100);
+		int popSize = 8; // 2k
+		int maxGeneration = 2;
+		alg.setInputParameter("populationSize", popSize);
+		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
+		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
 
 		/**
 		 * apply naive crossover and mutation; apply binary domination as
@@ -50,7 +55,7 @@ public class MultiObjectiveSelection {
 		alg.addOperator("crossover", new SinglePointCrossover(parameters));
 
 		parameters.clear();
-		parameters.put("probability", 0.2);
+		parameters.put("probability", 0.8);
 		alg.addOperator("mutation", new BitFlipMutation(parameters));
 
 		parameters.clear();
@@ -84,6 +89,14 @@ public class MultiObjectiveSelection {
 	public static void main(String[] args) throws ClassNotFoundException, JMException {
 		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
 		ArrayList<String> candidateIDs = MultiObjectiveSelection.obtainCandidateIDs();
-		selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L);
+		SolutionSet paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L);
+
+		System.out.println("=======");
+		// demo ....
+		for (int i = 0; i < paretoFroniter.size(); i++) {
+			Solution s = paretoFroniter.get(i);
+			System.out.println(s.getObjective(0) + " " + s.getObjective(1) + " " + s.getObjective(2));
+			System.out.println(selectionTool.problem_.candidateMap(s));
+		}
 	}
 }

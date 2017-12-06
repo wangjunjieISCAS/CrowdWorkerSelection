@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
 	<classpathentry kind="lib" path="lib/trove4j-3.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/weka.jar"/>
+	<classpathentry kind="lib" path="lib/xchart-3.5.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

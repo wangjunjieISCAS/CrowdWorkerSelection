@@ -97,23 +97,27 @@ public class SelectionObjectives {
 			e.printStackTrace();
 		}
 	}
+	
+	public static double getBugProb(String workid){
+		return SelectionObjectives.bugProForWorker.get(workid);
+	}
 
 	public static Double extractBugProbability(SortedMap<String, Boolean> selection) {
 		double score = 0.0;
-		
+
 		int count = 0;
 		for (String userId : selection.keySet()) {
 			Boolean isSelect = selection.get(userId);
 			if (isSelect == false) {
 				continue;
 			}
-			count ++;
-			Double prob = bugProForWorker.get(userId);
+			count++;
+			Double prob = 100 * bugProForWorker.get(userId);
 			score += prob;
 		}
-		
-		score = score / count;
-		score = score * 100;
+
+		// score = score / count;
+		// score = score * 100;
 		return score;
 	}
 
@@ -139,14 +143,15 @@ public class SelectionObjectives {
 				double domainDis = simTool.hammingDistanceForDomain(workerI.getDomainKnInfo(),
 						workerJ.getDomainKnInfo());
 
-				double dis = phoneDis * Constants.DIVERSITY_PHONE_WEIGHT + domainDis * (1.0 - Constants.DIVERSITY_PHONE_WEIGHT);
+				double dis = phoneDis * Constants.DIVERSITY_PHONE_WEIGHT
+						+ domainDis * (1.0 - Constants.DIVERSITY_PHONE_WEIGHT);
 
 				score += dis;
 			}
 		}
-		
-		score = score / (workerList.size() * workerList.size() / 2);
-		
+
+		// score = score / (workerList.size() * workerList.size() / 2);
+
 		return score;
 	}
 

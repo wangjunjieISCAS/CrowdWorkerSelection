@@ -23,6 +23,13 @@ package com.selectionApproach;
 
 import java.util.logging.Logger;
 
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
+
+import org.knowm.xchart.BubbleChart;
+import org.knowm.xchart.BubbleChartBuilder;
+import org.knowm.xchart.XChartPanel;
+
 import jmetal.core.Algorithm;
 import jmetal.core.Operator;
 import jmetal.core.Problem;
@@ -53,7 +60,8 @@ import jmetal.util.comparators.CrowdingComparator;
 public class NsgaiiWithDebug extends Algorithm {
 	private static final long serialVersionUID = -5273406777953311541L;
 	private static final Logger LOGGER = Logger.getLogger(NsgaiiWithDebug.class.getName());
-
+	private boolean showFig = false;
+	
 	/**
 	 * Constructor
 	 * 
@@ -72,6 +80,23 @@ public class NsgaiiWithDebug extends Algorithm {
 	 * @throws JMException
 	 */
 	public SolutionSet execute() throws JMException, ClassNotFoundException {
+		BubbleChart bubbleChart = new BubbleChartBuilder().width(500).height(400).title("o1-o2").build();
+		bubbleChart.addSeries("o0o1", null, new double[] { 0.1, 0.2, 0.3 }, new double[] { 0.1, 0.2, 0.3 });
+		XChartPanel<BubbleChart> chartPanel = new XChartPanel<BubbleChart>(bubbleChart);
+		javax.swing.SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				// Create and set up the window.
+				JFrame frame = new JFrame("XChart");
+				frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+				frame.add(chartPanel);
+
+				// Display the window.
+				frame.pack();
+				frame.setVisible(true);
+			}
+		});
+
 		int populationSize;
 		int maxEvaluations;
 		int evaluations;
@@ -80,6 +105,7 @@ public class NsgaiiWithDebug extends Algorithm {
 		int requiredEvaluations; // Use in the example of use of the
 		// indicators object (see below)
 
+		SolutionSet initPop;
 		SolutionSet population;
 		SolutionSet offspringPopulation;
 		SolutionSet union;
@@ -91,6 +117,7 @@ public class NsgaiiWithDebug extends Algorithm {
 		Distance distance = new Distance();
 
 		// Read the parameters
+		initPop = (SolutionSet) getInputParameter("initPop");
 		populationSize = ((Integer) getInputParameter("populationSize")).intValue();
 		maxEvaluations = ((Integer) getInputParameter("maxEvaluations")).intValue();
 		indicators = (QualityIndicator) getInputParameter("indicators");
@@ -107,18 +134,20 @@ public class NsgaiiWithDebug extends Algorithm {
 		selectionOperator = operators_.get("selection");
 
 		// Create the initial solutionSet
-		Solution newSolution;
+		Solution initSolution;
 		for (int i = 0; i < populationSize; i++) {
-			newSolution = new Solution(problem_);
-			problem_.evaluate(newSolution);
-			problem_.evaluateConstraints(newSolution);
+			initSolution = initPop.get(i);
+			problem_.evaluate(initSolution);
+			problem_.evaluateConstraints(initSolution);
 			evaluations++;
-			population.add(newSolution);
+			population.add(initSolution);
 		} // for
 
 		// Generations
+		int generation = 0;
 		while (evaluations < maxEvaluations) {
-			LOGGER.info("Eval # : " + evaluations + "\n---");
+			LOGGER.info("Generation: " + generation + "\n---");
+			generation++;
 			// Create the offSpring solutionSet
 			offspringPopulation = new SolutionSet(populationSize);
 			Solution[] parents = new Solution[2];
@@ -153,8 +182,6 @@ public class NsgaiiWithDebug extends Algorithm {
 
 			// Obtain the next front
 			front = ranking.getSubfront(index);
-			front.printObjectives();
-			
 			while ((remain > 0) && (remain >= front.size())) {
 				// Assign crowding distance to individuals
 				distance.crowdingDistanceAssignment(front, problem_.getNumberOfObjectives());
@@ -183,6 +210,23 @@ public class NsgaiiWithDebug extends Algorithm {
 
 				remain = 0;
 			} // if
+
+			double[][] o0o1 = new double[2][front.size()];
+			double[] bubbleData = new double[front.size()];
+			for (int i = 0; i < front.size(); i++) {
+				o0o1[0][i] = -front.get(i).getObjective(0);
+				o0o1[1][i] = front.get(i).getObjective(2);
+				bubbleData[i] = 3.0;
+			}
+			o0o1[1][0] = 270;
+			o0o1[1][1] = 200;
+
+			o0o1[0][0] = 60;
+			o0o1[0][1] = 40;
+
+			bubbleChart.updateBubbleSeries("o0o1", o0o1[0], o0o1[1], bubbleData);
+			chartPanel.revalidate();
+			chartPanel.repaint();
 
 			// This piece of code shows how to use the indicator object into the
 			// code
