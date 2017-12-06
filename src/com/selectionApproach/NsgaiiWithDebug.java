@@ -153,7 +153,8 @@ public class NsgaiiWithDebug extends Algorithm {
 
 			// Obtain the next front
 			front = ranking.getSubfront(index);
-
+			front.printObjectives();
+			
 			while ((remain > 0) && (remain >= front.size())) {
 				// Assign crowding distance to individuals
 				distance.crowdingDistanceAssignment(front, problem_.getNumberOfObjectives());
@@ -203,7 +204,7 @@ public class NsgaiiWithDebug extends Algorithm {
 
 		// Return the first non-dominated front
 		Ranking ranking = new Ranking(population);
-		ranking.getSubfront(0).printFeasibleFUN("FUN_NSGAII");
+		// ranking.getSubfront(0).printFeasibleFUN("FUN_NSGAII");
 
 		return ranking.getSubfront(0);
 	} // execute

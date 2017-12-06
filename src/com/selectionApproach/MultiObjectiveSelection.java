@@ -13,9 +13,17 @@ import jmetal.operators.crossover.SinglePointCrossover;
 import jmetal.operators.mutation.BitFlipMutation;
 import jmetal.operators.selection.Selection;
 import jmetal.operators.selection.SelectionFactory;
-import jmetal.qualityIndicator.QualityIndicator;
 import jmetal.util.JMException;
 import jmetal.util.PseudoRandom;
+
+/**
+ * 
+ * @author jianfeng (jchen37@ncsu.edu)
+ * @version 1.0
+ */
+
+// Apply multi-objective optimization algorithms to the
+// jmetalProblem.See todos to set up the parameters
 
 public class MultiObjectiveSelection {
 
@@ -28,8 +36,8 @@ public class MultiObjectiveSelection {
 		// TODO change the optimizer here
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
-		alg.setInputParameter("populationSize", 50);
-		alg.setInputParameter("maxEvaluations", 50 * 10);
+		alg.setInputParameter("populationSize", 100);
+		alg.setInputParameter("maxEvaluations", 100 * 100);
 
 		/**
 		 * apply naive crossover and mutation; apply binary domination as
