@@ -1,6 +1,7 @@
 package com.dataProcess;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 import com.data.Constants;
@@ -61,18 +62,29 @@ public class SimilarityMeasure {
 		ArrayList<String> vector1 = domain1.getDomainKnowledge();
 		ArrayList<String> vector2 = domain2.getDomainKnowledge();
 		
-		for ( int i =0; i < vector1.size(); i++ ) {
-			String term1 = vector1.get(i );
-			for ( int j =0; j < vector2.size(); j++ ) {
-				if ( term1.equals( vector2.get( j ))) {
-					count++;
+		Collections.sort( vector1 );
+		Collections.sort( vector2 );
+		Integer[][] dis = new Integer[vector1.size()+1][vector2.size()+1];
+		
+		for ( int i =0; i <= vector1.size(); i++ ) {
+			dis[i][0] = i;
+		}
+		for ( int j =0; j <= vector2.size(); j++ ) {
+			dis[0][j] = j;
+		}
+		for ( int i =1; i <= vector1.size(); i++ ) {
+			for ( int j =1; j <= vector2.size(); j++ ) {
+				if ( vector1.get( i-1).equals( vector2.get( j-1))) {
+					dis[i][j] = dis[i-1][j-1];
+				}
+				else {
+					dis[i][j] = Math.min( dis[i-1][j]+1, dis[i][j-1] + 1);
+					dis[i][j] = Math.min( dis[i][j], dis[i-1][j-1] + 1 );
 				}
 			}
 		}
 		
-		//there are several ways to compute the distance
-		//for example, max(vector1.size(), vector2.size()) - count, min(vector1.size(), vector2.size()) - count
-		double dist = (1.0*vector1.size() + 1.0*vector2.size()) / 2 - count;
+		double dist = dis[vector1.size()][vector2.size()];
 		return dist;
 	}
 }

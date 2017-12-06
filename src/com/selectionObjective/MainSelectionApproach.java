@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -158,11 +159,20 @@ public class MainSelectionApproach {
 	}
 	
 	public static void main ( String[] args ) {
-		TestProjectReader projReader = new TestProjectReader();
-		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskList( "data/input/baidu-crowdsourcing-2016.5.24", "data/input/taskDescription");
-		TestProject project = projReader.loadTestProjectAndTask( "data/input/竹兜育儿测试_1463737902.csv", "data/input/竹兜育儿测试_1463737902.txt");
+		ArrayList<String> test = new ArrayList<String>();
+		test.add( "距离");
+		test.add( "大小");
+		test.add( "距不离");
+		test.add( "没有大小");
+		test.add( "没有关系");
+		Collections.sort( test );
+		System.out.println( test );
 		
-		MainSelectionApproach selectionApproach = new MainSelectionApproach();
-		selectionApproach.workSelectionApproach(project, historyProjectList);
+		TestProjectReader projReader = new TestProjectReader();
+		//ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskList( "data/input/baidu-crowdsourcing-2016.5.24", "data/input/taskDescription");
+		//TestProject project = projReader.loadTestProjectAndTask( "data/input/竹兜育儿测试_1463737902.csv", "data/input/竹兜育儿测试_1463737902.txt");
+		
+		//MainSelectionApproach selectionApproach = new MainSelectionApproach();
+		//selectionApproach.workSelectionApproach(project, historyProjectList);
 	}
 }
