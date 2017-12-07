@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.SortedMap;
 
 import jmetal.core.Algorithm;
 import jmetal.core.Solution;
@@ -33,13 +34,13 @@ public class MultiObjectiveSelection {
 			throws ClassNotFoundException, JMException {
 		problem_ = new JmetalProblem(candidatesIDs, seed);
 		PseudoRandom.setRandomGenerator(new MyRandomGenerator(seed));
-		Algorithm alg = new NsgaiiWithDebug(problem_);
+		NsgaiiWithDebug alg = new NsgaiiWithDebug(problem_);
 
 		// TODO change the optimizer here
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
-		int popSize = 8; // 2k
-		int maxGeneration = 2;
+		int popSize = 100; // 2k
+		int maxGeneration = 200;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
@@ -51,11 +52,11 @@ public class MultiObjectiveSelection {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.clear();
-		parameters.put("probability", 0.8);
+		parameters.put("probability", 0.5);
 		alg.addOperator("crossover", new SinglePointCrossover(parameters));
 
 		parameters.clear();
-		parameters.put("probability", 0.8);
+		parameters.put("probability", 0.5);
 		alg.addOperator("mutation", new BitFlipMutation(parameters));
 
 		parameters.clear();
@@ -63,7 +64,8 @@ public class MultiObjectiveSelection {
 		alg.addOperator("selection", selection);
 
 		SolutionSet res = alg.execute();
-
+		
+		alg.storeParetoFrontData();
 		return res;
 	}
 
@@ -85,12 +87,42 @@ public class MultiObjectiveSelection {
 
 		return candidatesIDs;
 	}
-
+	
+	public HashMap<Integer, ArrayList<ArrayList<String>>>  obtainWorkerSelectionResults ( SolutionSet paretoFront ) {
+		HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = new HashMap<Integer, ArrayList<ArrayList<String>>>();
+		
+		for ( int i =0; i < paretoFront.size(); i++ ) {
+			Solution s = paretoFront.get( i );
+			SortedMap<String, Boolean> result = this.problem_.candidateMap( s );
+			
+			ArrayList<String> selectedWorkers = new ArrayList<String>();
+			for ( String worker: result.keySet() ) {
+				if ( result.get( worker) == Boolean.TRUE ) {
+					selectedWorkers.add( worker );
+				}
+			}
+			int workerNum = selectedWorkers.size();
+			System.out.println( workerNum + ": " + selectedWorkers.toString() );
+			
+			ArrayList<ArrayList<String>> selectedWorkersList = null;
+			if ( selectionResults.containsKey( workerNum )) {
+				selectedWorkersList = selectionResults.get( workerNum );
+			}else {
+				selectedWorkersList = new ArrayList<ArrayList<String>>();
+			}
+			selectedWorkersList.add( selectedWorkers );
+			selectionResults.put( workerNum, selectedWorkersList );
+		}
+		return selectionResults;		
+	}
+	
 	public static void main(String[] args) throws ClassNotFoundException, JMException {
 		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
 		ArrayList<String> candidateIDs = MultiObjectiveSelection.obtainCandidateIDs();
 		SolutionSet paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L);
-
+		selectionTool.obtainWorkerSelectionResults(paretoFroniter );
+		
+		/*
 		System.out.println("=======");
 		// demo ....
 		for (int i = 0; i < paretoFroniter.size(); i++) {
@@ -98,5 +130,6 @@ public class MultiObjectiveSelection {
 			System.out.println(s.getObjective(0) + " " + s.getObjective(1) + " " + s.getObjective(2));
 			System.out.println(selectionTool.problem_.candidateMap(s));
 		}
+		*/
 	}
 }
