@@ -60,8 +60,9 @@ import jmetal.util.comparators.CrowdingComparator;
 public class NsgaiiWithDebug extends Algorithm {
 	private static final long serialVersionUID = -5273406777953311541L;
 	private static final Logger LOGGER = Logger.getLogger(NsgaiiWithDebug.class.getName());
-	private boolean showFig = false;
-	
+
+	private static boolean SHOWLOG = true;
+
 	/**
 	 * Constructor
 	 * 
@@ -93,7 +94,10 @@ public class NsgaiiWithDebug extends Algorithm {
 
 				// Display the window.
 				frame.pack();
-				frame.setVisible(true);
+				if (SHOWLOG)
+					frame.setVisible(true);
+				else
+					frame.dispose();
 			}
 		});
 
