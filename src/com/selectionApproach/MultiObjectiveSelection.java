@@ -38,8 +38,8 @@ public class MultiObjectiveSelection {
 		// TODO change the optimizer here
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
-		int popSize = 8; // 2k
-		int maxGeneration = 2;
+		int popSize = 8; // 2*k
+		int maxGeneration = 25;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
