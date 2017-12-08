@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="Create Runnable Jar for Project CrowdWorkerSelection with Jar-in-Jar Loader">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="dir.buildfile" value="."/>
+    <property name="dir.workspace" value="${dir.buildfile}/.."/>
+    <property name="dir.jarfile" value="${dir.buildfile}"/>
+    <target name="create_run_jar">
+        <jar destfile="${dir.jarfile}/worker.zip">
+            <manifest>
+                <attribute name="Main-Class" value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="com.selectionApproach.MultiObjectiveSelection"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Rsrc-Class-Path" value="./ commons-cli-1.2.jar fnlp-core-2.1-SNAPSHOT.jar javacsv.jar jmetal4.2.jar jxl.jar trove4j-3.0.3.jar weka.jar xchart-3.5.0.jar"/>
+            </manifest>
+            <zipfileset src="jar-in-jar-loader.zip"/>
+            <fileset dir="${dir.jarfile}/bin"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="commons-cli-1.2.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="fnlp-core-2.1-SNAPSHOT.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="javacsv.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="jmetal4.2.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="jxl.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="trove4j-3.0.3.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="weka.jar"/>
+            <zipfileset dir="${dir.jarfile}/lib" includes="xchart-3.5.0.jar"/>
+        </jar>
+    </target>
+</project>

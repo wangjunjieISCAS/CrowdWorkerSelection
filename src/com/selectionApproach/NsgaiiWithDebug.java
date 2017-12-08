@@ -21,6 +21,13 @@
 
 package com.selectionApproach;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
 import javax.swing.JFrame;
@@ -61,8 +68,10 @@ public class NsgaiiWithDebug extends Algorithm {
 	private static final long serialVersionUID = -5273406777953311541L;
 	private static final Logger LOGGER = Logger.getLogger(NsgaiiWithDebug.class.getName());
 
-	private static boolean SHOWLOG = true;
-
+	ArrayList<double[]> xDataList;
+	ArrayList<double[]> yDataList;
+	ArrayList<double[]> bubbleDataList;
+	
 	/**
 	 * Constructor
 	 * 
@@ -71,6 +80,10 @@ public class NsgaiiWithDebug extends Algorithm {
 	 */
 	public NsgaiiWithDebug(Problem problem) {
 		super(problem);
+		
+		xDataList = new ArrayList<double[]>();
+		yDataList = new ArrayList<double[]>();
+		bubbleDataList = new ArrayList<double[]>();
 	} // NSGAII
 
 	/**
@@ -81,26 +94,6 @@ public class NsgaiiWithDebug extends Algorithm {
 	 * @throws JMException
 	 */
 	public SolutionSet execute() throws JMException, ClassNotFoundException {
-		BubbleChart bubbleChart = new BubbleChartBuilder().width(500).height(400).title("o1-o2").build();
-		bubbleChart.addSeries("o0o1", null, new double[] { 0.1, 0.2, 0.3 }, new double[] { 0.1, 0.2, 0.3 });
-		XChartPanel<BubbleChart> chartPanel = new XChartPanel<BubbleChart>(bubbleChart);
-		javax.swing.SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				// Create and set up the window.
-				JFrame frame = new JFrame("XChart");
-				frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-				frame.add(chartPanel);
-
-				// Display the window.
-				frame.pack();
-				if (SHOWLOG)
-					frame.setVisible(true);
-				else
-					frame.dispose();
-			}
-		});
-
 		int populationSize;
 		int maxEvaluations;
 		int evaluations;
@@ -146,7 +139,7 @@ public class NsgaiiWithDebug extends Algorithm {
 			evaluations++;
 			population.add(initSolution);
 		} // for
-
+		
 		// Generations
 		int generation = 0;
 		while (evaluations < maxEvaluations) {
@@ -215,22 +208,24 @@ public class NsgaiiWithDebug extends Algorithm {
 				remain = 0;
 			} // if
 
-			double[][] o0o1 = new double[2][front.size()];
+			double[] xData = new double[front.size()];
+			double[] yData = new double[front.size()];
 			double[] bubbleData = new double[front.size()];
 			for (int i = 0; i < front.size(); i++) {
-				o0o1[0][i] = -front.get(i).getObjective(0);
-				o0o1[1][i] = front.get(i).getObjective(2);
-				bubbleData[i] = 3.0;
+				xData[i] = -front.get(i).getObjective(0);
+				yData[i] = front.get(i).getObjective(2);
+				bubbleData[i] = 5.0;
 			}
+			/*
 			o0o1[1][0] = 270;
 			o0o1[1][1] = 200;
 
 			o0o1[0][0] = 60;
 			o0o1[0][1] = 40;
-
-			bubbleChart.updateBubbleSeries("o0o1", o0o1[0], o0o1[1], bubbleData);
-			chartPanel.revalidate();
-			chartPanel.repaint();
+			*/
+			xDataList.add( xData);
+			yDataList.add( yData);
+			bubbleDataList.add( bubbleData );			
 
 			// This piece of code shows how to use the indicator object into the
 			// code
@@ -245,6 +240,10 @@ public class NsgaiiWithDebug extends Algorithm {
 					requiredEvaluations = evaluations;
 				} // if
 			} // if
+			
+			if ( evaluations % 10 == 0 ) {
+				System.out.println ( "For test: The " + evaluations + " evaluations!" );
+			}
 		} // while
 
 		// Return as output parameter the required evaluations
@@ -256,4 +255,37 @@ public class NsgaiiWithDebug extends Algorithm {
 
 		return ranking.getSubfront(0);
 	} // execute
+	
+	
+	public void storeParetoFrontData (  ) {
+		try {
+			BufferedWriter output = new BufferedWriter ( new OutputStreamWriter ( new FileOutputStream ( new File ( "data/output/paretoFrontData.txt" )) ), 1024);
+			for ( int i =0; i < xDataList.size(); i++ ) {
+				double[] xData = xDataList.get( i );
+				double[] yData = yDataList.get( i );
+				double[] bubbleData = bubbleDataList.get( i );
+				
+				for ( int j =0; j < xData.length; j++ ) {
+					output.write( xData[j] + " ");
+				}
+				output.newLine();
+				for ( int j =0; j < yData.length; j++ ) {
+					output.write( yData[j] + " ");
+				}
+				output.newLine();
+				for ( int j =0; j < bubbleData.length; j++ ) {
+					output.write( bubbleData[j] + " ");
+				}
+				output.newLine();
+			}
+			output.flush();
+			output.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
 } // NSGA-II
