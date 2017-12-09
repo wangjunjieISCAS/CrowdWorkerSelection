@@ -8,7 +8,10 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.csvreader.CsvReader;
 import com.data.Constants;
@@ -50,6 +53,9 @@ public class TestProjectReader {
 		System.out.println( "projectName is: " + projectName );
 		TestProject testProject = new TestProject ( projectName );
 		
+		Date closeDate = null;
+		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm");
+		SimpleDateFormat formatCon = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
 		try {
 			BufferedReader br = new BufferedReader(new FileReader( new File ( fileName )));
 			
@@ -72,7 +78,16 @@ public class TestProjectReader {
 	        	String ISP = reader.get( "运营商");
 	        	String ROM = reader.get( "ROM信息");
 	        	
-	        	String submitTime  =  reader.get( "提交时间");
+	        	String temp =  reader.get( "提交时间");
+	        	Date submitTime  = null;
+	        	if ( temp.contains( "-")) {
+	        		submitTime = formatCon.parse( temp );
+	        	}
+	        	else {
+	        		submitTime = formatLine.parse( temp );
+	        	}
+	        	if ( closeDate == null || closeDate.compareTo( submitTime ) < 0 )
+	        		closeDate = submitTime;
 	        	
 	        	String bugDetail =  reader.get( "bug详情");
 	        	String reproSteps =  reader.get( "复现步骤");
@@ -88,6 +103,7 @@ public class TestProjectReader {
 	        	
 	        	testProject.getTestReportsInProj().add( report );
 	        }
+			testProject.setCloseTime( closeDate );
 			
 	        reader.close();
 			System.out.println ( "testProject is: " + fileName + " size: " + testProject.getTestReportsInProj().size()  );
@@ -96,6 +112,9 @@ public class TestProjectReader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	

@@ -40,7 +40,7 @@ public class MultiObjectiveSelection {
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
 		int popSize = 100; // 2k
-		int maxGeneration = 200;
+		int maxGeneration = 500;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
@@ -52,11 +52,11 @@ public class MultiObjectiveSelection {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.clear();
-		parameters.put("probability", 0.5);
+		parameters.put("probability", 0.8);
 		alg.addOperator("crossover", new SinglePointCrossover(parameters));
 
 		parameters.clear();
-		parameters.put("probability", 0.5);
+		parameters.put("probability", 0.8);
 		alg.addOperator("mutation", new BitFlipMutation(parameters));
 
 		parameters.clear();

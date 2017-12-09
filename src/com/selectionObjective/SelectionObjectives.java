@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.SortedMap;
 
@@ -121,7 +122,8 @@ public class SelectionObjectives {
 		return score;
 	}
 
-	public static Double extractDiversity(SortedMap<String, Boolean> selection) {
+	//extractDiversity_Distance
+	public static Double extractDiversity_Distance (SortedMap<String, Boolean> selection) {
 		double score = 0.0;
 		ArrayList<CrowdWorker> workerList = new ArrayList<CrowdWorker>();
 		for (String userId : selection.keySet()) {
@@ -154,7 +156,35 @@ public class SelectionObjectives {
 
 		return score;
 	}
-
+	
+	 //extractDiversity_Count
+	public static Double extractDiversity ( SortedMap<String, Boolean> selection ) {
+		double score = 0.0;
+		
+		HashSet<String> phoneList = new HashSet<String>();
+		HashSet<String> domainList = new HashSet<String>();
+		for (String userId : selection.keySet()) {
+			Boolean isSelect = selection.get(userId);
+			if (isSelect == false) {
+				continue;
+			}
+			
+			Phone phone = candidateWorkers.get( userId ).getPhoneInfo();
+			phoneList.add( phone.getPhoneType());
+			phoneList.add ( phone.getOS() );
+			phoneList.add( phone.getISP() );
+			phoneList.add( phone.getNetwork() );
+			
+			DomainKnowledge domain = candidateWorkers.get( userId ).getDomainKnInfo();
+			for ( int i =0; i < domain.getDomainKnowledge().size(); i++ ) {
+				domainList.add( domain.getDomainKnowledge().get( i ) );
+			}
+		}
+		
+		score = phoneList.size() + domainList.size();
+		return score;
+	}
+	
 	public static Double extractCost(SortedMap<String, Boolean> selection) {
 		double score = 0.0;
 		for (String userId : selection.keySet()) {

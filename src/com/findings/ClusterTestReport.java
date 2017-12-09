@@ -23,6 +23,9 @@ import com.data.TestReport;
 import com.dataProcess.TestProjectReader;
 
 
+/*
+ * 为了对重复缺陷报告进行标注
+ */
 public class ClusterTestReport {
 	Map<Integer, ArrayList<Integer>> clusterContent;
 	Map<Integer, Integer> clusterInfo;    //the key is the id of the report, begin from 1

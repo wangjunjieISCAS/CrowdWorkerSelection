@@ -3,6 +3,7 @@ package com.testCaseDataPrepare;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,13 +16,13 @@ import com.data.TestProject;
 
 public class CrowdWokerExtraction {
 	
-	public HashMap<String, CrowdWorker> obtainCrowdWokerInfo ( ArrayList<TestProject> projectList, ArrayList<String> finalTermList ) {
+	public HashMap<String, CrowdWorker> obtainCrowdWokerInfo ( ArrayList<TestProject> projectList, ArrayList<String> finalTermList, Date curTime) {
 		PhoneExtraction phoneTool = new PhoneExtraction();
 		CapabilityExtraction capTool = new CapabilityExtraction();
 		DomainKnowledgeExtraction domainTool = new DomainKnowledgeExtraction();
 		
 		HashMap<String, Phone> phoneInfo = phoneTool.obtainPhoneInfo(projectList);
-		HashMap<String, Capability> capInfo = capTool.obtainCapabilityInfo(projectList);
+		HashMap<String, Capability> capInfo = capTool.obtainCapabilityInfo(projectList, curTime);
 		HashMap<String, DomainKnowledge> domainInfo = domainTool.obtainDomainKnowledgeInfo(projectList, finalTermList);
 		
 		HashMap<String, CrowdWorker> crowdWorkerList = new HashMap<String, CrowdWorker>();
@@ -41,14 +42,20 @@ public class CrowdWokerExtraction {
 	 * the alternative treatment is to generate the zero capability and none domain knowledge
 	 */
 	public CrowdWorker obtainDefaultCrowdWorker ( HashMap<String, CrowdWorker> crowdWorkerList) {
-		Integer numProject = 0, numReport = 0, numBug = 0;
+		Integer[] numProject = this.newZeroArrays();
+		Integer[] numReport = this.newZeroArrays();
+		Integer[] numBug = this.newZeroArrays();
+		Integer durationLastAct = 0;
 		HashMap<String, Integer> termNumList = new HashMap<String, Integer>();
 		
 		for (String userId: crowdWorkerList.keySet() ) {
 			Capability cap = crowdWorkerList.get( userId).getCapInfo();
-			numProject += cap.getNumProject();
-			numReport += cap.getNumReport();
-			numBug += cap.getNumBug();
+			for ( int i =0; i < cap.getNumProject().length; i++ ) {
+				numProject[i] += cap.getNumProject()[i];
+				numReport[i] += cap.getNumReport()[i];
+				numBug[i] += cap.getNumBug()[i];
+			}
+			durationLastAct += cap.getDurationLastAct();
 			
 			DomainKnowledge domain = crowdWorkerList.get( userId).getDomainKnInfo();
 			for ( int i =0; i < domain.getDomainKnowledge().size(); i++ ) {
@@ -61,11 +68,24 @@ public class CrowdWokerExtraction {
 			}
 		}
 		
-		Integer aveNumProject = numProject / crowdWorkerList.size() ;
-		Integer aveNumReport = numReport / crowdWorkerList.size();
-		Integer aveNumBug = numBug / crowdWorkerList.size();
-		Double percBug = (1.0*aveNumBug) / (1.0*aveNumReport);
-		Capability capInfo = new Capability ( aveNumProject, aveNumReport, aveNumBug, percBug );
+		Integer[] aveNumProject = this.newZeroArrays();
+		Integer[] aveNumReport = this.newZeroArrays();
+		Integer[] aveNumBug = this.newZeroArrays();
+		Double[] percBug = new Double[Constants.CAP_SIZE_PER_TYPE];
+		for ( int i=0; i < percBug.length; i++ ) {
+			percBug[i] = 0.0;
+		}
+		Integer durationDays = 0;
+		for ( int i =0; i < numProject.length; i++ ) {
+			aveNumProject[i] = numProject[i] / crowdWorkerList.size();
+			aveNumReport[i] = numReport[i] / crowdWorkerList.size();
+			aveNumBug[i] = numBug[i] / crowdWorkerList.size();
+			
+			percBug[i] = (1.0*aveNumBug[i]) / (1.0*aveNumReport[i]);
+			durationDays = durationLastAct / crowdWorkerList.size();
+		}
+		
+		Capability capInfo = new Capability ( aveNumProject, aveNumReport, aveNumBug, percBug, durationDays );
 		
 		//rank according to the value of each term
 		List<HashMap.Entry<String, Integer>> infoIds = new ArrayList<HashMap.Entry<String, Integer>>(termNumList.entrySet());  
@@ -89,5 +109,13 @@ public class CrowdWokerExtraction {
         CrowdWorker defaultWorker = new CrowdWorker ( "0", phoneInfo, capInfo, domainInfo );
         
         return defaultWorker;
+	}
+	
+	public Integer[] newZeroArrays (  ) {
+		Integer[] arrayName = new Integer[Constants.CAP_SIZE_PER_TYPE];
+		for ( int i =0; i < arrayName.length; i++ ) {
+			arrayName[i] = 0;
+		}
+		return arrayName;
 	}
 }

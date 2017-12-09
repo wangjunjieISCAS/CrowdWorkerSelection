@@ -51,4 +51,5 @@ public class CrowdWorker {
 	public void setDomainKnInfo(DomainKnowledge domainKnInfo) {
 		this.domainKnInfo = domainKnInfo;
 	}
+	
 }

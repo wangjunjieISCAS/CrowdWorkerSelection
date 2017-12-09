@@ -8,8 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -25,6 +28,7 @@ import com.data.Phone;
 import com.data.TestCase;
 import com.data.TestProject;
 import com.data.TestReport;
+import com.dataProcess.CrowdWorkerHandler;
 import com.dataProcess.DataSetPrepare;
 import com.dataProcess.TestProjectReader;
 import com.performanceEvaluation.ProbPredictEvaluation;
@@ -38,10 +42,22 @@ public class MainSelectionApproach {
 		ArrayList<String> finalTermList = termTool.loadFinalTermList();
 		System.out.println ( "FinalTermList is done!");
 		
+		CrowdWorkerHandler workerHandler = new CrowdWorkerHandler();
+		
+		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
+		Date curTime = null;
+		try {
+			curTime = formatLine.parse( "2016/2/20  21:54:00" );
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		CrowdWokerExtraction workerTool = new CrowdWokerExtraction();
-		HashMap<String, CrowdWorker> historyWorkerList = workerTool.obtainCrowdWokerInfo( historyProjectList, finalTermList);
-		System.out.println ( "HistoryWorkerList is done!");
-		//this.storeWorkerInfo(  historyWorkerList );
+		HashMap<String, CrowdWorker> historyWorkerList = workerTool.obtainCrowdWokerInfo( historyProjectList, finalTermList, curTime );
+		System.out.println ( "HistoryWorkerList is done! " + System.currentTimeMillis()/1000 );
+		//workerHandler.storeCrowdWorkerInfo(  historyWorkerList, Constants.WORKER_PHONE_FILE, Constants.WORKER_CAP_FILE, Constants.WORKER_DOMAIN_FILE );
 		
 		CrowdWorker defaultWorker = workerTool.obtainDefaultCrowdWorker( historyWorkerList );
 		//obtain candidate worker, besides the history worker, there could be worker who join the platform for the first time in this project
@@ -63,14 +79,14 @@ public class MainSelectionApproach {
 			
 			candidateWorkerList.put( userId, worker );
 		}
-		this.storeWorkerInfo(candidateWorkerList);
-		System.out.println ( "CandidateWorkerList is done!");
+		workerHandler.storeCrowdWorkerInfo(candidateWorkerList, Constants.WORKER_PHONE_FILE, Constants.WORKER_CAP_FILE, Constants.WORKER_DOMAIN_FILE );
+		System.out.println ( "CandidateWorkerList is done! " + + System.currentTimeMillis()/1000);
 		
 		//obtain the bugProbability of all candidate workers, and store it into related file
 		String projectName = project.getProjectName();
 		BugProbability probTool = new BugProbability( projectName );
 		HashMap<String, Double> bugProbWorkerResults = probTool.ObtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
-		this.storeBugProb(bugProbWorkerResults, "data/output/bugProb/bugProbability-" + projectName + ".csv" );
+		probTool.storeBugProb(bugProbWorkerResults, "data/output/bugProb/bugProbability-" + projectName + ".csv" );
 		
 		ProbPredictEvaluation evaluationTool = new ProbPredictEvaluation();
 		Double[] performance = evaluationTool.obtainProbPredictionPerformance(bugProbWorkerResults, project);
@@ -90,87 +106,15 @@ public class MainSelectionApproach {
 		}		
 		
 		System.out.println ( "bugProbWorkerResults is done!");
-	}
+	}	
 	
-	public void storeWorkerInfo ( LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
-		try {
-			BufferedWriter phoneWriter = new BufferedWriter( new FileWriter ( Constants.WORKER_PHONE_FILE ));
-			BufferedWriter capWriter = new BufferedWriter( new FileWriter ( Constants.WORKER_CAP_FILE ));
-			BufferedWriter domainWriter = new BufferedWriter( new FileWriter ( Constants.WORKER_DOMAIN_FILE ));
-			
-			for ( String userId : candidateWorkerList.keySet() ) {
-				CrowdWorker worker = candidateWorkerList.get( userId );
-				
-				phoneWriter.write( userId + ",");
-				Phone phoneInfo = worker.getPhoneInfo();
-				phoneWriter.write( phoneInfo.getPhoneType() + "," );
-				phoneWriter.write( phoneInfo.getOS() + ",");
-				phoneWriter.write( phoneInfo.getNetwork() + "," );
-				phoneWriter.write( phoneInfo.getISP() );
-				phoneWriter.newLine();
-				
-				capWriter.write( userId + ",");
-				Capability capInfo = worker.getCapInfo();
-				capWriter.write( capInfo.getNumProject() + ",");
-				capWriter.write( capInfo.getNumReport() +",");
-				capWriter.write( capInfo.getNumBug() +",");
-				capWriter.write( capInfo.getPercBug().toString() );
-				capWriter.newLine();
-				
-				domainWriter.write( userId + ",");
-				DomainKnowledge domainInfo = worker.getDomainKnInfo();
-				for ( int i =0; i < domainInfo.getDomainKnowledge().size(); i++ ) {
-					domainWriter.write( domainInfo.getDomainKnowledge().get( i ) + ",");
-				}
-				domainWriter.newLine();
-			}
-			
-			phoneWriter.flush();
-			phoneWriter.close();
-			
-			capWriter.flush();
-			capWriter.close();
-			
-			domainWriter.flush();
-			domainWriter.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
-	
-	public void storeBugProb ( HashMap<String, Double> bugProbWorkerResults, String fileName ) {
-		try {
-			BufferedWriter writer = new BufferedWriter( new FileWriter ( fileName ));
-			for ( String userId: bugProbWorkerResults.keySet() ) {
-				Double prob = bugProbWorkerResults.get( userId );
-				
-				writer.write( userId + "," + prob);
-				writer.newLine();
-			}
-			writer.flush();
-			writer.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}		
-	}
 	
 	public static void main ( String[] args ) {
-		ArrayList<String> test = new ArrayList<String>();
-		test.add( "¾àÀë");
-		test.add( "´óÐ¡");
-		test.add( "¾à²»Àë");
-		test.add( "Ã»ÓÐ´óÐ¡");
-		test.add( "Ã»ÓÐ¹ØÏµ");
-		Collections.sort( test );
-		System.out.println( test );
-		
 		TestProjectReader projReader = new TestProjectReader();
-		//ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskList( "data/input/baidu-crowdsourcing-2016.5.24", "data/input/taskDescription");
-		//TestProject project = projReader.loadTestProjectAndTask( "data/input/Öñ¶µÓý¶ù²âÊÔ_1463737902.csv", "data/input/Öñ¶µÓý¶ù²âÊÔ_1463737902.txt");
+		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskList( "data/input/total crowdsourced reports", "data/input/taskDescription");
+		TestProject project = projReader.loadTestProjectAndTask( "data/input/Öñ¶µÓý¶ù²âÊÔ_1463737902.csv", "data/input/Öñ¶µÓý¶ù²âÊÔ_1463737902.txt");
 		
-		//MainSelectionApproach selectionApproach = new MainSelectionApproach();
-		//selectionApproach.workSelectionApproach(project, historyProjectList);
+		MainSelectionApproach selectionApproach = new MainSelectionApproach();
+		selectionApproach.workSelectionApproach(project, historyProjectList);
 	}
 }

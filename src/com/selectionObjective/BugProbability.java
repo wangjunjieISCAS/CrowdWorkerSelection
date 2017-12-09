@@ -71,4 +71,21 @@ public class BugProbability {
 		Object[] attributeNameValue_test = dataTool.prepareAttributeData(caseListTest , project.getTestTask() );
 		wekaDataTool.generateWekaDataFile(attributeNameValue_test, wekaTestFile );
 	}
+	
+	public void storeBugProb ( HashMap<String, Double> bugProbWorkerResults, String fileName ) {
+		try {
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( fileName ));
+			for ( String userId: bugProbWorkerResults.keySet() ) {
+				Double prob = bugProbWorkerResults.get( userId );
+				
+				writer.write( userId + "," + prob);
+				writer.newLine();
+			}
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
 }

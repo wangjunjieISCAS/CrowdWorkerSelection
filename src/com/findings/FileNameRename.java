@@ -13,8 +13,12 @@ import java.util.HashMap;
  */
 public class FileNameRename {
 	
-	public void renameFileNames ( String projectFolder, String nameReferFile ) {
-		HashMap<String, Integer> nameReferMap = new HashMap<String, Integer>();
+	/*
+	 * 根据report number 和timeOrder  来rename
+	 */
+	public void renameFileNames ( String projectFolder, String newProjectFolder, String nameReferFile) {
+		HashMap<String, Integer> reportNumMap = new HashMap<String, Integer>();
+		HashMap<String, Integer> timeOrderMap = new HashMap<String, Integer>();
 		
 		BufferedReader br;
 		try {
@@ -28,11 +32,14 @@ public class FileNameRename {
 					continue;
 				}
 				String[] temp = line.split( ",");
-				String name = temp[0];
-				Integer reportNum = Integer.parseInt( temp[1] );
+				String name = temp[1];
+				Integer timeOrder = Integer.parseInt( temp[0]);
+				Integer reportNum = Integer.parseInt( temp[2] );
 				
-				nameReferMap.put( name, reportNum );
+				reportNumMap.put( name, reportNum );
+				timeOrderMap.put( name, timeOrder );
 			}
+			
 			br.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -50,9 +57,12 @@ public class FileNameRename {
 				String projectFileName = projectFolder + "/" + fileName;
 				
 				String key = fileName.substring( 0, fileName.length() - 4);
-				int reportNum = nameReferMap.get( key );
-				String newFileName = reportNum  + "-" + fileName;
-				String newProjectFileName = projectFolder + "/" + newFileName;
+				if ( !reportNumMap.containsKey( key ))
+					continue;
+				int reportNum = reportNumMap.get( key );
+				int timeOrder = timeOrderMap.get( key);
+				String newFileName = timeOrder + "-" + reportNum  + "-" + fileName;
+				String newProjectFileName = newProjectFolder + "/" + newFileName;
 				
 				File file = new File( projectFileName );
 				File newFile = new File( newProjectFileName );
@@ -68,9 +78,10 @@ public class FileNameRename {
 
 	public static void main ( String args[] ) {
 		String projectFolder = "data/input/total crowdsourced reports";
-		String nameReferFile = "data/output/findings/reportBugNumForProject.csv";
+		String newProjectFolder = "data/input/experimental dataset";
+		String nameReferFile= "data/output/findings/closeTimeForProject.csv";
 		
 		FileNameRename renameTool = new FileNameRename ();
-		renameTool.renameFileNames(projectFolder, nameReferFile);
+		renameTool.renameFileNames(projectFolder, newProjectFolder, nameReferFile );
 	}
 }

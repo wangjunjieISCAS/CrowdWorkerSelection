@@ -1,5 +1,7 @@
 package com.data;
 
+import java.util.Date;
+
 public class TestReport {
 	int id;
 	
@@ -15,7 +17,7 @@ public class TestReport {
 	String ISP;
 	String ROM;
 	
-	String submitTime;
+	Date submitTime;
 	
 	String bugDetail;
 	String reproSteps;
@@ -26,7 +28,7 @@ public class TestReport {
 	String duplicate;
 
 	public TestReport ( int id, String userId, String testCaseId, String testCaseName, String location, String phoneType, String OS, String network,
-			String ISP, String ROM, String submitTime, String bugDetail, String reproSteps, String isKnown, String priority, String tag, String duplicate) {
+			String ISP, String ROM, Date submitTime, String bugDetail, String reproSteps, String isKnown, String priority, String tag, String duplicate) {
 		this.id = id;
 		this.userId = userId;
 		this.testCaseId = testCaseId;
@@ -121,11 +123,11 @@ public class TestReport {
 		ROM = rOM;
 	}
 
-	public String getSubmitTime() {
+	public Date getSubmitTime() {
 		return submitTime;
 	}
 
-	public void setSubmitTime(String submitTime) {
+	public void setSubmitTime(Date submitTime) {
 		this.submitTime = submitTime;
 	}
 

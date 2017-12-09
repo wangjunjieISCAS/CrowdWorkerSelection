@@ -46,7 +46,7 @@ public class FinalTermListGeneration {
 		ArrayList<String> finalTermList  = new ArrayList<String>();
 		BufferedReader br;
 		try {
-			br = new BufferedReader(new FileReader( new File ( "data/output/paretoFrontData.txt" )));
+			br = new BufferedReader(new FileReader( new File ( "data/output/finalTermList.txt" )));
 			String line = "";
 			
 			while ( ( line = br.readLine() ) != null ) {

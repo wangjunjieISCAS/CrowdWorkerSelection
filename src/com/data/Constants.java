@@ -13,10 +13,14 @@ public class Constants {
 	
 	public final static Integer DEFAULT_DOMAIN_LENGTH = 50;
 	
-	public final static String BUG_PROB_FILE = "data/output/bugProbability.csv";
-	public final static String WORKER_PHONE_FILE = "data/output/workerPhone.csv";
-	public final static String WORKER_CAP_FILE = "data/output/workerCap.csv";
-	public final static String WORKER_DOMAIN_FILE = "data/output/workerDomain.csv";
+	public final static String BUG_PROB_FILE = "data/output/workerInfo/bugProbability.csv";
+	public final static String WORKER_PHONE_FILE = "data/output/workerInfo/workerPhone.csv";
+	public final static String WORKER_CAP_FILE = "data/output/workerInfo/workerCap.csv";
+	public final static String WORKER_DOMAIN_FILE = "data/output/workerInfo/workerDomain.csv";
 	
 	public final static String BUG_PROB_PERFORMANCE = "data/output/performance/bugProb.csv";
+	
+	public final static Integer CAP_SIZE_PER_TYPE = 4;
+	
+	public final static String CLOSE_TIME_FOR_PROJECT_FILE  = "data/output/findings/closeTimeForProject.csv";
 }
