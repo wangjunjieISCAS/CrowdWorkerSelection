@@ -51,6 +51,7 @@ public class CrowdWokerExtraction {
 		for (String userId: crowdWorkerList.keySet() ) {
 			Capability cap = crowdWorkerList.get( userId).getCapInfo();
 			for ( int i =0; i < cap.getNumProject().length; i++ ) {
+				//System.out.println( userId );
 				numProject[i] += cap.getNumProject()[i];
 				numReport[i] += cap.getNumReport()[i];
 				numBug[i] += cap.getNumBug()[i];

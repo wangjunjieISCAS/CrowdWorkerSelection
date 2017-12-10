@@ -138,7 +138,7 @@ public class ClusterTestReport {
 		}	
 	}
 	
-	public void duplicateReportsGeneration ( String projectFolder ) {
+	public void duplicateReportsGeneration ( String projectFolder, String targetProjectFolder ) {
 		File projectsFolder = new File ( projectFolder );
 		if ( projectsFolder.isDirectory() ){
 			String[] projectFileList = projectsFolder.list();
@@ -183,7 +183,7 @@ public class ClusterTestReport {
 				
 				try {
 					Process clutoProcess = Runtime.getRuntime().exec( command);
-					Thread.sleep( 10000 );
+					Thread.sleep( 3000 );
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -195,7 +195,7 @@ public class ClusterTestReport {
 				//·ÖÎö½á¹û
 				ClusterTestReport clusterReport = new ClusterTestReport( projectFileName );
 				
-				clusterReport.clusterReports(clusterInfoFile, projectFileName, "data/input/experimental dataset/" + projectFileList[i] );
+				clusterReport.clusterReports(clusterInfoFile, projectFileName, targetProjectFolder + "/" + projectFileList[i] );
 			}				
 		}			
 
@@ -203,9 +203,10 @@ public class ClusterTestReport {
 	
 	public static void main ( String args[] ){
 		//String projectFolder = "data/input/total crowdsourced reports";
-		String projectFolder = "data/input/total crowdsourced reports";
+		String projectFolder = "data/input/experimental dataset";
+		String targetProjectFolder = "data/input/experimental dataset-2";
 		
 		ClusterTestReport clusterReport = new ClusterTestReport(  );
-		clusterReport.duplicateReportsGeneration(projectFolder);
+		clusterReport.duplicateReportsGeneration(projectFolder, targetProjectFolder);
 	} 
 }

@@ -12,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import com.csvreader.CsvReader;
 import com.data.Constants;
@@ -185,6 +186,65 @@ public class TestProjectReader {
 			}				
 		}			
 		return projectList;
+	}
+	
+	public ArrayList<TestProject> loadTestProjectAndTaskListBasedId ( int beginTaskId, int endTaskId, String projectFolder, String taskFolder ){
+		ArrayList<TestProject> projectList = new ArrayList<TestProject>();
+		File projectsFolder = new File ( projectFolder );
+		if ( projectsFolder.isDirectory() ){
+			String[] projectFileList = projectsFolder.list();
+			for ( int i = 0; i< projectFileList.length; i++ ){
+				String[] temp = projectFileList[i].split( "-");
+				Integer index = Integer.parseInt( temp[0] );
+				if ( index < beginTaskId || index > endTaskId ) {
+					continue;
+				}
+				
+				String projectFileName = projectFolder + "/" + projectFileList[i];
+				
+				String projectName = projectFileList[i].substring( 0, projectFileList[i].length() - 4);
+				String taskFileName = taskFolder + "/" + projectName + ".txt";
+				
+				TestProject project = this.loadTestProjectAndTask( projectFileName, taskFileName );
+				projectList.add( project );
+			}				
+		}			
+		
+		return projectList;
+	}
+	
+	public HashMap<Integer, TestProject> loadTestProjectAndTaskMapBasedId ( int beginTaskId, int endTaskId, String projectFolder, String taskFolder ){
+		HashMap<Integer, TestProject> projectMap = new HashMap<Integer, TestProject>();
+		
+		File projectsFolder = new File ( projectFolder );
+		if ( projectsFolder.isDirectory() ){
+			String[] projectFileList = projectsFolder.list();
+			for ( int i = 0; i< projectFileList.length; i++ ){
+				String[] temp = projectFileList[i].split( "-");
+				Integer index = Integer.parseInt( temp[0] );
+				if ( index < beginTaskId || index > endTaskId ) {
+					continue;
+				}
+				
+				String projectFileName = projectFolder + "/" + projectFileList[i];
+				
+				String projectName = projectFileList[i].substring( 0, projectFileList[i].length() - 4);
+				String taskFileName = taskFolder + "/" + projectName + ".txt";
+				
+				TestProject project = this.loadTestProjectAndTask( projectFileName, taskFileName );
+				projectMap.put( index, project );
+			}				
+		}			
+		
+		return projectMap;
+	}
+	
+	public TestProject loadTestProjectAndTaskBasedId ( int taskId, String projectFolder, String taskFolder  ) {
+		ArrayList<TestProject> projectList = this.loadTestProjectAndTaskListBasedId( taskId, taskId, projectFolder, taskFolder);
+		if ( projectList.size() ==0 || projectList.size() > 1) {
+			System.out.println( "Wrong in loadTestProjectAndTaskBasedId! " + projectList.size() );
+		}
+		return projectList.get( 0 );
 	}
 	
 	public static void main ( String args[] ){

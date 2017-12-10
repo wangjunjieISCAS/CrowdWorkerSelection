@@ -41,22 +41,24 @@ public class CrowdWorkerHandler {
 
 				if (temp.length < 5)
 					temp = new String[] { userId, "", "", "", "" };
-
+				 
 				Phone phoneInfo = new Phone(temp[1], temp[2], temp[3], temp[4]);
 				CrowdWorker workerInfo = new CrowdWorker(userId);
 				workerInfo.setPhoneInfo(phoneInfo);
 				candidateWorkers.put(userId, workerInfo);
 			}
 			
-			reader = new BufferedReader(new FileReader(new File(Constants.WORKER_CAP_FILE)));
+			reader = new BufferedReader(new FileReader(new File(capFile)));
 			line = "";
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
 				String userId = temp[0];
-				Integer[] numProject = new Integer[Constants.CAP_SIZE_PER_TYPE];
-				Integer[] numReport = new Integer[Constants.CAP_SIZE_PER_TYPE];
-				Integer[] numBug = new Integer[Constants.CAP_SIZE_PER_TYPE];
+				Integer[] numProject = this.newZeroArrays();
+				Integer[] numReport = this.newZeroArrays();
+				Integer[] numBug = this.newZeroArrays();
 				Double[] percBug = new Double[Constants.CAP_SIZE_PER_TYPE];
+				for ( int i =0; i < percBug.length; i++ )
+					percBug[i] = 0.0;
 				
 				int index = 0;
 				for ( int i =1; i < temp.length-1; i+=4 ) {
@@ -64,6 +66,7 @@ public class CrowdWorkerHandler {
 					numReport[index] = Integer.parseInt( temp[i+1] ) ;
 					numBug[index] = Integer.parseInt( temp[i+2]);
 					percBug[index] = Double.parseDouble( temp[i+3]);
+					index++;
 				}
 				Integer durationDays = Integer.parseInt( temp[temp.length-1]);
 				Capability capInfo = new Capability( numProject, numReport, numBug, percBug, durationDays );
@@ -74,7 +77,7 @@ public class CrowdWorkerHandler {
 				candidateWorkers.put(userId, workerInfo);
 			}
 
-			reader = new BufferedReader(new FileReader(new File(Constants.WORKER_DOMAIN_FILE)));
+			reader = new BufferedReader(new FileReader(new File( domainFile)));
 			line = "";
 			while ((line = reader.readLine()) != null) {
 				String[] temp = line.split(",");
@@ -87,10 +90,10 @@ public class CrowdWorkerHandler {
 				DomainKnowledge domainInfo = new DomainKnowledge(domainTerms);
 
 				CrowdWorker workerInfo = candidateWorkers.get(userId);
-
+				/*
 				if (workerInfo == null)
 					continue;
-
+				 */
 				workerInfo.setDomainKnInfo(domainInfo);
 
 				candidateWorkers.put(userId, workerInfo);
@@ -157,11 +160,10 @@ public class CrowdWorkerHandler {
 		}		
 	}
 	
-	public void generateHistoricalWorkers ( int beginProjectIndex, int endProjectIndex, ArrayList<String> finalTermList, String curTimeStr ) {
+	public void generateHistoricalWorkers ( String projectFolder, int beginProjectIndex, int endProjectIndex, int setIndex, ArrayList<String> finalTermList, String curTimeStr ) {
 		ArrayList<TestProject> historyProjectList = new ArrayList<TestProject>();
 		TestProjectReader projReader = new TestProjectReader();
 		
-		String projectFolder = "";
 		File projectsFolder = new File ( projectFolder );
 		if ( projectsFolder.isDirectory() ){
 			String[] projectFileList = projectsFolder.list();
@@ -190,15 +192,64 @@ public class CrowdWorkerHandler {
 		CrowdWokerExtraction workerTool = new CrowdWokerExtraction( );
 		HashMap<String, CrowdWorker> historyWorkerList = workerTool.obtainCrowdWokerInfo( historyProjectList, finalTermList, curTime );
 		
-		this.storeCrowdWorkerInfo( historyWorkerList, Constants.WORKER_PHONE_FILE, Constants.WORKER_CAP_FILE, Constants.WORKER_DOMAIN_FILE );
+		this.storeCrowdWorkerInfo( historyWorkerList, Constants.WORKER_INFO_FOLDER + "/" + setIndex+ "/workerPhone.csv", 
+				Constants.WORKER_INFO_FOLDER + "/" + setIndex+ "/workerCap.csv", Constants.WORKER_INFO_FOLDER + "/" + setIndex+ "/workerDomain.csv" );
 		System.out.println ( "HistoryWorkerList is done!");
+	}
+	
+	
+	/*
+	 * 生成第11-20个testSet的trainSet对应的crowd worker的信息，根据在TrainTestOrganize中对于train set和test set的划分
+	 */
+	public void generateHistoricalWorkerForAllTrainSet ( String projectFolder, ArrayList<String> finalTermList, String trainTestSetFile ) {
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader( new File ( trainTestSetFile )));
+			String line = "";
+			Integer beginTaskId = 1;
+			
+			boolean isFirstLine = true;
+			while ( ( line = br.readLine() ) != null ) {
+				if ( isFirstLine == true ) {
+					isFirstLine = false;
+					continue;
+				}
+				
+				String[] temp = line.split( ",");
+				Integer trainSetId = Integer.parseInt( temp[0].trim( ));
+				if ( trainSetId < 11 )
+					continue;
+				
+				Integer endTaskId = Integer.parseInt( temp[2].trim() ) -1 ;
+				String curTimeStr = temp[3].trim();
+				this.generateHistoricalWorkers( projectFolder, beginTaskId, endTaskId, trainSetId, finalTermList, curTimeStr);
+			}				
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Integer[] newZeroArrays (  ) {
+		Integer[] arrayName = new Integer[Constants.CAP_SIZE_PER_TYPE];
+		for ( int i =0; i < arrayName.length; i++ ) {
+			arrayName[i] = 0;
+		}
+		return arrayName;
 	}
 	
 	public static void main ( String args[] ) throws ParseException {
 		CrowdWorkerHandler workerTool = new CrowdWorkerHandler();
 		
+		String projectFolder = "data/input/experimental dataset";
+		String trainTestSetFile = "data/output/findings/trainTestSet.csv";
 		FinalTermListGeneration termTool = new FinalTermListGeneration();
 		ArrayList<String> finalTermList = termTool.loadFinalTermList();
-		workerTool.generateHistoricalWorkers( 1, 450, finalTermList, "2016/08/01 00:00");
+		//workerTool.generateHistoricalWorkers( projectFolder, 1, 532, 20, finalTermList, "2016/08/04 10:00");
+		workerTool.generateHistoricalWorkerForAllTrainSet(projectFolder, finalTermList, trainTestSetFile);
 	}
 }

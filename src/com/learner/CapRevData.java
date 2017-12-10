@@ -15,22 +15,45 @@ public class CapRevData {
 		attributeName.add( "numReport" );
 		attributeName.add( "numBug" );
 		attributeName.add( "percBug" );
+		
+		attributeName.add( "numProject-1" );
+		attributeName.add( "numReport-1" );
+		attributeName.add( "numBug-1" );
+		attributeName.add( "percBug-1" );
+		
+		attributeName.add( "numProject-2" );
+		attributeName.add( "numReport-2" );
+		attributeName.add( "numBug-2" );
+		attributeName.add( "percBug-2" );
+		
+		attributeName.add( "numProject-4" );
+		attributeName.add( "numReport-4" );
+		attributeName.add( "numBug-4" );
+		attributeName.add( "percBug-4" );
+		
+		attributeName.add( "durationLastAct");		
 		attributeName.add( "relevant");
+		
 		attributeName.add( "category");
 		
 		ArrayList<String[]> attributeValue = new ArrayList<String[]>();
 		
 		for ( int i =0;  i < caseList.size(); i++ ) {
+			if ( i % 1000 == 0 )
+				System.out.println( "processing " + i + " test case!");
 			TestCase testCase = caseList.get( i);
 			
 			Capability capInfo = testCase.getWorker().getCapInfo();
 			
 			int index =0;
 			String[] value = new String[attributeName.size()];
-			value[index++] = capInfo.getNumProject().toString();
-			value[index++] = capInfo.getNumReport().toString();
-			value[index++] = capInfo.getNumBug().toString();
-			value[index++] = capInfo.getPercBug().toString();
+			for ( int j =0; j < capInfo.getNumProject().length; j++ ) {
+				value[index++] = capInfo.getNumProject()[j].toString();
+				value[index++] = capInfo.getNumReport()[j].toString();
+				value[index++] = capInfo.getNumBug()[j].toString();
+				value[index++] = capInfo.getPercBug()[j].toString();
+			}
+			value[index++] = capInfo.getDurationLastAct().toString();
 			
 			DomainKnowledge domainInfo = testCase.getWorker().getDomainKnInfo();
 			SimilarityMeasure similarityTool = new SimilarityMeasure();

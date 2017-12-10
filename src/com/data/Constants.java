@@ -18,6 +18,9 @@ public class Constants {
 	public final static String WORKER_CAP_FILE = "data/output/workerInfo/workerCap.csv";
 	public final static String WORKER_DOMAIN_FILE = "data/output/workerInfo/workerDomain.csv";
 	
+	public final static String WORKER_INFO_FOLDER  = "data/output/workerInfo";
+	public final static String BUG_PROB_FOLDER  = "data/output/bugProb";
+	
 	public final static String BUG_PROB_PERFORMANCE = "data/output/performance/bugProb.csv";
 	
 	public final static Integer CAP_SIZE_PER_TYPE = 4;

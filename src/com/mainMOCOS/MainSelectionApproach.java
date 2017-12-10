@@ -31,8 +31,8 @@ import com.data.TestReport;
 import com.dataProcess.CrowdWorkerHandler;
 import com.dataProcess.DataSetPrepare;
 import com.dataProcess.TestProjectReader;
+import com.learner.BugProbability;
 import com.performanceEvaluation.ProbPredictEvaluation;
-import com.selectionObjective.BugProbability;
 import com.taskReverse.FinalTermListGeneration;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 
