@@ -1,6 +1,10 @@
 package com.learner;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +41,7 @@ public class BugProbability {
 		wekaTestFile = "data/input/weka/test.csv";
 	}
 	
-	public HashMap<String, Double> ObtainBugProbabilityTotal ( TestProject project, ArrayList<TestProject> historyProjectList, 
+	public HashMap<String, Double> obtainBugProbabilityTotal ( TestProject project, ArrayList<TestProject> historyProjectList, 
 			HashMap<String, CrowdWorker> historyWorkerList, LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
 		
 		this.prepareWekaData(project, historyProjectList, historyWorkerList, candidateWorkerList);
@@ -61,7 +65,27 @@ public class BugProbability {
 		return bugProbWorkerResults;
 	}
 	
-	
+	public HashMap<String, Double> obtainBugProbabilityTotalWithPreparedWekaData ( TestProject project, ArrayList<TestProject> historyProjectList, 
+			HashMap<String, CrowdWorker> historyWorkerList, LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
+		
+		WekaPrediction wekaPrediction = new WekaPrediction();
+		HashMap<Integer, Double> bugProbResults = wekaPrediction.trainAndPredictProb( wekaTrainFile, wekaTestFile, "LibSVM");
+		System.out.println ( "Train and predict is done!"); 
+		
+		if ( candidateWorkerList.size() != bugProbResults.size() ) {
+			System.out.println( "Wrong in size!");
+		}
+				
+		//the result is in the same order with candidateWorkerList
+		HashMap<String, Double> bugProbWorkerResults = new HashMap<String, Double>();
+		int i = 0 ;
+		for ( String userId: candidateWorkerList.keySet() ) {
+			bugProbWorkerResults.put( userId ,  bugProbResults.get( i ) );
+			i++;
+		}
+		
+		return bugProbWorkerResults;
+	}
 	/*
 	 * return the rank of candidate worker list
 	 */
@@ -98,6 +122,28 @@ public class BugProbability {
 		}		
 	}
 	
+	public HashMap<String, Double> loadBugProbability ( String fileName ) {
+		HashMap<String, Double> bugProForWorker = new HashMap<String, Double>();
+		try {			
+			BufferedReader reader = new BufferedReader(new FileReader(new File( fileName )));
+			String line = "";
+			while ((line = reader.readLine()) != null) {
+				String[] temp = line.split(",");
+				String userId = temp[0];
+				Double prob = Double.parseDouble(temp[1]);
+
+				bugProForWorker.put(userId, prob);
+			}
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return bugProForWorker;
+	}
 	/*
 	 * 生成testSet的28个任务的每个任务的bugProb
 	 */
@@ -140,13 +186,15 @@ public class BugProbability {
 			
 			String projectName = project.getProjectName();
 			BugProbability probTool = new BugProbability( projectName );
-			HashMap<String, Double> bugProbWorkerResults = probTool.ObtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
+			//HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
+			HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotalWithPreparedWekaData( project, historyProjectList, historyWorkerList, candidateWorkerList);
 			probTool.storeBugProb(bugProbWorkerResults, Constants.BUG_PROB_FOLDER + "/" + i + "-bugProbability.csv" );
 			
 			ProbPredictEvaluation evaluationTool = new ProbPredictEvaluation();
 			Double[] performance = evaluationTool.obtainProbPredictionPerformance(bugProbWorkerResults, project);
 			try {
 				BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_PERFORMANCE , true));
+				writer.write( i + ",");
 				for ( int j =0; j < performance.length; j++ ) {
 					writer.write( performance[j] + ",");
 				}

@@ -42,6 +42,16 @@ public class FinalTermListGeneration {
 		}		
 	}
 	
+	/*
+	 * 过滤掉的term 规则如下：
+	 * 1. 包含数字的
+	 * 2. 包含标点的
+	 * 3. 既包含英文字母又包含汉字的
+	 */
+	public void filterAbnormalTerms ( ArrayList<String> finalTermList) {
+		
+	}
+	
 	public ArrayList<String> loadFinalTermList ( ) {
 		ArrayList<String> finalTermList  = new ArrayList<String>();
 		BufferedReader br;

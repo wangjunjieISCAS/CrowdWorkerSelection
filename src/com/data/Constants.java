@@ -13,7 +13,7 @@ public class Constants {
 	
 	public final static Integer DEFAULT_DOMAIN_LENGTH = 50;
 	
-	public final static String BUG_PROB_FILE = "data/output/workerInfo/bugProbability.csv";
+	public final static String BUG_PROB_FILE = "data/output/bugProb/bugProbability.csv";
 	public final static String WORKER_PHONE_FILE = "data/output/workerInfo/workerPhone.csv";
 	public final static String WORKER_CAP_FILE = "data/output/workerInfo/workerCap.csv";
 	public final static String WORKER_DOMAIN_FILE = "data/output/workerInfo/workerDomain.csv";
@@ -22,8 +22,13 @@ public class Constants {
 	public final static String BUG_PROB_FOLDER  = "data/output/bugProb";
 	
 	public final static String BUG_PROB_PERFORMANCE = "data/output/performance/bugProb.csv";
+	public final static String BUG_DETECTION_RATE_PERFORMANCE_FOLDER  = "data/output/performance/bugDetRate";
+	public final static String SELECTION_RESULTS_FOLDER = "data/output/selectionResults";
 	
 	public final static Integer CAP_SIZE_PER_TYPE = 4;
 	
 	public final static String CLOSE_TIME_FOR_PROJECT_FILE  = "data/output/findings/closeTimeForProject.csv";
+	
+	public final static String TOTAL_PROJECT_FOLDER = "data/input/experimental dataset";
+	public final static String TOTAL_TASK_DES_FOLDER = "data/input/taskDescription";
 }

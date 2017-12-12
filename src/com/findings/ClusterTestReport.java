@@ -163,11 +163,11 @@ public class ClusterTestReport {
 				else if ( reportNumber > 100 )
 					optimalClusterNumber = reportNumber / 7;
 				else if ( reportNumber > 50 )
-					optimalClusterNumber = reportNumber / 5 ;
+					optimalClusterNumber = reportNumber / 4 ;
 				else if ( reportNumber > 30  )
-					optimalClusterNumber = reportNumber / 4;
-				else
 					optimalClusterNumber = reportNumber / 3;
+				else
+					optimalClusterNumber = reportNumber / 2;
 				System.out.println ( "optimalClusterNumber: " + optimalClusterNumber);
 				
 				String dir = "G:\\eclipse-workspace\\CrowdWorkerSelection\\data\\output\\cluster\\";

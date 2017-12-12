@@ -17,93 +17,28 @@ import com.data.Constants;
 import com.data.CrowdWorker;
 import com.data.DomainKnowledge;
 import com.data.Phone;
+import com.dataProcess.CrowdWorkerHandler;
 import com.dataProcess.SimilarityMeasure;
+import com.learner.BugProbability;
 
 public class SelectionObjectives {
-	private static HashMap<String, CrowdWorker> candidateWorkers;
-	private static HashMap<String, Double> bugProForWorker;
-
-	// read the file to initiate the candidateWorkers, and the bugProbForWorker
-	static {
-		try {
-			BufferedReader reader = new BufferedReader(new FileReader(new File(Constants.WORKER_PHONE_FILE)));
-			candidateWorkers = new HashMap<String, CrowdWorker>();
-			bugProForWorker = new HashMap<String, Double>();
-
-			String line = "";
-			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split(",");
-				String userId = temp[0];
-
-				if (temp.length < 5)
-					temp = new String[] { userId, "", "", "", "" };
-
-				Phone phoneInfo = new Phone(temp[1], temp[2], temp[3], temp[4]);
-				CrowdWorker workerInfo = new CrowdWorker(userId);
-				workerInfo.setPhoneInfo(phoneInfo);
-				candidateWorkers.put(userId, workerInfo);
-			}
-
-			reader = new BufferedReader(new FileReader(new File(Constants.WORKER_CAP_FILE)));
-			line = "";
-			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split(",");
-				String userId = temp[0];
-				Capability capInfo = new Capability(Integer.parseInt(temp[1]), Integer.parseInt(temp[2]),
-						Integer.parseInt(temp[3]), Double.parseDouble(temp[4]));
-
-				CrowdWorker workerInfo = candidateWorkers.get(userId);
-				workerInfo.setCapInfo(capInfo);
-
-				candidateWorkers.put(userId, workerInfo);
-			}
-
-			reader = new BufferedReader(new FileReader(new File(Constants.WORKER_DOMAIN_FILE)));
-			line = "";
-			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split(",");
-				String userId = temp[0];
-
-				ArrayList<String> domainTerms = new ArrayList<String>();
-				for (int i = 1; i < temp.length; i++) {
-					domainTerms.add(temp[i]);
-				}
-				DomainKnowledge domainInfo = new DomainKnowledge(domainTerms);
-
-				CrowdWorker workerInfo = candidateWorkers.get(userId);
-
-				if (workerInfo == null)
-					continue;
-
-				workerInfo.setDomainKnInfo(domainInfo);
-
-				candidateWorkers.put(userId, workerInfo);
-			}
-
-			// obtain bugProForWorker
-			reader = new BufferedReader(new FileReader(new File(Constants.BUG_PROB_FILE)));
-			line = "";
-			while ((line = reader.readLine()) != null) {
-				String[] temp = line.split(",");
-				String userId = temp[0];
-				Double prob = Double.parseDouble(temp[1]);
-
-				bugProForWorker.put(userId, prob);
-			}
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private HashMap<String, CrowdWorker> candidateWorkers;
+	private HashMap<String, Double> bugProForWorker;
+	
+	public SelectionObjectives ( String testSetIndex, String taskId ) {
+		CrowdWorkerHandler workerTool = new CrowdWorkerHandler();
+		candidateWorkers = workerTool.loadCrowdWorkerInfo( Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerPhone.csv", 
+				Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerCap.csv", Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerDomain.csv" );
+		
+		BugProbability probTool = new BugProbability( );
+		bugProForWorker = probTool.loadBugProbability( Constants.BUG_PROB_FOLDER + "/" + taskId + "-bugProbability.csv" );
 	}
 	
-	public static double getBugProb(String workid){
-		return SelectionObjectives.bugProForWorker.get(workid);
+	public double getBugProb(String workid){
+		return this.bugProForWorker.get(workid);
 	}
 
-	public static Double extractBugProbability(SortedMap<String, Boolean> selection) {
+	public Double extractBugProbability(SortedMap<String, Boolean> selection) {
 		double score = 0.0;
 
 		int count = 0;
@@ -123,7 +58,7 @@ public class SelectionObjectives {
 	}
 
 	//extractDiversity_Distance
-	public static Double extractDiversity_Distance (SortedMap<String, Boolean> selection) {
+	public Double extractDiversity_Distance (SortedMap<String, Boolean> selection) {
 		double score = 0.0;
 		ArrayList<CrowdWorker> workerList = new ArrayList<CrowdWorker>();
 		for (String userId : selection.keySet()) {
@@ -158,7 +93,7 @@ public class SelectionObjectives {
 	}
 	
 	 //extractDiversity_Count
-	public static Double extractDiversity ( SortedMap<String, Boolean> selection ) {
+	public Double extractDiversity ( SortedMap<String, Boolean> selection ) {
 		double score = 0.0;
 		
 		HashSet<String> phoneList = new HashSet<String>();
@@ -185,7 +120,7 @@ public class SelectionObjectives {
 		return score;
 	}
 	
-	public static Double extractCost(SortedMap<String, Boolean> selection) {
+	public Double extractCost(SortedMap<String, Boolean> selection) {
 		double score = 0.0;
 		for (String userId : selection.keySet()) {
 			Boolean isSelect = selection.get(userId);

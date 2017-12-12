@@ -23,21 +23,27 @@ public class JmetalProblem extends Problem {
 	private static final long serialVersionUID = -3530441329740021364L;
 	private ArrayList<String> ids;
 	private Random rand;
+	SelectionObjectives objectiveTool;
+	
 
-	public JmetalProblem(ArrayList<String> candidatesIDs) {
+	public JmetalProblem(ArrayList<String> candidatesIDs, String testSetIndex, String taskId ) {
 		this.numberOfObjectives_ = 3;
 		this.numberOfVariables_ = candidatesIDs.size();
 		this.solutionType_ = new BinarySolutionType(this);
 		this.ids = candidatesIDs;
 		rand = new Random();
+		
+		objectiveTool = new SelectionObjectives ( testSetIndex, taskId );
 	}
 
-	public JmetalProblem(ArrayList<String> candidatesIDs, long seed) {
+	public JmetalProblem(ArrayList<String> candidatesIDs, long seed, String testSetIndex, String taskId ) {
 		this.numberOfObjectives_ = 3;
 		this.numberOfVariables_ = candidatesIDs.size();
 		this.solutionType_ = new BinarySolutionType(this);
 		this.ids = candidatesIDs;
 		rand = new Random(seed);
+		
+		objectiveTool = new SelectionObjectives ( testSetIndex, taskId );
 	}
 
 	public SortedMap<String, Boolean> candidateMap(Solution solution) {
@@ -52,9 +58,9 @@ public class JmetalProblem extends Problem {
 	@Override
 	public void evaluate(Solution solution) throws JMException {
 		SortedMap<String, Boolean> selectionChoice = this.candidateMap(solution);
-		double bugProb = SelectionObjectives.extractBugProbability(selectionChoice);
-		double diversity = SelectionObjectives.extractDiversity(selectionChoice);
-		double cost = SelectionObjectives.extractCost(selectionChoice);
+		double bugProb = objectiveTool.extractBugProbability(selectionChoice);
+		double diversity = objectiveTool.extractDiversity(selectionChoice);
+		double cost = objectiveTool.extractCost(selectionChoice);
 
 		solution.setObjective(0, -bugProb);
 		solution.setObjective(1, -diversity);
@@ -102,7 +108,7 @@ public class JmetalProblem extends Problem {
 		}
 		
 
-		JmetalProblem google = new JmetalProblem(candidates);
+		JmetalProblem google = new JmetalProblem(candidates, "20", "560");
 		SolutionSet ss = google.generateDiverseSet(100);
 		for (int i = 0; i < 100; i++) {
 			google.evaluate(ss.get(i));

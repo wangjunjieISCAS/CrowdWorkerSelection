@@ -111,11 +111,16 @@ public class ProbPredictEvaluation {
 		AUC = AUC / ( 1.0 * positiveNum * negativeNum );
 			
 		System.out.println( "precision:" + precision + " recall:" + recall + " F-Measure:" + FMeasure + " AUC:" + AUC );	
-		Double[] result = new Double[4];
+		Double[] result = new Double[8];
 		result[0] = precision;
 		result[1] = recall;
 		result[2] = FMeasure;
 		result[3] = AUC;
+		
+		result[4] = 1.0 * truePositive;
+		result[5] = 1.0 * trueNegative;
+		result[6] = 1.0 * falsePositive;
+		result[7] = 1.0 * falseNegative;
 		
 		return result;
 	}

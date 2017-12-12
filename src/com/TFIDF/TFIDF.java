@@ -53,16 +53,23 @@ public class TFIDF {
             }  
         }); 
         
+        /*
+         * 过滤前出现次数最多的 和 出现次数最少的 前5%
+         */
         int filterNum = (int) (infoIds.size() * Constants.THRES_FILTER_TERMS_DF);
         int begin = filterNum;
+        
         int end = infoIds.size() - begin;
         for ( int j = begin; j < end; j++ ) {
         	String term = infoIds.get(j).getKey();
+        	int docFre = infoIds.get( j).getValue();
+        	
+        	if ( docFre == 1 )
+        		continue;
         	
         	finalTermList.add( term);
         }
 		
 		return finalTermList;
-		
 	}
 }

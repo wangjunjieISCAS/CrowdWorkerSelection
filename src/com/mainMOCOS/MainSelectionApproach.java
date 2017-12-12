@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -32,33 +33,23 @@ import com.dataProcess.CrowdWorkerHandler;
 import com.dataProcess.DataSetPrepare;
 import com.dataProcess.TestProjectReader;
 import com.learner.BugProbability;
+import com.performanceEvaluation.BugDetectionRateEvaluation;
 import com.performanceEvaluation.ProbPredictEvaluation;
+import com.selectionApproach.MultiObjectiveSelection;
 import com.taskReverse.FinalTermListGeneration;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 
+import jmetal.core.SolutionSet;
+import jmetal.util.JMException;
+
 public class MainSelectionApproach {
-	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList) {
-		FinalTermListGeneration termTool = new FinalTermListGeneration();
-		ArrayList<String> finalTermList = termTool.loadFinalTermList();
-		System.out.println ( "FinalTermList is done!");
-		
+	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList, Date curTime, String testSetIndex, String taskId ) {
 		CrowdWorkerHandler workerHandler = new CrowdWorkerHandler();
-		
-		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
-		Date curTime = null;
-		try {
-			curTime = formatLine.parse( "2016/2/20  21:54:00" );
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
+		HashMap<String, CrowdWorker> historyWorkerList = workerHandler.loadCrowdWorkerInfo( Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerPhone.csv", 
+				Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerCap.csv", Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerDomain.csv" );
+		System.out.println ( "HistoryWorkerList is done! " );
 		
 		CrowdWokerExtraction workerTool = new CrowdWokerExtraction();
-		HashMap<String, CrowdWorker> historyWorkerList = workerTool.obtainCrowdWokerInfo( historyProjectList, finalTermList, curTime );
-		System.out.println ( "HistoryWorkerList is done! " + System.currentTimeMillis()/1000 );
-		//workerHandler.storeCrowdWorkerInfo(  historyWorkerList, Constants.WORKER_PHONE_FILE, Constants.WORKER_CAP_FILE, Constants.WORKER_DOMAIN_FILE );
-		
 		CrowdWorker defaultWorker = workerTool.obtainDefaultCrowdWorker( historyWorkerList );
 		//obtain candidate worker, besides the history worker, there could be worker who join the platform for the first time in this project
 		LinkedHashMap<String, CrowdWorker> candidateWorkerList = new LinkedHashMap<String, CrowdWorker>();
@@ -79,42 +70,72 @@ public class MainSelectionApproach {
 			
 			candidateWorkerList.put( userId, worker );
 		}
-		workerHandler.storeCrowdWorkerInfo(candidateWorkerList, Constants.WORKER_PHONE_FILE, Constants.WORKER_CAP_FILE, Constants.WORKER_DOMAIN_FILE );
-		System.out.println ( "CandidateWorkerList is done! " + + System.currentTimeMillis()/1000);
+		//workerHandler.storeCrowdWorkerInfo(candidateWorkerList, Constants.WORKER_PHONE_FILE, Constants.WORKER_CAP_FILE, Constants.WORKER_DOMAIN_FILE );
+		System.out.println ( "CandidateWorkerList is done! " );
 		
-		//obtain the bugProbability of all candidate workers, and store it into related file
-		String projectName = project.getProjectName();
-		BugProbability probTool = new BugProbability( projectName );
-		HashMap<String, Double> bugProbWorkerResults = probTool.ObtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
-		probTool.storeBugProb(bugProbWorkerResults, "data/output/bugProb/bugProbability-" + projectName + ".csv" );
+		CandidateIDChoose chooseTool = new CandidateIDChoose();
+		String bugProbFile = Constants.BUG_PROB_FOLDER + "/" + taskId + "-bugProbability.csv" ;
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsRandom(candidateWorkerList);
+		ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBugProb(candidateWorkerList, bugProbFile );
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBugProbAndTask(candidateWorkerList, bugProbFile, project);
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsSpecificTask(candidateWorkerList, project);
+		System.out.println ( "CandidateIDs size is: " + candidateIDs.size() ); 
 		
-		ProbPredictEvaluation evaluationTool = new ProbPredictEvaluation();
-		Double[] performance = evaluationTool.obtainProbPredictionPerformance(bugProbWorkerResults, project);
 		
+		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
+		BugDetectionRateEvaluation evaTool = new BugDetectionRateEvaluation();
+		
+		SolutionSet paretoFroniter;
 		try {
-			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_PERFORMANCE , true));
-			for ( int i =0; i < performance.length; i++ ) {
-				writer.write( performance[i] + ",");
-			}
-			writer.newLine();
-			writer.flush();
+			//ArrayList<String> candidateIDs = selectionTool.obtainCandidateIDs();
+			paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L, testSetIndex, taskId );
+			HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.obtainWorkerSelectionResults(paretoFroniter, taskId );
 			
+			evaTool.obtainBugDetectionRate(selectionResults, project);
+		} catch (ClassNotFoundException | JMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
+	
+	public static void main ( String[] args ) {
+		//Math.sqrt(b)*random.nextGaussian()+a
+		Random random = new Random();
+		double a = 0.0;
+		double b = 100;
+		ArrayList<Double> randValues = new ArrayList<Double>();
+		for ( int i =0; i < 2335; i++ ) {
+			double value = Math.sqrt(b)*random.nextGaussian()+a;
+			randValues.add( value );
+		}
+		try {
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( "data/output/test.csv" ));
+			for ( int i =0; i < randValues.size(); i++ ) {
+				writer.write( randValues.get( i ).toString() );
+				writer.newLine();
+			}
+			writer.flush();
 			writer.close();
-		}catch (IOException e) {
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		
-		System.out.println ( "bugProbWorkerResults is done!");
-	}	
-	
-	
-	public static void main ( String[] args ) {
+		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
+		Date curTime = null;
+		try {
+			curTime = formatLine.parse( "2016/8/4 10:00:00" );
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
 		TestProjectReader projReader = new TestProjectReader();
-		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskList( "data/input/total crowdsourced reports", "data/input/taskDescription");
-		TestProject project = projReader.loadTestProjectAndTask( "data/input/竹兜育儿测试_1463737902.csv", "data/input/竹兜育儿测试_1463737902.txt");
+		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskList( Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
+		TestProject project = projReader.loadTestProjectAndTask( "data/input/experimental dataset/560-76-bug好运一元V1.0测试_1470654272.csv", "data/input/taskDescription/560-76-bug好运一元V1.0测试_1470654272.txt");
 		
 		MainSelectionApproach selectionApproach = new MainSelectionApproach();
-		selectionApproach.workSelectionApproach(project, historyProjectList);
+		selectionApproach.workSelectionApproach(project, historyProjectList, curTime, "20", "560" );
 	}
 }

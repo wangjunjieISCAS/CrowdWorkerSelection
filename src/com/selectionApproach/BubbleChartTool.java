@@ -55,7 +55,7 @@ public class BubbleChartTool {
 			chartPanel.repaint();
 			
 			try {
-				Thread.sleep( 50 );
+				Thread.sleep( 30 );
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

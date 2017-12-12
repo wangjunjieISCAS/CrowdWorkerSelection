@@ -1,12 +1,25 @@
 package com.selectionApproach;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.SortedMap;
+
+import com.data.Capability;
+import com.data.Constants;
+import com.data.CrowdWorker;
+import com.data.DomainKnowledge;
+import com.data.Phone;
+import com.data.TestProject;
+import com.performanceEvaluation.BugDetectionRateEvaluation;
 
 import jmetal.core.Algorithm;
 import jmetal.core.Solution;
@@ -30,17 +43,17 @@ import jmetal.util.PseudoRandom;
 public class MultiObjectiveSelection {
 	public JmetalProblem problem_ = null;
 
-	public SolutionSet multiObjectiveWorkerSelection(ArrayList<String> candidatesIDs, long seed)
+	public SolutionSet multiObjectiveWorkerSelection(ArrayList<String> candidatesIDs, long seed, String testSetIndex, String taskId )
 			throws ClassNotFoundException, JMException {
-		problem_ = new JmetalProblem(candidatesIDs, seed);
+		problem_ = new JmetalProblem(candidatesIDs, seed, testSetIndex, taskId );
 		PseudoRandom.setRandomGenerator(new MyRandomGenerator(seed));
 		NsgaiiWithDebug alg = new NsgaiiWithDebug(problem_);
 
 		// TODO change the optimizer here
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
-		int popSize = 100; // 2k
-		int maxGeneration = 500;
+		int popSize = 200; // 2k
+		int maxGeneration = 10000;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
@@ -52,11 +65,11 @@ public class MultiObjectiveSelection {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.clear();
-		parameters.put("probability", 0.8);
+		parameters.put("probability", 0.9);
 		alg.addOperator("crossover", new SinglePointCrossover(parameters));
 
 		parameters.clear();
-		parameters.put("probability", 0.8);
+		parameters.put("probability", 0.9);
 		alg.addOperator("mutation", new BitFlipMutation(parameters));
 
 		parameters.clear();
@@ -69,7 +82,7 @@ public class MultiObjectiveSelection {
 		return res;
 	}
 
-	public static ArrayList<String> obtainCandidateIDs() {
+	public ArrayList<String> obtainCandidateIDs() {
 		ArrayList<String> candidatesIDs = new ArrayList<String>();
 
 		BufferedReader reader;
@@ -88,7 +101,7 @@ public class MultiObjectiveSelection {
 		return candidatesIDs;
 	}
 	
-	public HashMap<Integer, ArrayList<ArrayList<String>>>  obtainWorkerSelectionResults ( SolutionSet paretoFront ) {
+	public HashMap<Integer, ArrayList<ArrayList<String>>>  obtainWorkerSelectionResults ( SolutionSet paretoFront, String taskId ) {
 		HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = new HashMap<Integer, ArrayList<ArrayList<String>>>();
 		
 		for ( int i =0; i < paretoFront.size(); i++ ) {
@@ -113,14 +126,58 @@ public class MultiObjectiveSelection {
 			selectedWorkersList.add( selectedWorkers );
 			selectionResults.put( workerNum, selectedWorkersList );
 		}
+		
+		List<HashMap.Entry<Integer, ArrayList<ArrayList<String>>>> selectionResultsList = new ArrayList<HashMap.Entry<Integer, ArrayList<ArrayList<String>>>>(selectionResults.entrySet() );
+
+		Collections.sort( selectionResultsList, new Comparator<HashMap.Entry<Integer, ArrayList<ArrayList<String>>>>() {   
+			public int compare(HashMap.Entry<Integer, ArrayList<ArrayList<String>>> o1, HashMap.Entry<Integer, ArrayList<ArrayList<String>>> o2) {      
+			        //return (o2.getValue() - o1.getValue()); 
+			        return o1.getKey().compareTo(o2.getKey() ) ;
+			    }
+			}); 
+			
+		try {
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.SELECTION_RESULTS_FOLDER + "/" + taskId + ".txt" ));
+			for ( int i =0; i < selectionResultsList.size(); i++ ) {
+				HashMap.Entry<Integer, ArrayList<ArrayList<String>>> entry = selectionResultsList.get( i );
+				Integer setSize = entry.getKey();
+				ArrayList<ArrayList<String>> workersList = entry.getValue();
+				for ( int j =0; j < workersList.size(); j++ ) {
+					ArrayList<String> workers = workersList.get( j );
+					writer.write( setSize + ":");
+					for ( int k =0; k < workers.size(); k++ ) {
+						writer.write( workers.get( k ) + " ");
+					}
+					writer.newLine();
+				}
+			}
+			writer.flush();
+			writer.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+		
 		return selectionResults;		
 	}
 	
-	public static void main(String[] args) throws ClassNotFoundException, JMException {
+	public static void main(String[] args) {
 		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
-		ArrayList<String> candidateIDs = MultiObjectiveSelection.obtainCandidateIDs();
-		SolutionSet paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L);
-		selectionTool.obtainWorkerSelectionResults(paretoFroniter );
+		ArrayList<String> candidateIDs = selectionTool.obtainCandidateIDs();
+		SolutionSet paretoFroniter;
+		try {
+			paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L, "20", "562");
+			HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.obtainWorkerSelectionResults(paretoFroniter , "562");
+			
+			/*
+			BugDetectionRateEvaluation evaTool = new BugDetectionRateEvaluation();
+			TestProject project = null;
+			evaTool.obtainBugDetectionRate(selectionResults, project);
+			*/
+		} catch (ClassNotFoundException | JMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		/*
 		System.out.println("=======");
