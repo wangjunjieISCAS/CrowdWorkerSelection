@@ -24,6 +24,19 @@ public class CapabilityExtraction {
 		
 		Calendar cald = Calendar.getInstance();
 		cald.setTime( curTime );
+		cald.add( Calendar.DAY_OF_MONTH, -15 );
+		Date oneMonthBefore = cald.getTime();
+		
+		cald.setTime( curTime );
+		cald.add( Calendar.MONTH, -1);
+		Date twoMonthBefore = cald.getTime();
+		
+		cald.setTime( curTime );
+		cald.add( Calendar.MONTH, -2);
+		Date fourMonthBefore = cald.getTime();
+		
+		/*
+		cald.setTime( curTime );
 		cald.add( Calendar.MONTH, -1 );
 		Date oneMonthBefore = cald.getTime();
 		
@@ -34,6 +47,7 @@ public class CapabilityExtraction {
 		cald.setTime( curTime );
 		cald.add( Calendar.MONTH, -4);
 		Date fourMonthBefore = cald.getTime();
+		*/
 		
 		/*
 		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm");

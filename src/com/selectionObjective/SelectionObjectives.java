@@ -17,6 +17,7 @@ import com.data.Constants;
 import com.data.CrowdWorker;
 import com.data.DomainKnowledge;
 import com.data.Phone;
+import com.data.TestProject;
 import com.dataProcess.CrowdWorkerHandler;
 import com.dataProcess.SimilarityMeasure;
 import com.learner.BugProbability;
@@ -24,14 +25,18 @@ import com.learner.BugProbability;
 public class SelectionObjectives {
 	private HashMap<String, CrowdWorker> candidateWorkers;
 	private HashMap<String, Double> bugProForWorker;
+	TestProject project;
+
 	
-	public SelectionObjectives ( String testSetIndex, String taskId ) {
+	public SelectionObjectives ( String testSetIndex, String taskId, TestProject project ) {
 		CrowdWorkerHandler workerTool = new CrowdWorkerHandler();
 		candidateWorkers = workerTool.loadCrowdWorkerInfo( Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerPhone.csv", 
 				Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerCap.csv", Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerDomain.csv" );
 		
 		BugProbability probTool = new BugProbability( );
-		bugProForWorker = probTool.loadBugProbability( Constants.BUG_PROB_FOLDER + "/" + taskId + "-bugProbability.csv" );
+		bugProForWorker = probTool.loadBugProbability( Constants.BUG_PROB_FOLDER + "/" + testSetIndex + "/" + taskId + "-bugProbability.csv" );
+		
+		this.project = project;
 	}
 	
 	public double getBugProb(String workid){
@@ -57,6 +62,12 @@ public class SelectionObjectives {
 		return score;
 	}
 
+	public Double extractRelevance ( SortedMap<String, Boolean> selection ) {
+		double score = 0.0;
+		
+		return score;
+	}
+	
 	//extractDiversity_Distance
 	public Double extractDiversity_Distance (SortedMap<String, Boolean> selection) {
 		double score = 0.0;
@@ -104,6 +115,9 @@ public class SelectionObjectives {
 				continue;
 			}
 			
+			if ( !candidateWorkers.containsKey( userId )) {
+				continue;
+			}
 			Phone phone = candidateWorkers.get( userId ).getPhoneInfo();
 			phoneList.add( phone.getPhoneType());
 			phoneList.add ( phone.getOS() );

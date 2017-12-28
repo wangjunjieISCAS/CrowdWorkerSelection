@@ -87,4 +87,19 @@ public class SimilarityMeasure {
 		double dist = dis[vector1.size()][vector2.size()];
 		return dist;
 	}
+	
+	public ArrayList<Double> topicDistance ( ArrayList<Double> topicDis1, ArrayList<Double> topicDis2) {
+		if ( topicDis1.size() == 0 )
+			return topicDis2;
+		
+		ArrayList<Double> topicDist = new ArrayList<Double>();
+		for ( int i =0; i < topicDis1.size(); i++ ) {
+			Double value1 = topicDis1.get( i );
+			Double value2 = topicDis2.get( i );
+			Double dif = Math.abs( value1 - value2);
+			dif = 10000* dif;
+			topicDist.add( dif );
+		}
+		return topicDist;
+	}
 }

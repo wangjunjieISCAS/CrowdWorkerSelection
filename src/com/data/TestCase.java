@@ -1,14 +1,18 @@
 package com.data;
 
+import java.util.ArrayList;
+
 //test case is the whole combination of test task, crowd worker, and the test oracle of this test combination
 public class TestCase {
 	TestTask task;
 	CrowdWorker worker;
 	String testOracle;
+	ArrayList<Double> topicDistribution;
 	
-	public TestCase ( TestTask task, CrowdWorker worker, String testOracle ) {
+	public TestCase ( TestTask task, CrowdWorker worker, ArrayList<Double> topicDistribution, String testOracle ) {
 		this.task = task;
 		this.worker = worker;
+		this.topicDistribution = topicDistribution;
 		this.testOracle = testOracle;
 	}
 
@@ -34,6 +38,14 @@ public class TestCase {
 
 	public void setTestOracle(String testOracle) {
 		this.testOracle = testOracle;
+	}
+
+	public ArrayList<Double> getTopicDistribution() {
+		return topicDistribution;
+	}
+
+	public void setTopicDistribution(ArrayList<Double> topicDistribution) {
+		this.topicDistribution = topicDistribution;
 	}
 	
 	

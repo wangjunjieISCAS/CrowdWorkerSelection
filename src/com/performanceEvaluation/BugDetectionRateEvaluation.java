@@ -19,22 +19,38 @@ import com.data.TestReport;
  * could not use average precision because this is not a rank problem
  */
 public class BugDetectionRateEvaluation {
-	public HashMap<Integer, Double> obtainBugDetectionRate ( HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults, TestProject project ) {
+	public HashMap<Integer, Double> obtainBugDetectionRate ( HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults, TestProject project, boolean isNonDuplicate, String folderName  ) {
 		//选择不同人数时的bug detection rate
 		HashMap<Integer, Double> bugDetectionRate = new HashMap<Integer, Double>();
 		
-		int totalCount = this.obtainTotalBugCount(project);
-		
-		for ( Integer countNum : selectionResults.keySet() ) {
-			ArrayList<ArrayList<String>> workersList = selectionResults.get( countNum );
-			int count = 0;
-			for ( int i =0; i < workersList.size(); i++ ) {
-				int temp = this.obtainBugCount( workersList.get( i ), project);
-				if ( count < temp )
-					count = temp;
+		if ( isNonDuplicate == true ) {
+			int totalCount = this.obtainTotalBugCountNonDuplicate(project);
+			
+			for ( Integer countNum : selectionResults.keySet() ) {
+				ArrayList<ArrayList<String>> workersList = selectionResults.get( countNum );
+				int count = 0;
+				for ( int i =0; i < workersList.size(); i++ ) {
+					int temp = this.obtainBugCountNonDuplicate( workersList.get( i ), project);
+					if ( count < temp )
+						count = temp;
+				}
+				bugDetectionRate.put( countNum, (1.0*count)/(1.0*totalCount) );
 			}
-			bugDetectionRate.put( countNum, (1.0*count)/(1.0*totalCount) );
 		}
+		else {
+			int totalCount = this.obtainTotalBugCount(project);
+			
+			for ( Integer countNum : selectionResults.keySet() ) {
+				ArrayList<ArrayList<String>> workersList = selectionResults.get( countNum );
+				int count = 0;
+				for ( int i =0; i < workersList.size(); i++ ) {
+					int temp = this.obtainBugCount( workersList.get( i ), project);
+					if ( count < temp )
+						count = temp;
+				}
+				bugDetectionRate.put( countNum, (1.0*count)/(1.0*totalCount) );
+			}
+		}		
 		
 		List<HashMap.Entry<Integer, Double>> bugDetectionRateList = new ArrayList<HashMap.Entry<Integer, Double>>(bugDetectionRate.entrySet() );
 
@@ -45,7 +61,7 @@ public class BugDetectionRateEvaluation {
 			    }
 			}); 
 		try {
-			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_DETECTION_RATE_PERFORMANCE_FOLDER + "/" + project.getProjectName() + ".csv" ));
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_DETECTION_RATE_PERFORMANCE_FOLDER + "/" + folderName + "/" + folderName  + "-" + project.getProjectName() + ".csv" ));
 			for ( int i =0; i < bugDetectionRateList.size(); i++  ) {
 				HashMap.Entry<Integer, Double> entry = bugDetectionRateList.get( i );
 				int userNum = entry.getKey();

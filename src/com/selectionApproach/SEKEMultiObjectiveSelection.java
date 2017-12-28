@@ -13,13 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.SortedMap;
 
-import com.data.Capability;
 import com.data.Constants;
-import com.data.CrowdWorker;
-import com.data.DomainKnowledge;
-import com.data.Phone;
 import com.data.TestProject;
-import com.performanceEvaluation.BugDetectionRateEvaluation;
 
 import jmetal.core.Algorithm;
 import jmetal.core.Solution;
@@ -40,12 +35,12 @@ import jmetal.util.PseudoRandom;
 // Apply multi-objective optimization algorithms to the
 // jmetalProblem.See todos to set up the parameters
 
-public class MultiObjectiveSelection {
-	public JmetalProblem problem_ = null;
+public class SEKEMultiObjectiveSelection {
+	public SEKEJmetalProblem problem_ = null;
 
 	public SolutionSet multiObjectiveWorkerSelection(ArrayList<String> candidatesIDs, long seed, String testSetIndex, String taskId, TestProject project )
 			throws ClassNotFoundException, JMException {
-		problem_ = new JmetalProblem(candidatesIDs, seed, testSetIndex, taskId, project );
+		problem_ = new SEKEJmetalProblem(candidatesIDs, seed, testSetIndex, taskId, project );
 		PseudoRandom.setRandomGenerator(new MyRandomGenerator(seed));
 		NsgaiiWithDebug alg = new NsgaiiWithDebug(problem_);
 
@@ -53,7 +48,7 @@ public class MultiObjectiveSelection {
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
 		int popSize = 100; // 2k
-		int maxGeneration = 1000;
+		int maxGeneration = 100;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
@@ -82,25 +77,6 @@ public class MultiObjectiveSelection {
 		return res;
 	}
 
-	public ArrayList<String> obtainCandidateIDs() {
-		ArrayList<String> candidatesIDs = new ArrayList<String>();
-
-		BufferedReader reader;
-		try {
-			reader = new BufferedReader(new FileReader(new File("data/input/candidates.csv")));
-
-			String line = "";
-			while ((line = reader.readLine()) != null) {
-				String userId = line.trim();
-				candidatesIDs.add(userId);
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-		return candidatesIDs;
-	}
-	
 	public HashMap<Integer, ArrayList<ArrayList<String>>>  obtainWorkerSelectionResults ( SolutionSet paretoFront, String taskId ) {
 		HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = new HashMap<Integer, ArrayList<ArrayList<String>>>();
 		
@@ -137,7 +113,7 @@ public class MultiObjectiveSelection {
 			}); 
 			
 		try {
-			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.SELECTION_RESULTS_FOLDER + "/" + taskId + ".txt" ));
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.SELECTION_RESULTS_FOLDER + "/baselineSEKE/" + taskId + ".txt" ));
 			for ( int i =0; i < selectionResultsList.size(); i++ ) {
 				HashMap.Entry<Integer, ArrayList<ArrayList<String>>> entry = selectionResultsList.get( i );
 				Integer setSize = entry.getKey();
@@ -159,34 +135,5 @@ public class MultiObjectiveSelection {
 		}		
 		
 		return selectionResults;		
-	}
-	
-	public static void main(String[] args) {
-		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
-		ArrayList<String> candidateIDs = selectionTool.obtainCandidateIDs();
-		SolutionSet paretoFroniter;
-		try {
-			paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L, "20", "562", null);
-			HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.obtainWorkerSelectionResults(paretoFroniter , "562");
-			
-			/*
-			BugDetectionRateEvaluation evaTool = new BugDetectionRateEvaluation();
-			TestProject project = null;
-			evaTool.obtainBugDetectionRate(selectionResults, project);
-			*/
-		} catch (ClassNotFoundException | JMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		/*
-		System.out.println("=======");
-		// demo ....
-		for (int i = 0; i < paretoFroniter.size(); i++) {
-			Solution s = paretoFroniter.get(i);
-			System.out.println(s.getObjective(0) + " " + s.getObjective(1) + " " + s.getObjective(2));
-			System.out.println(selectionTool.problem_.candidateMap(s));
-		}
-		*/
 	}
 }

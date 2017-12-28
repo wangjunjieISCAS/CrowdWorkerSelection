@@ -20,15 +20,15 @@ import jmetal.encodings.solutionType.BinarySolutionType;
 import jmetal.encodings.variable.Binary;
 import jmetal.util.JMException;
 
-public class JmetalProblem extends Problem {
+public class JmetalProblem4Obj extends Problem {
 	private static final long serialVersionUID = -3530441329740021364L;
 	private ArrayList<String> ids;
 	private Random rand;
 	SelectionObjectives objectiveTool;
 	
 
-	public JmetalProblem(ArrayList<String> candidatesIDs, String testSetIndex, String taskId, TestProject project ) {
-		this.numberOfObjectives_ = 3;
+	public JmetalProblem4Obj(ArrayList<String> candidatesIDs, String testSetIndex, String taskId, TestProject project ) {
+		this.numberOfObjectives_ = 4;
 		this.numberOfVariables_ = candidatesIDs.size();
 		this.solutionType_ = new BinarySolutionType(this);
 		this.ids = candidatesIDs;
@@ -37,8 +37,8 @@ public class JmetalProblem extends Problem {
 		objectiveTool = new SelectionObjectives ( testSetIndex, taskId, project );
 	}
 
-	public JmetalProblem(ArrayList<String> candidatesIDs, long seed, String testSetIndex, String taskId, TestProject project ) {
-		this.numberOfObjectives_ = 3;
+	public JmetalProblem4Obj(ArrayList<String> candidatesIDs, long seed, String testSetIndex, String taskId, TestProject project ) {
+		this.numberOfObjectives_ = 4;
 		this.numberOfVariables_ = candidatesIDs.size();
 		this.solutionType_ = new BinarySolutionType(this);
 		this.ids = candidatesIDs;
@@ -60,12 +60,10 @@ public class JmetalProblem extends Problem {
 	public void evaluate(Solution solution) throws JMException {
 		SortedMap<String, Boolean> selectionChoice = this.candidateMap(solution);
 		double bugProb = objectiveTool.extractBugProbability(selectionChoice);
-		double diversity = objectiveTool.extractDiversity(selectionChoice);
 		double cost = objectiveTool.extractCost(selectionChoice);
 
 		solution.setObjective(0, -bugProb);
-		solution.setObjective(1, -diversity);
-		solution.setObjective(2, cost);
+		solution.setObjective(1, cost);
 
 		// System.out.println("bugProb is: " + bugProb + ". Diversity is: " +
 		// diversity + ". Cost is: " + cost);
@@ -92,28 +90,4 @@ public class JmetalProblem extends Problem {
 		return result;
 	}
 
-	public static void main(String[] args) throws ClassNotFoundException, JMException {
-		File f = new File("data/input/candidates.csv");
-		String line;
-		BufferedReader br;
-		ArrayList<String> candidates = new ArrayList<String>();
-
-		try {
-			br = new BufferedReader(new FileReader(f));
-			while ((line = br.readLine()) != null) {
-				candidates.add(line.trim());
-			}
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-
-		JmetalProblem google = new JmetalProblem(candidates, "20", "560", null);
-		SolutionSet ss = google.generateDiverseSet(100);
-		for (int i = 0; i < 100; i++) {
-			google.evaluate(ss.get(i));
-		}
-		ss.printObjectives();
-	}
 }
