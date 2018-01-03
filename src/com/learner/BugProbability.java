@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
@@ -26,19 +28,26 @@ import com.dataProcess.TestProjectReader;
 import com.performanceEvaluation.ProbPredictEvaluation;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 import com.testCaseDataPrepare.TestCasePrepare;
+import com.topicModelData.TopicDataPrepare;
 
 
 public class BugProbability {
 	private String wekaTrainFile;
 	private String wekaTestFile;
+	private String workerTopicFile;
+	private String taskTopicFile;
 	
 	public BugProbability ( String projectName ) {
 		wekaTrainFile = "data/input/weka/train-" + projectName + ".csv";
 		wekaTestFile = "data/input/weka/test-" + projectName + ".csv";
+		workerTopicFile  = "data/input/topic/worker_topic_dis.txt";
+		taskTopicFile = "data/input/topic/task_topic_dis.txt";
 	}
 	public BugProbability ( ) {
 		wekaTrainFile = "data/input/weka/train.csv";
 		wekaTestFile = "data/input/weka/test.csv";
+		workerTopicFile  = "data/input/topic/worker_topic_dis.txt";
+		taskTopicFile = "data/input/topic/task_topic_dis.txt";
 	}
 	
 	public HashMap<String, Double> obtainBugProbabilityTotal ( TestProject project, ArrayList<TestProject> historyProjectList, 
@@ -47,7 +56,7 @@ public class BugProbability {
 		this.prepareWekaData(project, historyProjectList, historyWorkerList, candidateWorkerList);
 		System.out.println ( "Prepare weka data is done!"); 
 		WekaPrediction wekaPrediction = new WekaPrediction();
-		HashMap<Integer, Double> bugProbResults = wekaPrediction.trainAndPredictProb( wekaTrainFile, wekaTestFile, "");
+		HashMap<Integer, Double> bugProbResults = wekaPrediction.trainAndPredictProb( wekaTrainFile, wekaTestFile, Constants.LEARNER_TYPE );
 		System.out.println ( "Train and predict is done!"); 
 		
 		if ( candidateWorkerList.size() != bugProbResults.size() ) {
@@ -69,7 +78,7 @@ public class BugProbability {
 			HashMap<String, CrowdWorker> historyWorkerList, LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
 		
 		WekaPrediction wekaPrediction = new WekaPrediction();
-		HashMap<Integer, Double> bugProbResults = wekaPrediction.trainAndPredictProb( wekaTrainFile, wekaTestFile, "LibSVM");
+		HashMap<Integer, Double> bugProbResults = wekaPrediction.trainAndPredictProb( wekaTrainFile, wekaTestFile, Constants.LEARNER_TYPE );
 		System.out.println ( "Train and predict is done!"); 
 		
 		if ( candidateWorkerList.size() != bugProbResults.size() ) {
@@ -92,16 +101,25 @@ public class BugProbability {
 	public void prepareWekaData ( TestProject project, ArrayList<TestProject> historyProjectList, HashMap<String, 
 			CrowdWorker> workerList, LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
 		TestCasePrepare testCaseTool = new TestCasePrepare();
+	
+		TopicDataPrepare topicTool = new TopicDataPrepare();
+		HashMap<String, ArrayList<Double>> topicDisForWorker = topicTool.loadTopicDistribution( workerTopicFile );
+		HashMap<String, ArrayList<Double>> topicDisForTask = topicTool.loadTopicDistribution( taskTopicFile );
 		
-		CapRevData dataTool = new CapRevData();
-		ArrayList<TestCase> caseListTrain = testCaseTool.prepareTestCaseInfo_wekaTrain( historyProjectList, workerList);
-		Object[] attributeNameValue_train = dataTool.prepareAttributeData(caseListTrain , project.getTestTask() );
+		String projectName = project.getProjectName();
+		int index = projectName.indexOf( "-");
+		String taskIndex = projectName.substring( 0, index );
+		ArrayList<Double> topicDisForThisTask = topicDisForTask.get ( taskIndex );
+		
+		CapRevTopicData dataTool = new CapRevTopicData();
+		ArrayList<TestCase> caseListTrain = testCaseTool.prepareTestCaseInfo_wekaTrain( historyProjectList, workerList, topicDisForWorker );
+		Object[] attributeNameValue_train = dataTool.prepareAttributeData(caseListTrain , project.getTestTask(),  topicDisForThisTask);
 		
 		WekaDataPrepare wekaDataTool = new WekaDataPrepare ();
 		wekaDataTool.generateWekaDataFile(attributeNameValue_train, wekaTrainFile );
 		
-		ArrayList<TestCase> caseListTest = testCaseTool.prepareTestCaseInfo_wekaTest(project, candidateWorkerList );
-		Object[] attributeNameValue_test = dataTool.prepareAttributeData(caseListTest , project.getTestTask() );
+		ArrayList<TestCase> caseListTest = testCaseTool.prepareTestCaseInfo_wekaTest(project, candidateWorkerList, topicDisForWorker );
+		Object[] attributeNameValue_test = dataTool.prepareAttributeData(caseListTest , project.getTestTask(), topicDisForThisTask);
 		wekaDataTool.generateWekaDataFile(attributeNameValue_test, wekaTestFile );
 	}
 	
@@ -186,8 +204,8 @@ public class BugProbability {
 			
 			String projectName = project.getProjectName();
 			BugProbability probTool = new BugProbability( projectName );
-			//HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
-			HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotalWithPreparedWekaData( project, historyProjectList, historyWorkerList, candidateWorkerList);
+			HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
+			//HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotalWithPreparedWekaData( project, historyProjectList, historyWorkerList, candidateWorkerList);
 			probTool.storeBugProb(bugProbWorkerResults, Constants.BUG_PROB_FOLDER + "/" + i + "-bugProbability.csv" );
 			
 			ProbPredictEvaluation evaluationTool = new ProbPredictEvaluation();
@@ -215,9 +233,14 @@ public class BugProbability {
 		String projectFolder = "data/input/experimental dataset";
 		String taskFolder = "data/input/taskDescription";
 		TestProjectReader projReader = new TestProjectReader();
+		/*
 		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, 532, projectFolder, taskFolder);
 		HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(533, 562, projectFolder, taskFolder);
-		
 		probTool.generateBugProbForPerTestSet( 20, 533, 562, historyProjectList, testSetProjectMap);
+		*/
+		
+		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, 504, projectFolder, taskFolder);
+		HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(505, 532, projectFolder, taskFolder);
+		probTool.generateBugProbForPerTestSet( 19, 505, 532, historyProjectList, testSetProjectMap);
 	}
 }

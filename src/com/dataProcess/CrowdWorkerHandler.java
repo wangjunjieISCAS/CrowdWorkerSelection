@@ -20,7 +20,7 @@ import com.data.CrowdWorker;
 import com.data.DomainKnowledge;
 import com.data.Phone;
 import com.data.TestProject;
-import com.taskReverse.FinalTermListGeneration;
+import com.taskReorganize.FinalTermListGeneration;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 
 /*

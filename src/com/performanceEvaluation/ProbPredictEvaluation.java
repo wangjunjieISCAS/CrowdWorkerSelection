@@ -11,7 +11,7 @@ import com.data.TestProject;
 import com.data.TestReport;
 
 public class ProbPredictEvaluation {
-	Double threshold = 0.5;
+	Double threshold = 0.7;
 	/*
 	 * 可能存在一个人在一个task里面提交多个report的情况，这些report可能既有bug，又有no-bug，
 	 * 但是对于预测的结果，每个人对于每个任务只有一个预测结果

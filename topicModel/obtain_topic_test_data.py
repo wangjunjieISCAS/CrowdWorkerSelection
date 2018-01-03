@@ -23,9 +23,8 @@ with open( os.path.join( model_dir + 'model.pickle'), 'rb') as handle:
     model = pickle.load(handle)
 
 doc_topic_test = model.transform( test_set )
-#for i in range( 0, len(doc_topic_test)) :
-#    print index[i]
-    #for prob in doc_topic_test[i]:
-     #   print prob
+
+store_doc_topic_distribution ( "data/worker_topic_dis.txt", doc_topic_test, index )
+
 
     

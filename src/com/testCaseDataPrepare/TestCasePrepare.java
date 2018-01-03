@@ -11,13 +11,15 @@ import com.data.TestCase;
 import com.data.TestProject;
 import com.data.TestReport;
 import com.data.TestTask;
+import com.topicModelData.TopicDataPrepare;
 
 public class TestCasePrepare {
 	
 	/*
 	 * prepareTestCaseInfo can be called when prepare the wekaTrain data and wekaTest data, but the workerList should be generated based on the historicalProjectList
 	 */
-	public ArrayList<TestCase> prepareTestCaseInfo_wekaTrain ( ArrayList<TestProject> projectList, HashMap<String, CrowdWorker> workerList ) {
+	public ArrayList<TestCase> prepareTestCaseInfo_wekaTrain ( ArrayList<TestProject> projectList, HashMap<String, CrowdWorker> workerList, 
+			HashMap<String, ArrayList<Double>> topicDisForWorker) {
 		ArrayList<TestCase> testCaseList = new ArrayList<TestCase>();
 		
 		for ( int i =0; i < projectList.size(); i++ ) {
@@ -33,21 +35,22 @@ public class TestCasePrepare {
 				CrowdWorker worker = workerList.get( userId );
 				//System.out.println ( "----------------------------- " + worker.getCapInfo().getNumProject() + " " + worker.getCapInfo().getNumReport() );
 				
-				TestCase testCase = new TestCase( task, worker, tag );
+				ArrayList<Double> topicDis = new ArrayList<Double>();
+				if ( topicDisForWorker.containsKey( userId )) {
+					topicDis = topicDisForWorker.get( userId );
+				}
+				TestCase testCase = new TestCase( task, worker, topicDis, tag );
 				testCaseList.add( testCase );
 			}
 		}
 		return testCaseList;
 	}
 	
-	/* !!! the following illustration is useless
-	 * A user might have no record in workerList, so we need to create the default worker
-	 * for default worker, only generate the capability and domain knowledge using average level, for phone info and userId, use its original
-	 * or can use put the trainSet and testSet together as the trainSet, however this is not so strict
-	 * 
+	/*
 	 * the parameter workerList is the candidate worker list
 	 */
-	public ArrayList<TestCase> prepareTestCaseInfo_wekaTest ( TestProject project, LinkedHashMap<String, CrowdWorker> workerList ) {
+	public ArrayList<TestCase> prepareTestCaseInfo_wekaTest ( TestProject project, LinkedHashMap<String, CrowdWorker> workerList, 
+			HashMap<String, ArrayList<Double>> topicDisForWorker ) {
 		ArrayList<TestCase> testCaseList = new ArrayList<TestCase>();
 		TestTask task = project.getTestTask();
 		
@@ -69,7 +72,12 @@ public class TestCasePrepare {
 			if ( userTag.containsKey( userId )) {
 				tag = userTag.get( userId );
 			}
-			TestCase testCase = new TestCase ( task, worker, tag );
+			
+			ArrayList<Double> topicDis = new ArrayList<Double>();
+			if ( topicDisForWorker.containsKey( userId )) {
+				topicDis = topicDisForWorker.get( userId );
+			}
+			TestCase testCase = new TestCase ( task, worker, topicDis, tag );
 			testCaseList.add( testCase );
 		}
 				

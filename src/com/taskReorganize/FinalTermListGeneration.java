@@ -1,4 +1,4 @@
-package com.taskReverse;
+package com.taskReorganize;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.TFIDF.TFIDF;
 import com.data.TestProject;
@@ -24,12 +26,15 @@ public class FinalTermListGeneration {
 		
 		TFIDF tfidfTool = new TFIDF();
 		ArrayList<String> finalTermList = tfidfTool.obtainFinalTermList(totalDataSet);
+		
+		finalTermList = this.filterAbnormalTerms(finalTermList);
 		System.out.println ( "FinalTermList is done!");
 		
 		try {
 			BufferedWriter output = new BufferedWriter ( new OutputStreamWriter ( new FileOutputStream ( new File ( "data/output/finalTermList.txt" )) ), 1024);
 			for ( int i =0; i < finalTermList.size(); i++ ) {
-				output.write( finalTermList.get( i ) + " ");
+				output.write( finalTermList.get( i ) );
+				output.newLine();
 			}
 			output.flush();
 			output.close();
@@ -44,12 +49,38 @@ public class FinalTermListGeneration {
 	
 	/*
 	 * 过滤掉的term 规则如下：
-	 * 1. 包含数字的
+	 * 1. 长度 = 1
 	 * 2. 包含标点的
-	 * 3. 既包含英文字母又包含汉字的
 	 */
-	public void filterAbnormalTerms ( ArrayList<String> finalTermList) {
-		
+	public ArrayList<String> filterAbnormalTerms ( ArrayList<String> finalTermList) {
+		ArrayList<String> newFinalTermList = new ArrayList<String>();
+		for ( int i =0; i < finalTermList.size(); i++ ) {
+			String term = finalTermList.get( i );
+			if ( term.length() == 1 && this.isContainDigitalEnglish(term))
+				continue;
+			if ( this.isContainPunctuation(term))
+				continue;
+			
+			newFinalTermList.add( term );
+		}
+		return newFinalTermList;
+	}
+	
+	public Boolean isContainPunctuation ( String term) {
+		Pattern p = Pattern.compile( "[\\p{P}]");
+		Matcher m = p.matcher( term );
+		if ( m.find() ) {
+			return true;
+		}
+		return false;
+	}
+	public Boolean isContainDigitalEnglish ( String term) {
+		Pattern p = Pattern.compile( "^[A-Za-z0-9]+$");
+		Matcher m = p.matcher( term );
+		if ( m.find() ) {
+			return true;
+		}
+		return false;
 	}
 	
 	public ArrayList<String> loadFinalTermList ( ) {
@@ -60,11 +91,9 @@ public class FinalTermListGeneration {
 			String line = "";
 			
 			while ( ( line = br.readLine() ) != null ) {
-				String[] temp = line.split( " ");
+				String temp = line.trim();
 				
-				for ( int i =0; i < temp.length; i++ ) {
-					finalTermList.add( temp[i].trim() );
-				}
+				finalTermList.add( temp );
 			}
 			br.close();
 		} catch (FileNotFoundException e) {
@@ -84,5 +113,12 @@ public class FinalTermListGeneration {
 		
 		FinalTermListGeneration termTool = new FinalTermListGeneration ();
 		termTool.generateFinalTermList(historyProjectList);
+		
+		String str = "看见了--";
+		Pattern p = Pattern.compile( "^[A-Za-z0-9]+$");
+		Matcher m = p.matcher(str);
+		if ( m.find() ) {
+			System.out.println( "true");
+		}
 	}
 }

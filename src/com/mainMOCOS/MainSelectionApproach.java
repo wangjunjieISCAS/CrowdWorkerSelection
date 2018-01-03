@@ -1,9 +1,11 @@
 package com.mainMOCOS;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -36,14 +38,44 @@ import com.learner.BugProbability;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 import com.performanceEvaluation.ProbPredictEvaluation;
 import com.selectionApproach.MultiObjectiveSelection;
-import com.taskReverse.FinalTermListGeneration;
+import com.taskReorganize.FinalTermListGeneration;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 
 import jmetal.core.SolutionSet;
 import jmetal.util.JMException;
 
 public class MainSelectionApproach {
-	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList, Date curTime, String testSetIndex, String taskId ) {
+	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList,  String testSetIndex, String taskId ) {
+		LinkedHashMap<String, CrowdWorker> candidateWorkerList = this.obtainCandidateWorkers(project, historyProjectList, testSetIndex);
+		
+		CandidateIDChoose chooseTool = new CandidateIDChoose();
+		String bugProbFile = Constants.BUG_PROB_FOLDER + "/" + testSetIndex + "/" + taskId + "-bugProbability.csv" ;
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsRandom(candidateWorkerList);
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBugProb(candidateWorkerList, bugProbFile );
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBugProbAndTask(candidateWorkerList, bugProbFile, project);
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsSpecificTask(candidateWorkerList, project);
+		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBasedLastActivity(historyProjectList, candidateWorkerList, project);
+		ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBasedLastActivityAndRelevance(historyProjectList, candidateWorkerList, project);
+		
+		System.out.println ( "CandidateIDs size is: " + candidateIDs.size() ); 	
+		
+		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
+		BugDetectionRateEvaluation evaTool = new BugDetectionRateEvaluation();
+		
+		SolutionSet paretoFroniter;
+		try {
+			//ArrayList<String> candidateIDs = selectionTool.obtainCandidateIDs();
+			paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L, testSetIndex, taskId, project );
+			HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.obtainWorkerSelectionResults(paretoFroniter, taskId );
+			
+			evaTool.obtainBugDetectionRate(selectionResults, project, true, "MOCOS" );
+		} catch (ClassNotFoundException | JMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}	
+	
+	public LinkedHashMap<String, CrowdWorker> obtainCandidateWorkers (  TestProject project, ArrayList<TestProject> historyProjectList, String testSetIndex ) {
 		CrowdWorkerHandler workerHandler = new CrowdWorkerHandler();
 		HashMap<String, CrowdWorker> historyWorkerList = workerHandler.loadCrowdWorkerInfo( Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerPhone.csv", 
 				Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerCap.csv", Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerDomain.csv" );
@@ -70,35 +102,66 @@ public class MainSelectionApproach {
 			
 			candidateWorkerList.put( userId, worker );
 		}
+		
 		//workerHandler.storeCrowdWorkerInfo(candidateWorkerList, Constants.WORKER_PHONE_FILE, Constants.WORKER_CAP_FILE, Constants.WORKER_DOMAIN_FILE );
 		System.out.println ( "CandidateWorkerList is done! " );
 		
-		CandidateIDChoose chooseTool = new CandidateIDChoose();
-		String bugProbFile = Constants.BUG_PROB_FOLDER + "/" + taskId + "-bugProbability.csv" ;
-		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsRandom(candidateWorkerList);
-		ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBugProb(candidateWorkerList, bugProbFile );
-		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBugProbAndTask(candidateWorkerList, bugProbFile, project);
-		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsSpecificTask(candidateWorkerList, project);
-		System.out.println ( "CandidateIDs size is: " + candidateIDs.size() ); 
+		return candidateWorkerList;
+	}
+	
+	public void workerSelectionForMultipleProjects ( Integer testSetIndex ) {
+		int beginTestProjIndex =0, endTestProjIndex = 0;
+		Date closeTime = null;
+		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm");
 		
-		
-		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
-		BugDetectionRateEvaluation evaTool = new BugDetectionRateEvaluation();
-		
-		SolutionSet paretoFroniter;
+		BufferedReader br;
 		try {
-			//ArrayList<String> candidateIDs = selectionTool.obtainCandidateIDs();
-			paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L, testSetIndex, taskId );
-			HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.obtainWorkerSelectionResults(paretoFroniter, taskId );
+			br = new BufferedReader(new FileReader( new File ( Constants.TRAIN_TEST_SET_SETTING_FILE)));
+			String line = "";
 			
-			evaTool.obtainBugDetectionRate(selectionResults, project);
-		} catch (ClassNotFoundException | JMException e) {
+			boolean isFirstLine = true;
+			while ( ( line = br.readLine() ) != null ) {
+				if ( isFirstLine == true ) {
+					isFirstLine = false;
+					continue;
+				}
+				String[] temp = line.split( ",");
+				Integer testSetNum = Integer.parseInt( temp[0] );
+				if ( testSetNum.equals( testSetIndex )) {
+					beginTestProjIndex = Integer.parseInt(  temp[1]);
+					endTestProjIndex = Integer.parseInt(  temp[2] );
+					closeTime = formatLine.parse(  temp[3] );
+					
+					break;
+				}
+			}			
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}	
+		
+		TestProjectReader projReader = new TestProjectReader();
+		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex -1, Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
+		System.out.println( "historyProjectList is : " + historyProjectList.size() );
+		
+		for ( int i = beginTestProjIndex; i <= endTestProjIndex; i++  ) {
+			System.out.println( "=================================================================\nWorker Selection for project: " + i  );
+			TestProject project = projReader.loadTestProjectAndTaskBasedId( i , Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER  );
+			this.workSelectionApproach(project, historyProjectList,  testSetIndex.toString(),  new Integer(i).toString()  );
+		}		
+	}
 	
 	public static void main ( String[] args ) {
+		MainSelectionApproach selectionApproach = new MainSelectionApproach();
+		selectionApproach.workerSelectionForMultipleProjects( 20 );
+		
 		//Math.sqrt(b)*random.nextGaussian()+a
 		Random random = new Random();
 		double a = 0.0;
@@ -121,6 +184,7 @@ public class MainSelectionApproach {
 			e.printStackTrace();
 		}		
 		
+		/*
 		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm:ss");
 		Date curTime = null;
 		try {
@@ -137,5 +201,6 @@ public class MainSelectionApproach {
 		
 		MainSelectionApproach selectionApproach = new MainSelectionApproach();
 		selectionApproach.workSelectionApproach(project, historyProjectList, curTime, "20", "560" );
+		*/
 	}
 }

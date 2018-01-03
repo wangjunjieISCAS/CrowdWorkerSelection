@@ -26,9 +26,13 @@ public class Constants {
 	public final static String SELECTION_RESULTS_FOLDER = "data/output/selectionResults";
 	
 	public final static Integer CAP_SIZE_PER_TYPE = 4;
+	public final static Integer TOPIC_NUMBER  = 30;
 	
 	public final static String CLOSE_TIME_FOR_PROJECT_FILE  = "data/output/findings/closeTimeForProject.csv";
+	public final static String TRAIN_TEST_SET_SETTING_FILE = "data/output/findings/trainTestSet.csv";
 	
 	public final static String TOTAL_PROJECT_FOLDER = "data/input/experimental dataset";
 	public final static String TOTAL_TASK_DES_FOLDER = "data/input/taskDescription";
+	
+	public final static String LEARNER_TYPE = "Logistic";
 }

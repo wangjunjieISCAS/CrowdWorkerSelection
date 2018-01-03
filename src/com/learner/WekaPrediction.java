@@ -14,6 +14,7 @@ import weka.classifiers.meta.AdaBoostM1;
 import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
 import weka.core.Instances;
+import weka.core.SerializationHelper;
 import weka.core.converters.ConverterUtils.DataSource;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.Standardize;
@@ -68,6 +69,8 @@ public class WekaPrediction {
 			newTest.setClassIndex( newTest.numAttributes() - 1 );
 			   
 			classify.buildClassifier( newTrain);
+			//SerializationHelper.write("data/output/logistic.model", classify);
+
 			// evaluate classifier and print some statistics
 			Evaluation evaluation = new Evaluation( newTrain);
 			evaluation.evaluateModel( classify, newTest);
