@@ -16,6 +16,7 @@ import com.data.TestReport;
 import com.dataProcess.CrowdWorkerHandler;
 import com.learner.BugProbability;
 import com.mainMOCOS.CandidateIDChoose;
+import com.mainMOCOS.SelectionSchema;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 
@@ -24,37 +25,7 @@ public class BugProbSelectionApproach extends SelectionSchema{
 	private Integer workerNumThres = 300;
 	
 	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList, Date curTime, String testSetIndex, String taskId ) {
-		CrowdWorkerHandler workerHandler = new CrowdWorkerHandler();
-		HashMap<String, CrowdWorker> historyWorkerList = workerHandler.loadCrowdWorkerInfo( Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerPhone.csv", 
-				Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerCap.csv", Constants.WORKER_INFO_FOLDER + "/" + testSetIndex + "/workerDomain.csv" );
-		System.out.println ( "HistoryWorkerList is done! " );
-		
-		CrowdWokerExtraction workerTool = new CrowdWokerExtraction();
-		CrowdWorker defaultWorker = workerTool.obtainDefaultCrowdWorker( historyWorkerList );
-		//obtain candidate worker, besides the history worker, there could be worker who join the platform for the first time in this project
-		LinkedHashMap<String, CrowdWorker> candidateWorkerList = new LinkedHashMap<String, CrowdWorker>();
-		for ( String userId : historyWorkerList.keySet() ) {
-			CrowdWorker hisWorker = historyWorkerList.get( userId );
-			
-			CrowdWorker worker = new CrowdWorker ( hisWorker.getWorkerId(), hisWorker.getPhoneInfo(), hisWorker.getCapInfo(), hisWorker.getDomainKnInfo() );
-			candidateWorkerList.put( userId,  worker );
-		}
-		for ( int i =0; i < project.getTestReportsInProj().size(); i++ ) {
-			TestReport report = project.getTestReportsInProj().get(i);
-			String userId = report.getUserId();
-			if ( candidateWorkerList.containsKey( userId ))
-				continue;
-			
-			Phone phoneInfo = new Phone ( report.getPhoneType(), report.getOS(), report.getNetwork(), report.getISP() );
-			CrowdWorker worker = new CrowdWorker ( userId, phoneInfo, defaultWorker.getCapInfo(), defaultWorker.getDomainKnInfo() );
-			
-			candidateWorkerList.put( userId, worker );
-		}
-		
-		CandidateIDChoose chooseTool = new CandidateIDChoose();
-		ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBasedLastActivity(historyProjectList, candidateWorkerList, project);
-		//ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsSpecificTask(candidateWorkerList, project);
-		System.out.println ( "CandidateWorkerList is done! " );
+		super.workSelectionApproach(project, historyProjectList, testSetIndex, taskId);
 		
 		BugProbability probTool = new BugProbability();
 		String bugProbFile = Constants.BUG_PROB_FOLDER + "/" + testSetIndex + "/" + taskId + "-bugProbability.csv" ;
@@ -101,6 +72,6 @@ public class BugProbSelectionApproach extends SelectionSchema{
 	
 	public static void main ( String[] args ) {
 		BugProbSelectionApproach selectionTool = new BugProbSelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( 20 );
+		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
 	}
 }

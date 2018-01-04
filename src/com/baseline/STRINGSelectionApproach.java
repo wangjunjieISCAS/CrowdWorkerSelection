@@ -6,9 +6,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import com.data.Constants;
 import com.data.CrowdWorker;
 import com.data.TestProject;
 import com.dataProcess.SimilarityMeasure;
+import com.mainMOCOS.SelectionSchema;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 
 
@@ -104,6 +106,6 @@ public class STRINGSelectionApproach extends SelectionSchema {
 	
 	public static void main ( String[] args ) {
 		STRINGSelectionApproach selectionTool = new STRINGSelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( 20 );
+		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
 	}
 }

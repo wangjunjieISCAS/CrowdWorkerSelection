@@ -41,23 +41,31 @@ import jmetal.util.PseudoRandom;
 // jmetalProblem.See todos to set up the parameters
 
 public class MultiObjectiveSelection {
-	public JmetalProblem problem_ = null;
-
+	//public JmetalProblem problem_ = null;
+	public JmetalProblem4Obj problem_ = null;
+	
 	public SolutionSet multiObjectiveWorkerSelection(ArrayList<String> candidatesIDs, long seed, String testSetIndex, String taskId, TestProject project )
 			throws ClassNotFoundException, JMException {
-		problem_ = new JmetalProblem(candidatesIDs, seed, testSetIndex, taskId, project );
+		//problem_ = new JmetalProblem(candidatesIDs, seed, testSetIndex, taskId, project );
+		problem_ = new JmetalProblem4Obj(candidatesIDs, seed, testSetIndex, taskId, project );
+		
 		PseudoRandom.setRandomGenerator(new MyRandomGenerator(seed));
 		NsgaiiWithDebug alg = new NsgaiiWithDebug(problem_);
 
 		// TODO change the optimizer here
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
-		int popSize = 100; // 2k
+		
+		SolutionSet initSolution = problem_.generateGreedyInitialSet(candidatesIDs, taskId);
+		int popSize = initSolution.size();
+		
 		int maxGeneration = 1000;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
-		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
-
+		alg.setInputParameter("initPop", initSolution );
+		//alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
+		
+		
 		/**
 		 * apply naive crossover and mutation; apply binary domination as
 		 * default in jMetal

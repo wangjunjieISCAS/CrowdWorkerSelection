@@ -225,6 +225,6 @@ public class TopicDataPrepare {
 		topicTool.prepareTopicTrainData( topicFolderTrain + "termFreq.txt", topicFolderTrain + "terms.txt",  topicFolderTrain + "index.txt");
 		System.out.println( "train data is done!");
 		
-		topicTool.prepareTopicTestData( topicFolderTest + "termFreq.txt", topicFolderTest + "terms.txt",  topicFolderTest + "index.txt", "11");
+		topicTool.prepareTopicTestData( topicFolderTest + "termFreq.txt", topicFolderTest + "terms.txt",  topicFolderTest + "index.txt", "16");
 	}
 }

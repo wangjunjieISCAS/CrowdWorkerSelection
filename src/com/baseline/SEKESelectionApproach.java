@@ -16,6 +16,7 @@ import com.data.TestProject;
 import com.dataProcess.TestProjectReader;
 import com.mainMOCOS.CandidateIDChoose;
 import com.mainMOCOS.MainSelectionApproach;
+import com.mainMOCOS.SelectionSchema;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 import com.selectionApproach.SEKEMultiObjectiveSelection;
 
@@ -51,6 +52,6 @@ public class SEKESelectionApproach extends SelectionSchema{
 	
 	public static void main ( String[] args ) {
 		SEKESelectionApproach selectionApproach = new SEKESelectionApproach();
-		selectionApproach.workerSelectionForMultipleProjects( 20 );
+		selectionApproach.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
 	}
 }

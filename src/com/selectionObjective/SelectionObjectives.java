@@ -63,9 +63,23 @@ public class SelectionObjectives {
 	}
 
 	public Double extractRelevance ( SortedMap<String, Boolean> selection ) {
-		double score = 0.0;
+		ArrayList<String> workerTermList = new ArrayList<String>();
+		for (String userId : selection.keySet()) {
+			Boolean isSelect = selection.get(userId);
+			if (isSelect == false) {
+				continue;
+			}
+			
+			CrowdWorker worker = candidateWorkers.get(userId);
+			ArrayList<String> domainInfo = worker.getDomainKnInfo().getDomainKnowledge();
+			workerTermList.addAll( domainInfo );
+		}
 		
-		return score;
+		ArrayList<String> taskInfo = project.getTestTask().getTaskDescription();
+		
+		SimilarityMeasure simTool = new SimilarityMeasure();
+		double simValue = simTool.cosineSimilarity( workerTermList, taskInfo );
+		return simValue;
 	}
 	
 	//extractDiversity_Distance

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import com.data.Constants;
 import com.data.CrowdWorker;
 import com.data.TestProject;
 import com.mainMOCOS.CandidateIDChoose;
 import com.mainMOCOS.MainSelectionApproach;
+import com.mainMOCOS.SelectionSchema;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 
 
@@ -32,6 +34,6 @@ public class COMPASCSelectionApproach extends SelectionSchema{
 	
 	public static void main ( String[] args ) {
 		COMPASCSelectionApproach selectionTool = new COMPASCSelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( 20 );
+		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );
 	}
 }

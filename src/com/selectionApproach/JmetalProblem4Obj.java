@@ -1,15 +1,13 @@
 package com.selectionApproach;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
 import com.data.TestProject;
+import com.mainMOCOS.SelectionSchema;
 import com.selectionObjective.SelectionObjectives;
 
 import jmetal.core.Problem;
@@ -60,10 +58,16 @@ public class JmetalProblem4Obj extends Problem {
 	public void evaluate(Solution solution) throws JMException {
 		SortedMap<String, Boolean> selectionChoice = this.candidateMap(solution);
 		double bugProb = objectiveTool.extractBugProbability(selectionChoice);
+		double relevance = objectiveTool.extractRelevance(selectionChoice );
+		double diversity = objectiveTool.extractDiversity( selectionChoice );
+		
 		double cost = objectiveTool.extractCost(selectionChoice);
 
 		solution.setObjective(0, -bugProb);
-		solution.setObjective(1, cost);
+		solution.setObjective(1, -relevance);
+		solution.setObjective(2, -diversity);
+		
+		solution.setObjective(3, cost);
 
 		// System.out.println("bugProb is: " + bugProb + ". Diversity is: " +
 		// diversity + ". Cost is: " + cost);
@@ -89,5 +93,40 @@ public class JmetalProblem4Obj extends Problem {
 		}
 		return result;
 	}
-
+	
+	public SolutionSet generateGreedyInitialSet ( ArrayList<String> candidatesIDs, String taskId ) {
+		SelectionSchema selectionTool = new SelectionSchema();
+		HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.readSelectionResults( "MOCOSWeight", taskId);
+		
+		SolutionSet result = new SolutionSet( );
+		for ( Integer selectionNum : selectionResults.keySet() ) {
+			for ( int i =0; i < selectionResults.get( selectionNum).size(); i++ ) {
+				ArrayList<String> selection = selectionResults.get( selectionNum).get( i );
+				//System.out.println( selection.get(0) );
+				
+				try {
+					Solution sol = new Solution(this);
+					Variable[] variables = sol.getDecisionVariables();
+					//System.out.println ( "===================== " + variables.length); 
+					
+					int index = 0;
+					for (Variable v : variables) {
+						String userId = candidatesIDs.get( index );
+						boolean tag = false;
+						if ( selection.contains( userId )) {
+							tag = true;
+						}
+						((Binary) v).setIth( 0, tag);
+						
+						index++;
+					}
+					result.add(sol);
+				} catch (ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		System.out.println( result.toString() );
+		return result;
+	}
 }

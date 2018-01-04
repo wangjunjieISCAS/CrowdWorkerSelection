@@ -3,7 +3,9 @@ package com.baseline;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.data.Constants;
 import com.data.TestProject;
+import com.mainMOCOS.SelectionSchema;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 
 public class ISSRESelectionApproach extends SelectionSchema {
@@ -19,6 +21,6 @@ public class ISSRESelectionApproach extends SelectionSchema {
 	
 	public static void main ( String[] args ) {
 		ISSRESelectionApproach selectionTool = new ISSRESelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( 20 );
+		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
 	}
 }

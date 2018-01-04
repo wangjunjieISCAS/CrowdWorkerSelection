@@ -7,9 +7,11 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import com.data.Constants;
 import com.data.CrowdWorker;
 import com.data.TestProject;
 import com.dataProcess.SimilarityMeasure;
+import com.mainMOCOS.SelectionSchema;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 import com.topicModelData.TopicDataPrepare;
 
@@ -128,7 +130,7 @@ public class TOPICSelectionApproach extends SelectionSchema {
 	
 	public static void main ( String[] args ) {
 		TOPICSelectionApproach selectionTool = new TOPICSelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( 20 );
+		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );
 	}
 
 }

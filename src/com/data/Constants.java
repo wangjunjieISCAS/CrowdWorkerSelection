@@ -22,7 +22,7 @@ public class Constants {
 	public final static String BUG_PROB_FOLDER  = "data/output/bugProb";
 	
 	public final static String BUG_PROB_PERFORMANCE = "data/output/performance/bugProb.csv";
-	public final static String BUG_DETECTION_RATE_PERFORMANCE_FOLDER  = "data/output/performance/bugDetRate";
+	public final static String BUG_DETECTION_RATE_PERFORMANCE_FOLDER  = "data/output/performance-bugDetRate";
 	public final static String SELECTION_RESULTS_FOLDER = "data/output/selectionResults";
 	
 	public final static Integer CAP_SIZE_PER_TYPE = 4;
@@ -35,4 +35,6 @@ public class Constants {
 	public final static String TOTAL_TASK_DES_FOLDER = "data/input/taskDescription";
 	
 	public final static String LEARNER_TYPE = "Logistic";
+	
+	public final static Integer TEST_SET_INDEX = 20;
 }
