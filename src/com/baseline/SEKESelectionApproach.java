@@ -23,8 +23,8 @@ import jmetal.core.SolutionSet;
 import jmetal.util.JMException;
 
 
-public class SEKESelectionApproach {
-	public void SEKEWorkSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList, String testSetIndex, String taskId ) {
+public class SEKESelectionApproach extends SelectionSchema{
+	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList, String testSetIndex, String taskId ) {
 		MainSelectionApproach candWorkerTool = new MainSelectionApproach();
 		LinkedHashMap<String, CrowdWorker> candidateWorkerList  = candWorkerTool.obtainCandidateWorkers(project, historyProjectList, testSetIndex);
 		
@@ -48,52 +48,9 @@ public class SEKESelectionApproach {
 		}
 	}	
 	
-	public void SEKEWorkerSelectionForMultipleProjects ( Integer testSetIndex ) {
-		int beginTestProjIndex =0, endTestProjIndex = 0;
-		
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new FileReader( new File ( Constants.TRAIN_TEST_SET_SETTING_FILE)));
-			String line = "";
-			
-			boolean isFirstLine = true;
-			while ( ( line = br.readLine() ) != null ) {
-				if ( isFirstLine == true ) {
-					isFirstLine = false;
-					continue;
-				}
-				String[] temp = line.split( ",");
-				Integer testSetNum = Integer.parseInt( temp[0] );
-				if ( testSetNum.equals( testSetIndex )) {
-					beginTestProjIndex = Integer.parseInt(  temp[1]);
-					endTestProjIndex = Integer.parseInt(  temp[2] );
-					//closeTime = formatLine.parse(  temp[3] );
-					
-					break;
-				}
-			}			
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		
-		TestProjectReader projReader = new TestProjectReader();
-		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex -1, Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
-		System.out.println( "historyProjectList is : " + historyProjectList.size() );
-		
-		for ( int i = beginTestProjIndex; i <= endTestProjIndex; i++  ) {
-			System.out.println( "=================================================================\nWorker Selection for project: " + i  );
-			TestProject project = projReader.loadTestProjectAndTaskBasedId( i , Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER  );
-			this.SEKEWorkSelectionApproach(project, historyProjectList, testSetIndex.toString(),  new Integer(i).toString()  );
-		}		
-	}
 	
 	public static void main ( String[] args ) {
 		SEKESelectionApproach selectionApproach = new SEKESelectionApproach();
-		selectionApproach.SEKEWorkerSelectionForMultipleProjects( 20 );
+		selectionApproach.workerSelectionForMultipleProjects( 20 );
 	}
 }

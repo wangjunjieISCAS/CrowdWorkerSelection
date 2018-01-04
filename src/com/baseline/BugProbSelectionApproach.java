@@ -1,12 +1,5 @@
 package com.baseline;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -21,14 +14,13 @@ import com.data.Phone;
 import com.data.TestProject;
 import com.data.TestReport;
 import com.dataProcess.CrowdWorkerHandler;
-import com.dataProcess.TestProjectReader;
 import com.learner.BugProbability;
 import com.mainMOCOS.CandidateIDChoose;
 import com.performanceEvaluation.BugDetectionRateEvaluation;
 import com.testCaseDataPrepare.CrowdWokerExtraction;
 
 
-public class BugProbSelectionApproach {
+public class BugProbSelectionApproach extends SelectionSchema{
 	private Integer workerNumThres = 300;
 	
 	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList, Date curTime, String testSetIndex, String taskId ) {
@@ -106,54 +98,6 @@ public class BugProbSelectionApproach {
 		return selectionResults;
 	}
 	
-	public void workerSelectionForMultipleProjects ( Integer testSetIndex ) {
-		int beginTestProjIndex =0, endTestProjIndex = 0;
-		Date closeTime = null;
-		SimpleDateFormat formatLine = new SimpleDateFormat ("yyyy/MM/dd HH:mm");
-		
-		BufferedReader br;
-		try {
-			br = new BufferedReader(new FileReader( new File ( Constants.TRAIN_TEST_SET_SETTING_FILE)));
-			String line = "";
-			
-			boolean isFirstLine = true;
-			while ( ( line = br.readLine() ) != null ) {
-				if ( isFirstLine == true ) {
-					isFirstLine = false;
-					continue;
-				}
-				String[] temp = line.split( ",");
-				Integer testSetNum = Integer.parseInt( temp[0] );
-				if ( testSetNum.equals( testSetIndex )) {
-					beginTestProjIndex = Integer.parseInt(  temp[1]);
-					endTestProjIndex = Integer.parseInt(  temp[2] );
-					closeTime = formatLine.parse(  temp[3] );
-					
-					break;
-				}
-			}			
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		TestProjectReader projReader = new TestProjectReader();
-		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex -1, Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
-		System.out.println( "historyProjectList is : " + historyProjectList.size() );
-		
-		for ( int i = beginTestProjIndex; i <= endTestProjIndex; i++  ) {
-			System.out.println( "=================================================================\nWorker Selection for project: " + i  );
-			TestProject project = projReader.loadTestProjectAndTaskBasedId( i , Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER  );
-			this.workSelectionApproach(project, historyProjectList, closeTime, testSetIndex.toString(),  new Integer(i).toString()  );
-		}		
-	}
 	
 	public static void main ( String[] args ) {
 		BugProbSelectionApproach selectionTool = new BugProbSelectionApproach();

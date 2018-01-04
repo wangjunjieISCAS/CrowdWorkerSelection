@@ -93,7 +93,8 @@ public class TopicDataPrepare {
 		HashMap<String, ArrayList<TestReport>> userReportList = new HashMap<String, ArrayList<TestReport>>();
 		
 		TestProjectReader projReader = new TestProjectReader();
-		ArrayList<TestProject> projectList = projReader.loadTestProjectAndTaskList( Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
+		//ArrayList<TestProject> projectList = projReader.loadTestProjectAndTaskList( Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
+		ArrayList<TestProject> projectList = projReader.loadTestProjectAndTaskListBasedId( 1, endProjectIndex, Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
 		
 		FinalTermListGeneration termTool = new FinalTermListGeneration ();
 		ArrayList<String> finalTermList = termTool.loadFinalTermList();
@@ -224,6 +225,6 @@ public class TopicDataPrepare {
 		topicTool.prepareTopicTrainData( topicFolderTrain + "termFreq.txt", topicFolderTrain + "terms.txt",  topicFolderTrain + "index.txt");
 		System.out.println( "train data is done!");
 		
-		topicTool.prepareTopicTestData( topicFolderTest + "termFreq.txt", topicFolderTest + "terms.txt",  topicFolderTest + "index.txt", "19");
+		topicTool.prepareTopicTestData( topicFolderTest + "termFreq.txt", topicFolderTest + "terms.txt",  topicFolderTest + "index.txt", "12");
 	}
 }

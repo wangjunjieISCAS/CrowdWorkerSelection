@@ -102,4 +102,41 @@ public class SimilarityMeasure {
 		}
 		return topicDist;
 	}
+	
+	public Double ManhattanDistance ( ArrayList<String> vector1, ArrayList<String> vector2) {
+		HashSet<String> termList = new HashSet<String>();
+		for ( int i =0; i < vector1.size(); i++ ) {
+			termList.add( vector1.get( i ));
+		}
+		for ( int i =0; i < vector2.size(); i++ ) {
+			termList.add( vector2.get( i ));
+		}
+		
+		int score = 0;
+		for ( String term : termList) {
+			int count1 = 0, count2 = 0;
+			if ( vector1.contains( term ))
+				count1 = 1;
+			if ( vector2.contains( term )) {
+				count2 = 1;
+			}
+			
+			score += Math.abs( count1 - count2 );
+		}
+		
+		return 1.0*score;
+	}
+	
+	public Double ManhattanDistanceDouble( ArrayList<Double> vector1, ArrayList<Double> vector2 ) {
+		Double score = 0.0;
+		
+		for ( int i =0; i < vector1.size(); i++ ) {
+			double value1 = vector1.get(i);
+			double value2 = vector2.get(i);
+			
+			score += Math.abs( value1 - value2);
+		}
+		return score;
+	}
 }
+ 
