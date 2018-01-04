@@ -233,14 +233,46 @@ public class BugProbability {
 		String projectFolder = "data/input/experimental dataset";
 		String taskFolder = "data/input/taskDescription";
 		TestProjectReader projReader = new TestProjectReader();
+		
+		int testSetIndex = 11;
+		int beginTestProjIndex =0, endTestProjIndex = 0;
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader( new File ( Constants.TRAIN_TEST_SET_SETTING_FILE)));
+			String line = "";
+			
+			boolean isFirstLine = true;
+			while ( ( line = br.readLine() ) != null ) {
+				if ( isFirstLine == true ) {
+					isFirstLine = false;
+					continue;
+				}
+				String[] temp = line.split( ",");
+				Integer testSetNum = Integer.parseInt( temp[0] );
+				if ( testSetNum.equals( testSetIndex )) {
+					beginTestProjIndex = Integer.parseInt(  temp[1]);
+					endTestProjIndex = Integer.parseInt(  temp[2] );
+					
+					break;
+				}
+			}			
+			br.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex-1, projectFolder, taskFolder);
+		HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(beginTestProjIndex, endTestProjIndex, projectFolder, taskFolder);
+		probTool.generateBugProbForPerTestSet( testSetIndex, beginTestProjIndex, endTestProjIndex, historyProjectList, testSetProjectMap);
+		
 		/*
 		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, 532, projectFolder, taskFolder);
 		HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(533, 562, projectFolder, taskFolder);
 		probTool.generateBugProbForPerTestSet( 20, 533, 562, historyProjectList, testSetProjectMap);
 		*/
-		
-		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, 504, projectFolder, taskFolder);
-		HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(505, 532, projectFolder, taskFolder);
-		probTool.generateBugProbForPerTestSet( 19, 505, 532, historyProjectList, testSetProjectMap);
 	}
 }
