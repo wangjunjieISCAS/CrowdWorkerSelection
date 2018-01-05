@@ -58,8 +58,7 @@ public class MultiObjectiveSelection {
 		
 		SolutionSet initSolution = problem_.generateGreedyInitialSet(candidatesIDs, taskId);
 		int popSize = initSolution.size();
-		
-		int maxGeneration = 1000;
+		int maxGeneration = 50;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", initSolution );
@@ -73,13 +72,20 @@ public class MultiObjectiveSelection {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.clear();
-		parameters.put("probability", 0.9);
+		parameters.put("probability", 0.5);
 		alg.addOperator("crossover", new SinglePointCrossover(parameters));
 
 		parameters.clear();
-		parameters.put("probability", 0.9);
+		parameters.put( "candidate", candidatesIDs );
+		parameters.put( "taskId", taskId );
+		parameters.put( "probability", 0.5);
+		alg.addOperator("mutation", new PriorKnowMutation(parameters));
+		
+		/*
+		parameters.clear();
+		parameters.put("probability", 0.2);
 		alg.addOperator("mutation", new BitFlipMutation(parameters));
-
+		 */
 		parameters.clear();
 		Selection selection = SelectionFactory.getSelectionOperator("BinaryTournament2", parameters);
 		alg.addOperator("selection", selection);

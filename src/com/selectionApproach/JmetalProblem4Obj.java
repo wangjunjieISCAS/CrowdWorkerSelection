@@ -98,35 +98,48 @@ public class JmetalProblem4Obj extends Problem {
 		SelectionSchema selectionTool = new SelectionSchema();
 		HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.readSelectionResults( "MOCOSWeight", taskId);
 		
-		SolutionSet result = new SolutionSet( );
+		int count = selectionResults.size();
+		if ( count % 2 == 1 ) {
+			count = count -1;
+		}
+		SolutionSet result = new SolutionSet( count );
+		
 		for ( Integer selectionNum : selectionResults.keySet() ) {
-			for ( int i =0; i < selectionResults.get( selectionNum).size(); i++ ) {
-				ArrayList<String> selection = selectionResults.get( selectionNum).get( i );
-				//System.out.println( selection.get(0) );
+			//默认只取每个selectionNum的一个选择
+			ArrayList<String> selection = selectionResults.get( selectionNum).get( 0 );
+			//System.out.println( selection.get(0) );
+			
+			try {
+				Solution sol = new Solution(this);
+				Variable[] variables = sol.getDecisionVariables();
+				//System.out.println ( "===================== " + variables.length); 
 				
-				try {
-					Solution sol = new Solution(this);
-					Variable[] variables = sol.getDecisionVariables();
-					//System.out.println ( "===================== " + variables.length); 
-					
-					int index = 0;
-					for (Variable v : variables) {
-						String userId = candidatesIDs.get( index );
-						boolean tag = false;
-						if ( selection.contains( userId )) {
-							tag = true;
-						}
-						((Binary) v).setIth( 0, tag);
-						
-						index++;
+				int index = 0;
+				for (Variable v : variables) {
+					String userId = candidatesIDs.get( index );
+					boolean tag = false;
+					if ( selection.contains( userId )) {
+						tag = true;
 					}
-					result.add(sol);
-				} catch (ClassNotFoundException e) {
-					e.printStackTrace();
+					((Binary) v).setIth( 0, tag);
+					
+					index++;
 				}
+				
+				/*
+				variables = sol.getDecisionVariables();
+				for ( Variable v: variables ) {
+					System.out.print( (Binary)v);
+				}
+				System.out.println ();
+				*/
+				//System.out.println( sol.getDecisionVariables().toString() );
+				result.add(sol);
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
 			}
 		}
-		System.out.println( result.toString() );
+		//System.out.println( result.toString() );
 		return result;
 	}
 }

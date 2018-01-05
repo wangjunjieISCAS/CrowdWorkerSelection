@@ -234,7 +234,7 @@ public class BugProbability {
 		String taskFolder = "data/input/taskDescription";
 		TestProjectReader projReader = new TestProjectReader();
 		
-		int testSetIndex = 16;
+		int testSetIndex = 19;
 		int beginTestProjIndex =0, endTestProjIndex = 0;
 		BufferedReader br;
 		try {

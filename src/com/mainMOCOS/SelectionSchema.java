@@ -119,8 +119,12 @@ public class SelectionSchema {
 				String[] temp = line.split(":");
 				int selectionNum  = Integer.parseInt( temp[0] );
 				
-				String[] workerInfo = temp[1].split( ",");
-				ArrayList<String> workerList = new ArrayList<String>( Arrays.asList( workerInfo ));
+				ArrayList<String> workerList = new ArrayList<String>();
+				String[] workerInfo = temp[1].split( " ");
+				for ( int i =0; i < workerInfo.length; i++ ) {
+					String worker = workerInfo[i].trim();
+					workerList.add( worker );
+				}
 				
 				ArrayList<ArrayList<String>> resultInfo = new ArrayList<ArrayList<String>>();
 				if ( selectionResults.containsKey( selectionNum )) {
