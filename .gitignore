@@ -4,6 +4,8 @@
 *.txt
 
 data/
+plot/
+
 
 # Compiled class file
  *.class
