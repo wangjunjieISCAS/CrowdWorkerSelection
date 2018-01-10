@@ -14,9 +14,9 @@ import com.data.TestProject;
 import com.dataProcess.SimilarityMeasure;
 
 public class WeightSelectionStrategy {
-	private double bugProbWeight = 0.4;
-	private double revWeight = 0.3;
-	private double divWeight = 0.3;
+	private double bugProbWeight = 0.0;
+	private double revWeight = 0.5;
+	private double divWeight = 0.4;
 	private int selectionNumEachIter = 1;
 	
 	//基于值进行排序
@@ -43,7 +43,7 @@ public class WeightSelectionStrategy {
 				CrowdWorker worker = candidateWorkerList.get( userId );
 				
 				double bugProbValue = bugProbList.get( userId );
-				double revValue = this.obtainRelevance(worker, project);
+				double revValue = 0.0;    //this.obtainRelevance(worker, project);
 				double divValue = this.obtainDiversity(selectedWorkers, worker, candidateWorkerList);
 				
 				//System.out.println(  "bugProbValue is : " + bugProbValue + " ; revValue is :" + revValue + " divValue is : " + divValue );

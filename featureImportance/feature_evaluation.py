@@ -54,9 +54,9 @@ def evaluate_features( feature_name, file_name ):
     classifier = LogisticRegression()
     classifier.fit ( feature_for_regression, category )
     
-    for item in classifier.coef_:
-        print item
-    print( classifier.coef_)
+    #for item in classifier.coef_:
+     #   print item
+    #print( classifier.coef_)
     
     #feature_weight = classifier.coef_
     temp_values = np.asarray ( classifier.coef_).tolist()
@@ -75,7 +75,7 @@ def evaluate_features( feature_name, file_name ):
     for i in range( len(feature_weight_dict)):
         entry = feature_weight_dict[i]
         feature_weight_rank[entry[0]] = i+1
-    print feature_weight_rank
+   # print feature_weight_rank
     
     return feature_weight_rank
 
@@ -99,6 +99,7 @@ def evaluate_features_multiple_projects_feature_in_column ( folderName, result_f
     for file_name in file_name_list:
         if ( file_name.startswith ('test')):
             continue
+        print file_name
         feature_weight_rank = evaluate_features( feature_name, folderName + "/" + file_name )
         feature_rank_allprojects[file_name] = feature_weight_rank
     
@@ -129,6 +130,7 @@ def evaluate_features_multiple_projects ( folderName, result_file ):
     for file_name in file_name_list:
         if ( file_name.startswith ('test')):
             continue
+        print file_name
         feature_weight_rank = evaluate_features( folderName + "/" + file_name )
         feature_rank_allprojects[file_name] = feature_weight_rank
     
@@ -156,5 +158,5 @@ def evaluate_features_multiple_projects ( folderName, result_file ):
     csvfile.close 
 
 
-evaluate_features_multiple_projects_feature_in_column ( '../data/input/weka/test', '../data/output/featureImportance/featureImportance.csv')
+evaluate_features_multiple_projects_feature_in_column ( '../data/input/weka/evaluation', '../data/output/featureImportance/featureImportance.csv')
 #evaluate_features ( '../data/input/weka/a.csv' )

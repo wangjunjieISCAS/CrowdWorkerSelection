@@ -74,8 +74,35 @@ public class BugProbability {
 		return bugProbWorkerResults;
 	}
 	
-	public HashMap<String, Double> obtainBugProbabilityTotalWithPreparedWekaData ( TestProject project, ArrayList<TestProject> historyProjectList, 
-			HashMap<String, CrowdWorker> historyWorkerList, LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
+	public HashMap<String, Double> obtainBugProbabilityTotalWithPreparedWekaData ( LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
+		
+		WekaPrediction wekaPrediction = new WekaPrediction();
+		HashMap<Integer, Double> bugProbResults = wekaPrediction.trainAndPredictProb( wekaTrainFile, wekaTestFile, Constants.LEARNER_TYPE );
+		System.out.println ( "Train and predict is done!"); 
+		
+		if ( candidateWorkerList.size() != bugProbResults.size() ) {
+			System.out.println( "Wrong in size!");
+		}
+				
+		//the result is in the same order with candidateWorkerList
+		HashMap<String, Double> bugProbWorkerResults = new HashMap<String, Double>();
+		int i = 0 ;
+		for ( String userId: candidateWorkerList.keySet() ) {
+			bugProbWorkerResults.put( userId ,  bugProbResults.get( i ) );
+			i++;
+		}
+		
+		return bugProbWorkerResults;
+	}
+	
+	//只基于部分特征进行performance判断
+	public HashMap<String, Double> obtainBugProbabilityTotalWithPreparedWekaData_Part ( ArrayList<String> attributeList, String projectName, Integer testSetIndex, String type,
+			LinkedHashMap<String, CrowdWorker> candidateWorkerList ) {
+		PartAttributeData wekaDataTool = new PartAttributeData();
+		wekaDataTool.prepareAttributeData(attributeList, projectName, testSetIndex, type);
+		
+		String wekaTrainFile = "data/input/weka/" + testSetIndex.toString() + "/part/" + type + "-" + "train-" + projectName + ".csv";
+		String wekaTestFile = "data/input/weka/" + testSetIndex.toString() + "/part/" + type + "-" + "test-" + projectName + ".csv";
 		
 		WekaPrediction wekaPrediction = new WekaPrediction();
 		HashMap<Integer, Double> bugProbResults = wekaPrediction.trainAndPredictProb( wekaTrainFile, wekaTestFile, Constants.LEARNER_TYPE );
@@ -166,52 +193,68 @@ public class BugProbability {
 	 * 生成testSet的28个任务的每个任务的bugProb
 	 */
 	public void generateBugProbForPerTestSet ( int testSetId, int beginTaskId, int endTaskId , ArrayList<TestProject> historyProjectList, 
-			HashMap<Integer, TestProject> testSetProjecMap ) {
-		String phoneFile = Constants.WORKER_INFO_FOLDER + "/" + testSetId+ "/workerPhone.csv";
-		String capFile = Constants.WORKER_INFO_FOLDER + "/" + testSetId+ "/workerCap.csv";
-		String domainFile = Constants.WORKER_INFO_FOLDER + "/" + testSetId+ "/workerDomain.csv";
-		
-		CrowdWorkerHandler workerHandler = new CrowdWorkerHandler();
-		HashMap<String, CrowdWorker> historyWorkerList = workerHandler.loadCrowdWorkerInfo( phoneFile, capFile, domainFile);
-		
-		CrowdWokerExtraction workerTool = new CrowdWokerExtraction();
+			HashMap<Integer, TestProject> testSetProjecMap ) {		
+	
 		for ( int i = beginTaskId; i <= endTaskId; i ++ ) {
 			System.out.println( "Processing " + i + " task!");
 			//生成这个任务对应的bugProb
 			TestProject project = testSetProjecMap.get( i );
-			//首先需要看是否有new workers
-			CrowdWorker defaultWorker = workerTool.obtainDefaultCrowdWorker( historyWorkerList );
-			//obtain candidate worker, besides the history worker, there could be worker who join the platform for the first time in this project
-			LinkedHashMap<String, CrowdWorker> candidateWorkerList = new LinkedHashMap<String, CrowdWorker>();
-			for ( String userId : historyWorkerList.keySet() ) {
-				CrowdWorker hisWorker = historyWorkerList.get( userId );
-				
-				CrowdWorker worker = new CrowdWorker ( hisWorker.getWorkerId(), hisWorker.getPhoneInfo(), hisWorker.getCapInfo(), hisWorker.getDomainKnInfo() );
-				candidateWorkerList.put( userId,  worker );
-			}
-			for ( int j =0; j < project.getTestReportsInProj().size(); j++ ) {
-				TestReport report = project.getTestReportsInProj().get(j);
-				String userId = report.getUserId();
-				if ( candidateWorkerList.containsKey( userId ))
-					continue;
-				
-				Phone phoneInfo = new Phone ( report.getPhoneType(), report.getOS(), report.getNetwork(), report.getISP() );
-				CrowdWorker worker = new CrowdWorker ( userId, phoneInfo, defaultWorker.getCapInfo(), defaultWorker.getDomainKnInfo() );
-				
-				candidateWorkerList.put( userId, worker );
-			}
-			System.out.println( "CandidateWorkerList  " + i + " is done!");
+			
+			Object[] result = this.obtainCandidateWorkers( testSetId, project);
+			HashMap<String, CrowdWorker> historyWorkerList = (HashMap<String, CrowdWorker>) result[0];
+			LinkedHashMap<String, CrowdWorker> candidateWorkerList = (LinkedHashMap<String, CrowdWorker>) result[1];
 			
 			String projectName = project.getProjectName();
 			BugProbability probTool = new BugProbability( projectName );
 			HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotal(project, historyProjectList, historyWorkerList, candidateWorkerList);
-			//HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotalWithPreparedWekaData( project, historyProjectList, historyWorkerList, candidateWorkerList);
+			//HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotalWithPreparedWekaData( candidateWorkerList);
+				
 			probTool.storeBugProb(bugProbWorkerResults, Constants.BUG_PROB_FOLDER + "/" + i + "-bugProbability.csv" );
 			
 			ProbPredictEvaluation evaluationTool = new ProbPredictEvaluation();
 			Double[] performance = evaluationTool.obtainProbPredictionPerformance(bugProbWorkerResults, project);
 			try {
-				BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_PERFORMANCE , true));
+				BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_PERFORMANCE + "/bugProb-" + testSetId + ".csv", true));
+				writer.write( i + ",");
+				for ( int j =0; j < performance.length; j++ ) {
+					writer.write( performance[j] + ",");
+				}
+				writer.newLine();
+				writer.flush();
+				
+				writer.close();
+			}catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}		
+		}
+	}
+		
+	//验证只用cap-related feature，和只用relevance-related feature的性能情况
+	//绝大多收都和generateBugProbForPerTestSet的逻辑类似
+	public void evaluatePerformanceForPartAttrubtes ( int testSetId, int beginTaskId, int endTaskId , ArrayList<TestProject> historyProjectList, 
+			HashMap<Integer, TestProject> testSetProjecMap, ArrayList<String> attributeList, String type ) {		
+	
+		for ( int i = beginTaskId; i <= endTaskId; i ++ ) {
+			System.out.println( "Processing " + i + " task!");
+			//生成这个任务对应的bugProb
+			TestProject project = testSetProjecMap.get( i );
+			
+			Object[] result = this.obtainCandidateWorkers( testSetId, project);
+			HashMap<String, CrowdWorker> historyWorkerList = (HashMap<String, CrowdWorker>) result[0];
+			LinkedHashMap<String, CrowdWorker> candidateWorkerList = (LinkedHashMap<String, CrowdWorker>) result[1];
+			
+			String projectName = project.getProjectName();
+			BugProbability probTool = new BugProbability( projectName );
+		
+			HashMap<String, Double> bugProbWorkerResults = probTool.obtainBugProbabilityTotalWithPreparedWekaData_Part(attributeList, projectName, testSetId, type, candidateWorkerList);
+				
+			probTool.storeBugProb(bugProbWorkerResults, Constants.BUG_PROB_FOLDER + "/" + testSetId + "/part/" + type + "-" + i + "-bugProbability.csv" );
+			
+			ProbPredictEvaluation evaluationTool = new ProbPredictEvaluation();
+			Double[] performance = evaluationTool.obtainProbPredictionPerformance(bugProbWorkerResults, project);
+			try {
+				BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.BUG_PROB_PERFORMANCE + "/" + type + "-bugProb-"  + testSetId + ".csv" , true));
 				writer.write( i + ",");
 				for ( int j =0; j < performance.length; j++ ) {
 					writer.write( performance[j] + ",");
@@ -227,6 +270,46 @@ public class BugProbability {
 		}
 	}
 	
+	public Object[] obtainCandidateWorkers ( int testSetId, TestProject project ) {
+		String phoneFile = Constants.WORKER_INFO_FOLDER + "/" + testSetId+ "/workerPhone.csv";
+		String capFile = Constants.WORKER_INFO_FOLDER + "/" + testSetId+ "/workerCap.csv";
+		String domainFile = Constants.WORKER_INFO_FOLDER + "/" + testSetId+ "/workerDomain.csv";
+		
+		CrowdWorkerHandler workerHandler = new CrowdWorkerHandler();
+		HashMap<String, CrowdWorker> historyWorkerList = workerHandler.loadCrowdWorkerInfo( phoneFile, capFile, domainFile);
+		
+		CrowdWokerExtraction workerTool = new CrowdWokerExtraction();
+		
+		//首先需要看是否有new workers
+		CrowdWorker defaultWorker = workerTool.obtainDefaultCrowdWorker( historyWorkerList );
+		//obtain candidate worker, besides the history worker, there could be worker who join the platform for the first time in this project
+		LinkedHashMap<String, CrowdWorker> candidateWorkerList = new LinkedHashMap<String, CrowdWorker>();
+		for ( String userId : historyWorkerList.keySet() ) {
+			CrowdWorker hisWorker = historyWorkerList.get( userId );
+			
+			CrowdWorker worker = new CrowdWorker ( hisWorker.getWorkerId(), hisWorker.getPhoneInfo(), hisWorker.getCapInfo(), hisWorker.getDomainKnInfo() );
+			candidateWorkerList.put( userId,  worker );
+		}
+		for ( int j =0; j < project.getTestReportsInProj().size(); j++ ) {
+			TestReport report = project.getTestReportsInProj().get(j);
+			String userId = report.getUserId();
+			if ( candidateWorkerList.containsKey( userId ))
+				continue;
+			
+			Phone phoneInfo = new Phone ( report.getPhoneType(), report.getOS(), report.getNetwork(), report.getISP() );
+			CrowdWorker worker = new CrowdWorker ( userId, phoneInfo, defaultWorker.getCapInfo(), defaultWorker.getDomainKnInfo() );
+			
+			candidateWorkerList.put( userId, worker );
+		}
+		System.out.println( "CandidateWorkerList is done!");
+		
+		Object[] result = new Object[2];
+		result[0] = historyWorkerList;
+		result[1] = candidateWorkerList;
+		
+		return result;
+	}
+	
 	public static void main ( String args[] ) {
 		BugProbability probTool = new BugProbability( );
 		
@@ -234,8 +317,10 @@ public class BugProbability {
 		String taskFolder = "data/input/taskDescription";
 		TestProjectReader projReader = new TestProjectReader();
 		
-		int testSetIndex = 19;
 		int beginTestProjIndex =0, endTestProjIndex = 0;
+		HashMap<Integer, Integer> beginProjIndexMap = new HashMap<Integer, Integer>();
+		HashMap<Integer, Integer> endProjIndexMap = new HashMap<Integer, Integer>();
+		
 		BufferedReader br;
 		try {
 			br = new BufferedReader(new FileReader( new File ( Constants.TRAIN_TEST_SET_SETTING_FILE)));
@@ -249,12 +334,12 @@ public class BugProbability {
 				}
 				String[] temp = line.split( ",");
 				Integer testSetNum = Integer.parseInt( temp[0] );
-				if ( testSetNum.equals( testSetIndex )) {
-					beginTestProjIndex = Integer.parseInt(  temp[1]);
-					endTestProjIndex = Integer.parseInt(  temp[2] );
-					
-					break;
-				}
+				
+				beginTestProjIndex = Integer.parseInt(  temp[1]);
+				endTestProjIndex = Integer.parseInt(  temp[2] );
+				
+				beginProjIndexMap.put( testSetNum, beginTestProjIndex );
+				endProjIndexMap.put( testSetNum, endTestProjIndex );
 			}			
 			br.close();
 		} catch (FileNotFoundException e) {
@@ -265,10 +350,42 @@ public class BugProbability {
 			e.printStackTrace();
 		}
 		
-		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex-1, projectFolder, taskFolder);
-		HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(beginTestProjIndex, endTestProjIndex, projectFolder, taskFolder);
-		probTool.generateBugProbForPerTestSet( testSetIndex, beginTestProjIndex, endTestProjIndex, historyProjectList, testSetProjectMap);
+		ArrayList<String> attributeList = new ArrayList<String>();
+		/*
+		for ( int k =0; k < 4; k++ ) {
+			attributeList.add( "numProject-" + k );
+			attributeList.add( "numReport-" + k );
+			attributeList.add( "numBug-" + k );
+			attributeList.add( "percBug-" + k );
+		}
+		attributeList.add( "durationLastAct");
+		attributeList.add( "category" );			
+		String type = "cap";
+		*/
 		
+		attributeList.add( "relevant");
+		for ( int k=0; k < 30; k++  ) {
+			attributeList.add( "topic-" + k );
+		}
+		attributeList.add( "category" );			
+		String type = "revtop";
+		
+		for ( int i =11; i <= 20; i++ ) {
+			beginTestProjIndex = beginProjIndexMap.get(i);
+			endTestProjIndex = endProjIndexMap.get(i);
+			
+			//for generate the original weka data
+			/*
+			ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex-1, projectFolder, taskFolder);
+			HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(beginTestProjIndex, endTestProjIndex, projectFolder, taskFolder);
+			probTool.generateBugProbForPerTestSet( i, beginTestProjIndex, endTestProjIndex, historyProjectList, testSetProjectMap);
+			*/
+			//for evaluate the performance of cap-related data or relevance-related data
+			ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex-1, projectFolder, taskFolder);
+			HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(beginTestProjIndex, endTestProjIndex, projectFolder, taskFolder);
+			probTool.evaluatePerformanceForPartAttrubtes( i, beginTestProjIndex, endTestProjIndex, historyProjectList, testSetProjectMap, attributeList, type);
+		}
+
 		/*
 		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, 532, projectFolder, taskFolder);
 		HashMap<Integer, TestProject> testSetProjectMap = projReader.loadTestProjectAndTaskMapBasedId(533, 562, projectFolder, taskFolder);

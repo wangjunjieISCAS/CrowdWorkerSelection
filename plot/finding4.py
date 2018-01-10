@@ -37,4 +37,4 @@ plt.xlabel('project id', fontsize=12)
 plt.legend(loc='best',numpoints=1, fontsize=12)
 #plt.show()
 
-plt.savefig('data/observ4.jpg', dpi = 2000);
+plt.savefig('figure/observ4.jpg', dpi = 2000);

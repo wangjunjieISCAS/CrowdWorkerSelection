@@ -29,4 +29,4 @@ plt.xlabel('workers', fontsize=12)
 #plt.legend(loc='best',numpoints=1, fontsize=12)
 #plt.show()
 
-plt.savefig('data/observ2.jpg', dpi = 2000);
+plt.savefig('figure/observ2.jpg', dpi = 2000);

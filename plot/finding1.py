@@ -30,4 +30,4 @@ plt.xlabel('project id', fontsize=12)
 plt.legend(loc='upper right',numpoints=1, fontsize=12)
 #plt.show()
 
-plt.savefig('data/observ1.jpg', dpi = 2000);
+plt.savefig('figure/observ1.jpg', dpi = 2000);

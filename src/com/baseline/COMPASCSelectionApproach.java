@@ -34,6 +34,10 @@ public class COMPASCSelectionApproach extends SelectionSchema{
 	
 	public static void main ( String[] args ) {
 		COMPASCSelectionApproach selectionTool = new COMPASCSelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );
+		for ( int i =11; i <= 20; i++ ) {
+			selectionTool.workerSelectionForMultipleProjects( i );
+		}
+		
+		//selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );
 	}
 }

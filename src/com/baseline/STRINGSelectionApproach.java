@@ -106,6 +106,9 @@ public class STRINGSelectionApproach extends SelectionSchema {
 	
 	public static void main ( String[] args ) {
 		STRINGSelectionApproach selectionTool = new STRINGSelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
+		for ( int i =11; i <= 20; i++ ) {
+			selectionTool.workerSelectionForMultipleProjects( i );
+		}
+		//selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
 	}
 }
