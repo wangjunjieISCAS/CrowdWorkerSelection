@@ -26,13 +26,7 @@ import jmetal.util.JMException;
 
 public class SEKESelectionApproach extends SelectionSchema{
 	public void workSelectionApproach ( TestProject project, ArrayList<TestProject> historyProjectList, String testSetIndex, String taskId ) {
-		MainSelectionApproach candWorkerTool = new MainSelectionApproach();
-		LinkedHashMap<String, CrowdWorker> candidateWorkerList  = candWorkerTool.obtainCandidateWorkers(project, historyProjectList, testSetIndex);
-		
-		CandidateIDChoose chooseTool = new CandidateIDChoose();
-		ArrayList<String> candidateIDs = chooseTool.obtainCandidateIDsBasedLastActivity(historyProjectList, candidateWorkerList, project);
-		
-		System.out.println ( "CandidateIDs size is: " + candidateIDs.size() ); 	
+		super.workSelectionApproach(project, historyProjectList, testSetIndex, taskId);
 		
 		SEKEMultiObjectiveSelection selectionTool = new SEKEMultiObjectiveSelection();
 		BugDetectionRateEvaluation evaTool = new BugDetectionRateEvaluation();

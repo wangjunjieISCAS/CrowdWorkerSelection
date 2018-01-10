@@ -13,9 +13,9 @@ import com.data.TestProject;
 import com.dataProcess.SimilarityMeasure;
 
 public class COMPASCSelectionStrategy {
-	private double expWeight = 0.1;
-	private double revWeight = 0.5;
-	private double divWeight = 0.4;
+	private double expWeight = 0.6;
+	private double revWeight = 0.2;
+	private double divWeight = 0.2;
 	
 	private int selectionNumEachIter = 5;
 	
@@ -157,8 +157,8 @@ public class COMPASCSelectionStrategy {
 			for ( int j =0; j < selectionNumEachIter && j < newMulValueList.size(); j++ ) {
 				int selectedIndex = newMulValueList.get(j).getKey();
 				String selectedId = nowCandWorkers.get( selectedIndex );
-				System.out.println( "The selected worker is : " + selectedId + " its strategy value is : " + expValueList[j] + 
-						" " + revValueList[j] + " " + divValueList[j] );
+				//System.out.println( "The selected worker is : " + selectedId + " its strategy value is : " + expValueList[j] + 
+					//	" " + revValueList[j] + " " + divValueList[j] );
 				
 				selectedWorkers.add( selectedId );
 				selectedWorkersInfo.add( candidateWorkerList.get( selectedId ) );
