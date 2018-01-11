@@ -130,7 +130,10 @@ public class TOPICSelectionApproach extends SelectionSchema {
 	
 	public static void main ( String[] args ) {
 		TOPICSelectionApproach selectionTool = new TOPICSelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );
+		for ( int i =11; i <= 19; i++ ) {
+			selectionTool.workerSelectionForMultipleProjects( i );
+		}
+		//selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );
 	}
 
 }
