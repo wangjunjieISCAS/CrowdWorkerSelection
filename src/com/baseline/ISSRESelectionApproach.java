@@ -21,6 +21,9 @@ public class ISSRESelectionApproach extends SelectionSchema {
 	
 	public static void main ( String[] args ) {
 		ISSRESelectionApproach selectionTool = new ISSRESelectionApproach();
-		selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
+		for ( int i =11; i <= 20; i++ ) {
+			selectionTool.workerSelectionForMultipleProjects( i );
+		}
+		//selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX  );
 	}
 }

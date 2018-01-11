@@ -14,9 +14,9 @@ import com.data.TestProject;
 import com.dataProcess.SimilarityMeasure;
 
 public class WeightSelectionStrategy {
-	private double bugProbWeight = 0.0;
-	private double revWeight = 0.5;
-	private double divWeight = 0.4;
+	private double bugProbWeight = 0.6;
+	private double revWeight = 0.2;
+	private double divWeight = 0.2;
 	private int selectionNumEachIter = 1;
 	
 	//基于值进行排序

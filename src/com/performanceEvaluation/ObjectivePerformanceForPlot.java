@@ -26,7 +26,7 @@ public class ObjectivePerformanceForPlot {
 		
 		HashMap<Integer, String> nameIndex = new HashMap<Integer, String>();
 		
-		Pattern pattern = Pattern.compile( "[0-9]*");
+		Pattern pattern = Pattern.compile( "[0-9]*(.*)");
 		try {			
 			BufferedReader reader = new BufferedReader(new FileReader(new File( fileName ) ) );
 			String line = "";
@@ -35,16 +35,19 @@ public class ObjectivePerformanceForPlot {
 				String[] temp = line.split(",");
 				
 				if ( isFirstLine == true ) {
-					for ( int i =0; i < temp.length; i++ ) {
-						String name = temp[i];
+					for ( int i =1; i < temp.length; i++ ) {
+						if ( temp[i].length() == 1 )
+							continue;
+						
+						String name = temp[i].trim();
 						
 						Matcher isFeature = pattern.matcher( name );
 						if ( isFeature.matches() ) {
 							nameIndex.put( i, name );
 							
-							String[] nameTemp = name.split( "-");
-							Integer sepIndex = Integer.parseInt( nameTemp[0]);
-							String type = nameTemp[1];
+							int index = name.indexOf( "-");
+							Integer sepIndex = Integer.parseInt( name.substring( 0, index) );
+							String type = name.substring( index+1 );
 							
 							ArrayList<Double> value = new ArrayList<Double>();
 							HashMap<Integer, ArrayList<Double>> typeValue = new HashMap<Integer, ArrayList<Double>>();
@@ -53,25 +56,39 @@ public class ObjectivePerformanceForPlot {
 							result.put( type , typeValue );
 						}
 					}
+					isFirstLine = false;			
+					continue;
 				}
 				
-				for ( int i =0; i < temp.length; i++ ) {
+				for ( int i =1; i < temp.length; i++ ) {
+					if ( temp[i].length() == 1 )
+						continue;
 					Double prob = Double.parseDouble( temp[i]);
 					if ( !nameIndex.containsKey( i)) {
 						continue;
 					}
 					String name = nameIndex.get( i );
-					String[] nameTemp = name.split( "-");
-					Integer sepIndex = Integer.parseInt( nameTemp[0]);
-					String type = nameTemp[1];
 					
-					ArrayList<Double> value = result.get( type).get( sepIndex );
+					int index = name.indexOf( "-");
+					Integer sepIndex = Integer.parseInt( name.substring( 0, index) );
+					String type = name.substring( index+1 );
+					
+					ArrayList<Double> value = new ArrayList<Double>();
+					if ( result.containsKey( type )) {
+						if ( result.get( type).containsKey( sepIndex )) {
+							value = result.get( type).get( sepIndex );
+						}
+					}
 					value.add( prob );
 					
-					result.get( type).put( sepIndex, value );
-				}
-				
-				isFirstLine = false;				
+					if ( result.containsKey( type )) {
+						result.get( type).put( sepIndex, value );
+					}else {
+						HashMap<Integer, ArrayList<Double>> newValue = new HashMap<Integer, ArrayList<Double>>();
+						newValue.put( sepIndex, value);
+						result.put( type, newValue );
+					}					
+				}	
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {
@@ -119,7 +136,7 @@ public class ObjectivePerformanceForPlot {
 		ObjectivePerformanceForPlot plotTool = new ObjectivePerformanceForPlot();
 		HashMap<String, HashMap<Integer, ArrayList<Double>>> performance = plotTool.readPerformance( Constants.BUG_DETECTION_RATE_PERFORMANCE_FOLDER + "/comparison.csv");
 		
-		String[] types = { "MOCOSWeight-3 factors", "MOCOSWeight-no div"};
+		String[] types = { "MOCOSWeight", "MOCOSWeight-no cap", "MOCOSWeight-no rev", "MOCOSWeight-no div" };
 		plotTool.generatePerformanceForPlot( performance, Constants.PLOT_DATA_FOLDER + "/RQ2.csv", types);
 	}
 }

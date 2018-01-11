@@ -14,8 +14,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class PerformanceSummarize {
-	String[] folderNameList = { "MOCOSWeight", "baselineSEKE", "baselineCOMPASC", "MOCOS", "MOCOSWeight-1" };
-	Integer[] insPoints = {3, 5, 10, 20, 50 };
+	String[] folderNameList = { "MOCOSWeight", "MOCOSWeight-no cap", "MOCOSWeight-no rev", "MOCOSWeight-no div", "baselineTOPIC" };
+	Integer[] insPoints = {3, 5, 10, 20, 50, 100 };
 	
 	public void summarizeBugDetectionRate ( ) {
 		ArrayList<Integer> insPointList = new ArrayList<>(Arrays.asList( insPoints ) );
