@@ -13,9 +13,9 @@ import com.data.TestProject;
 import com.dataProcess.SimilarityMeasure;
 
 public class COMPASCSelectionStrategy {
-	private double expWeight = 0.6;
-	private double revWeight = 0.2;
-	private double divWeight = 0.2;
+	private double expWeight = 0.4;
+	private double revWeight = 0.3;
+	private double divWeight = 0.1;
 	
 	private int selectionNumEachIter = 5;
 	

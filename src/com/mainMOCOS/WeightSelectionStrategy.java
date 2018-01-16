@@ -14,10 +14,10 @@ import com.data.TestProject;
 import com.dataProcess.SimilarityMeasure;
 
 public class WeightSelectionStrategy {
-	private double bugProbWeight = 0.6;
-	private double revWeight = 0.2;
-	private double divWeight = 0.2;
-	private int selectionNumEachIter = 1;
+	private double bugProbWeight = 0.1;
+	private double revWeight = 0.5;
+	private double divWeight = 0.4;
+	private int selectionNumEachIter = 5;
 	
 	//基于值进行排序
 	public HashMap<Integer, ArrayList<ArrayList<String>>> selectionStrategy ( ArrayList<String> candidateWorkers, LinkedHashMap<String, CrowdWorker> candidateWorkerList, HashMap<String, Double> bugProbList, TestProject project  ){
@@ -43,7 +43,7 @@ public class WeightSelectionStrategy {
 				CrowdWorker worker = candidateWorkerList.get( userId );
 				
 				double bugProbValue = bugProbList.get( userId );
-				double revValue = 0.0;    //this.obtainRelevance(worker, project);
+				double revValue = this.obtainRelevance(worker, project);
 				double divValue = this.obtainDiversity(selectedWorkers, worker, candidateWorkerList);
 				
 				//System.out.println(  "bugProbValue is : " + bugProbValue + " ; revValue is :" + revValue + " divValue is : " + divValue );

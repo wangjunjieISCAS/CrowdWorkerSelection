@@ -35,7 +35,7 @@ public class MainSelectionApproachWeightBased extends SelectionSchema{
 	
 	public static void main ( String args[] ) {
 		MainSelectionApproachWeightBased selectionTool = new MainSelectionApproachWeightBased();
-		for ( int i =11; i <= 20; i++ ) {
+		for ( int i =19; i <= 20; i++ ) {
 			selectionTool.workerSelectionForMultipleProjects( i );
 		}
 		//selectionTool.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );

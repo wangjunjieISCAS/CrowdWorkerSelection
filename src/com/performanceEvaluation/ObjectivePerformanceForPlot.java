@@ -36,7 +36,7 @@ public class ObjectivePerformanceForPlot {
 				
 				if ( isFirstLine == true ) {
 					for ( int i =1; i < temp.length; i++ ) {
-						if ( temp[i].length() == 1 )
+						if ( temp[i].length() == 1 || temp[i].length() == 0 || temp[i].equals( "") )
 							continue;
 						
 						String name = temp[i].trim();
@@ -44,6 +44,7 @@ public class ObjectivePerformanceForPlot {
 						Matcher isFeature = pattern.matcher( name );
 						if ( isFeature.matches() ) {
 							nameIndex.put( i, name );
+							//System.out.println ( name );
 							
 							int index = name.indexOf( "-");
 							Integer sepIndex = Integer.parseInt( name.substring( 0, index) );
@@ -61,7 +62,7 @@ public class ObjectivePerformanceForPlot {
 				}
 				
 				for ( int i =1; i < temp.length; i++ ) {
-					if ( temp[i].length() == 1 )
+					if ( temp[i].length() == 1 || temp[i].length() == 0 || temp[i].equals( "") )
 						continue;
 					Double prob = Double.parseDouble( temp[i]);
 					if ( !nameIndex.containsKey( i)) {
@@ -104,8 +105,10 @@ public class ObjectivePerformanceForPlot {
 	
 	public void generatePerformanceForPlot( HashMap<String, HashMap<Integer, ArrayList<Double>>> performance, String fileName, String[] types ) {
 		try {
-			BufferedWriter writer = new BufferedWriter( new FileWriter ( fileName , true ) );
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( fileName ) );
 			
+			writer.write( " " + "," + "  " + "," + "BDR");
+			writer.newLine();
 			for ( int i =0; i < types.length; i++ ) {
 				String type = types[i];
 				if ( !performance.containsKey( type )) {
@@ -118,6 +121,7 @@ public class ObjectivePerformanceForPlot {
 					for ( int j =0; j < value.size(); j++ ) {
 						writer.write( type  + ",");
 						writer.write( sepIndex.toString() + ",");
+						
 						writer.write( value.get(j).toString() );
 						writer.newLine();
 					}
@@ -136,7 +140,9 @@ public class ObjectivePerformanceForPlot {
 		ObjectivePerformanceForPlot plotTool = new ObjectivePerformanceForPlot();
 		HashMap<String, HashMap<Integer, ArrayList<Double>>> performance = plotTool.readPerformance( Constants.BUG_DETECTION_RATE_PERFORMANCE_FOLDER + "/comparison.csv");
 		
-		String[] types = { "MOCOSWeight", "MOCOSWeight-no cap", "MOCOSWeight-no rev", "MOCOSWeight-no div" };
-		plotTool.generatePerformanceForPlot( performance, Constants.PLOT_DATA_FOLDER + "/RQ2.csv", types);
+		//String[] types = { "MOCOSWeight-all", "MOCOSWeight-no cap", "MOCOSWeight-no rev", "MOCOSWeight-no div" };
+		//String[] types = { "MOCOSWeight-all", "baselineSTRING", "baselineISSRE", "baselineSEKE",  "baselineTOPIC", "baselineCOMPASC"  };
+		String[] types = {"MOCOSWeight-all", "baselineSEKE", "baselineCOMPASC", "baselineISSRE", "baselineSTRING", "TRUE"};
+		plotTool.generatePerformanceForPlot( performance, Constants.PLOT_DATA_FOLDER + "/RQ1-20.csv", types);
 	}
 }

@@ -21,7 +21,7 @@ public class COMPASCSelectionApproach extends SelectionSchema{
 		HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.multipleStrategySelection(candidateWorkerList, candidateIDs, project);
 		
 		BugDetectionRateEvaluation evaTool = new BugDetectionRateEvaluation();
-		evaTool.obtainBugDetectionRate(selectionResults, project, true, "baselineCOMPASC");
+		evaTool.obtainBugDetectionRate(selectionResults, project, true, "baselineTOPIC");
 	}	
 	
 	

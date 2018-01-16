@@ -23,7 +23,10 @@ public class Constants {
 	
 	public final static String BUG_PROB_PERFORMANCE = "data/output/performance";    //bugProb.csv";
 	public final static String BUG_DETECTION_RATE_PERFORMANCE_FOLDER  = "data/output/performance-bugDetRate";
+	public final static String BUG_DETECTION_RATE_GROUND_TRUTH_FOLDER = "data/output/performance-true";
+	
 	public final static String SELECTION_RESULTS_FOLDER = "data/output/selectionResults";
+	public final static String PARETO_FRONT_FOLDER  = "data/output/paretoFront";
 	
 	public final static String PLOT_DATA_FOLDER  = "data/output/plot"; 
 	

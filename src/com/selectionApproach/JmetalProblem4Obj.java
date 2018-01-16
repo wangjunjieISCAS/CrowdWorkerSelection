@@ -24,7 +24,13 @@ public class JmetalProblem4Obj extends Problem {
 	private Random rand;
 	SelectionObjectives objectiveTool;
 	
-
+	public JmetalProblem4Obj( int variableNum  ) {
+		this.numberOfObjectives_ = 4;
+		this.numberOfVariables_ = variableNum;
+		this.solutionType_ = new BinarySolutionType(this);
+		rand = new Random();
+	}
+	
 	public JmetalProblem4Obj(ArrayList<String> candidatesIDs, String testSetIndex, String taskId, TestProject project ) {
 		this.numberOfObjectives_ = 4;
 		this.numberOfVariables_ = candidatesIDs.size();

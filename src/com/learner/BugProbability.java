@@ -351,7 +351,7 @@ public class BugProbability {
 		}
 		
 		ArrayList<String> attributeList = new ArrayList<String>();
-		/*
+		
 		for ( int k =0; k < 4; k++ ) {
 			attributeList.add( "numProject-" + k );
 			attributeList.add( "numReport-" + k );
@@ -361,14 +361,15 @@ public class BugProbability {
 		attributeList.add( "durationLastAct");
 		attributeList.add( "category" );			
 		String type = "cap";
-		*/
 		
+		/*
 		attributeList.add( "relevant");
 		for ( int k=0; k < 30; k++  ) {
 			attributeList.add( "topic-" + k );
 		}
 		attributeList.add( "category" );			
 		String type = "revtop";
+		*/
 		
 		for ( int i =11; i <= 20; i++ ) {
 			beginTestProjIndex = beginProjIndexMap.get(i);

@@ -3,6 +3,7 @@ package com.selectionApproach;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,11 +25,15 @@ import com.performanceEvaluation.BugDetectionRateEvaluation;
 import jmetal.core.Algorithm;
 import jmetal.core.Solution;
 import jmetal.core.SolutionSet;
+import jmetal.core.Variable;
+import jmetal.encodings.variable.Binary;
 import jmetal.operators.crossover.SinglePointCrossover;
 import jmetal.operators.mutation.BitFlipMutation;
 import jmetal.operators.selection.Selection;
 import jmetal.operators.selection.SelectionFactory;
 import jmetal.util.JMException;
+import jmetal.util.NonDominatedSolutionList;
+import jmetal.qualityIndicator.*;
 import jmetal.util.PseudoRandom;
 
 /**
@@ -44,6 +49,14 @@ public class MultiObjectiveSelection {
 	//public JmetalProblem problem_ = null;
 	public JmetalProblem4Obj problem_ = null;
 	
+	public MultiObjectiveSelection() {
+		
+	}
+	
+	public MultiObjectiveSelection ( int variableNum  ) {
+		problem_ = new JmetalProblem4Obj( variableNum );
+	}
+	
 	public SolutionSet multiObjectiveWorkerSelection(ArrayList<String> candidatesIDs, long seed, String testSetIndex, String taskId, TestProject project )
 			throws ClassNotFoundException, JMException {
 		//problem_ = new JmetalProblem(candidatesIDs, seed, testSetIndex, taskId, project );
@@ -56,14 +69,22 @@ public class MultiObjectiveSelection {
 		/** for all MOEA parameters **/
 		// TODO set up all parameter here
 		
+		/*
+		 * initialize based on previously obtained data
 		SolutionSet initSolution = problem_.generateGreedyInitialSet(candidatesIDs, taskId);
 		int popSize = initSolution.size();
-		int maxGeneration = 50;
+		int maxGeneration = 4;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", initSolution );
-		//alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
+		*/
 		
+		//random initialize
+		int popSize =100;
+		int maxGeneration = 20;
+		alg.setInputParameter("populationSize", popSize);
+		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
+		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
 		
 		/**
 		 * apply naive crossover and mutation; apply binary domination as
@@ -74,18 +95,19 @@ public class MultiObjectiveSelection {
 		parameters.clear();
 		parameters.put("probability", 0.5);
 		alg.addOperator("crossover", new SinglePointCrossover(parameters));
-
+		
+		/*
 		parameters.clear();
 		parameters.put( "candidate", candidatesIDs );
 		parameters.put( "taskId", taskId );
 		parameters.put( "probability", 0.5);
 		alg.addOperator("mutation", new PriorKnowMutation(parameters));
-		
-		/*
+		*/
+
 		parameters.clear();
-		parameters.put("probability", 0.2);
+		parameters.put("probability", 0.5);
 		alg.addOperator("mutation", new BitFlipMutation(parameters));
-		 */
+		 
 		parameters.clear();
 		Selection selection = SelectionFactory.getSelectionOperator("BinaryTournament2", parameters);
 		alg.addOperator("selection", selection);
@@ -115,6 +137,79 @@ public class MultiObjectiveSelection {
 		return candidatesIDs;
 	}
 	
+	
+	public void storeParetoFront (SolutionSet paretoFront, String fileName ) {
+		try {
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( fileName, true ) );
+
+			for ( int i =0; i < paretoFront.size(); i++ ) {
+				Solution s = paretoFront.get( i );
+				String str = "";
+				for ( int j =0; j < s.getDecisionVariables().length; j++ ) {
+					str += s.getDecisionVariables()[j];
+				}			
+				writer.write( str + ",");
+				
+				for ( int j =0; j < this.problem_.getNumberOfObjectives(); j++ ) {
+					writer.write( s.getObjective(j)  + ",");
+				}
+				writer.newLine();
+			}
+			writer.write( "====================================================");
+			writer.newLine();
+			writer.flush();			
+			writer.close();
+		}catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}		
+	}
+	
+	public SolutionSet readParetoFront ( String fileName ) {
+		NonDominatedSolutionList doSolutionList = new NonDominatedSolutionList();
+		
+		try {			
+			BufferedReader reader = new BufferedReader(new FileReader(new File( fileName ) ) );
+			String line = "";
+			while ((line = reader.readLine()) != null) {
+				int index = 0;
+				if ( line.startsWith( "===="))
+					continue;
+				
+				String[] temp = line.split( ",");
+				
+				Solution solution = new Solution( this.problem_ );
+				Variable[] variables = solution.getDecisionVariables();
+				for (Variable v : variables) {
+					boolean tag = true;
+					char ch = temp[0].charAt( index );
+					if ( ch == '0')
+						tag = false;
+					((Binary) v).setIth( 0, tag);
+				}
+				solution.setDecisionVariables( variables );
+				
+				for ( int i = 1; i < temp.length; i++ ) {
+					solution.setObjective( i-1, Double.parseDouble( temp[i]) ); 
+				}
+				
+				doSolutionList.add( solution );
+			}
+			reader.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return doSolutionList;
+	}
+	
 	public HashMap<Integer, ArrayList<ArrayList<String>>>  obtainWorkerSelectionResults ( SolutionSet paretoFront, String taskId ) {
 		HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = new HashMap<Integer, ArrayList<ArrayList<String>>>();
 		
@@ -129,7 +224,7 @@ public class MultiObjectiveSelection {
 				}
 			}
 			int workerNum = selectedWorkers.size();
-			System.out.println( workerNum + ": " + selectedWorkers.toString() );
+			//System.out.println( workerNum + ": " + selectedWorkers.toString() );
 			
 			ArrayList<ArrayList<String>> selectedWorkersList = null;
 			if ( selectionResults.containsKey( workerNum )) {
@@ -176,7 +271,9 @@ public class MultiObjectiveSelection {
 	}
 	
 	public static void main(String[] args) {
-		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection();
+		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection( );
+		selectionTool.readParetoFront( "data/output/front.txt");
+		
 		ArrayList<String> candidateIDs = selectionTool.obtainCandidateIDs();
 		SolutionSet paretoFroniter;
 		try {

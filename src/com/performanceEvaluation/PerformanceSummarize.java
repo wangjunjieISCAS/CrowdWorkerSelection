@@ -14,7 +14,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class PerformanceSummarize {
-	String[] folderNameList = { "MOCOSWeight", "MOCOSWeight-no cap", "MOCOSWeight-no rev", "MOCOSWeight-no div", "baselineTOPIC" };
+	//String[] folderNameList = { "MOCOSWeight-all", "MOCOSWeight-no cap", "MOCOSWeight-no rev", "MOCOSWeight-no div", "baselineSTRING", "baselineTOPIC" };
+	String[] folderNameList = { "MOCOSWeight-all", "baselineSEKE", "baselineCOMPASC", "baselineISSRE", "baselineSTRING", "TRUE" };
+	
 	Integer[] insPoints = {3, 5, 10, 20, 50, 100 };
 	
 	public void summarizeBugDetectionRate ( ) {
@@ -25,6 +27,7 @@ public class PerformanceSummarize {
 		HashMap<String, HashMap<Integer,Double>> bugRateList2 = new HashMap<String, HashMap<Integer,Double>>();
 		HashMap<String, HashMap<Integer,Double>> bugRateList3 = new HashMap<String, HashMap<Integer,Double>>();
 		HashMap<String, HashMap<Integer,Double>> bugRateList4 = new HashMap<String, HashMap<Integer,Double>>();
+		HashMap<String, HashMap<Integer,Double>> bugRateList5 = new HashMap<String, HashMap<Integer,Double>>();
 		
 		for ( int i =0; i < folderNameList.length; i++ ) {
 			String folderName = Constants.BUG_DETECTION_RATE_PERFORMANCE_FOLDER + "/" + folderNameList[i] ;
@@ -73,6 +76,8 @@ public class PerformanceSummarize {
 					bugRateList3.put( projectName, bugRate );
 				}else if ( type.equals( folderNameList[4])) {
 					bugRateList4.put( projectName, bugRate );
+				}else if ( type.equals( folderNameList[5])) {
+					bugRateList5.put( projectName, bugRate );
 				}
 			}			
 		}	
@@ -88,6 +93,7 @@ public class PerformanceSummarize {
 				writer.write( new Integer(ins).toString() + "-" + folderNameList[2]  + ",");
 				writer.write( new Integer(ins).toString() + "-" + folderNameList[3]  + ",");
 				writer.write( new Integer(ins).toString() + "-" + folderNameList[4]  + ",");
+				writer.write( new Integer(ins).toString() + "-" + folderNameList[5]  + ",");
 				writer.write( " " + ",");
 			}
 			writer.newLine();
@@ -99,6 +105,7 @@ public class PerformanceSummarize {
 				HashMap<Integer,Double> bugRate2 = bugRateList2.get( projectName );
 				HashMap<Integer,Double> bugRate3 = bugRateList3.get( projectName );
 				HashMap<Integer,Double> bugRate4 = bugRateList4.get( projectName );
+				HashMap<Integer,Double> bugRate5 = bugRateList5.get( projectName );
 				
 				for (int i =0; i < insPointList.size(); i++ ) {
 					int ins = insPointList.get( i );
@@ -129,6 +136,12 @@ public class PerformanceSummarize {
 					value = 0.0;
 					if ( bugRate4.containsKey( ins)) {
 						value = bugRate4.get( ins );
+					}
+					writer.write( value + ",");
+					
+					value = 0.0;
+					if ( bugRate5.containsKey( ins)) {
+						value = bugRate5.get( ins );
 					}
 					writer.write( value + ",");
 			
