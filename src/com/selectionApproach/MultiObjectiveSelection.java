@@ -81,7 +81,7 @@ public class MultiObjectiveSelection {
 		
 		//random initialize
 		int popSize =100;
-		int maxGeneration = 20;
+		int maxGeneration = 200;
 		alg.setInputParameter("populationSize", popSize);
 		alg.setInputParameter("maxEvaluations", popSize * maxGeneration);
 		alg.setInputParameter("initPop", problem_.generateDiverseSet(popSize));
@@ -93,7 +93,7 @@ public class MultiObjectiveSelection {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 
 		parameters.clear();
-		parameters.put("probability", 0.5);
+		parameters.put("probability", 0.8);
 		alg.addOperator("crossover", new SinglePointCrossover(parameters));
 		
 		/*
@@ -105,7 +105,7 @@ public class MultiObjectiveSelection {
 		*/
 
 		parameters.clear();
-		parameters.put("probability", 0.5);
+		parameters.put("probability", 0.8);
 		alg.addOperator("mutation", new BitFlipMutation(parameters));
 		 
 		parameters.clear();
@@ -164,8 +164,8 @@ public class MultiObjectiveSelection {
 			e.printStackTrace();
 		}		
 	}
-	
-	public SolutionSet readParetoFront ( String fileName ) {
+	 
+	public SolutionSet readParetoFront ( String fileName , Boolean isFirst) {
 		NonDominatedSolutionList doSolutionList = new NonDominatedSolutionList();
 		
 		try {			
@@ -173,8 +173,15 @@ public class MultiObjectiveSelection {
 			String line = "";
 			while ((line = reader.readLine()) != null) {
 				int index = 0;
-				if ( line.startsWith( "===="))
-					continue;
+				
+				if ( line.startsWith( "====")) {
+					if ( isFirst == true ) {
+						break;
+					}
+					else {
+						continue;
+					}
+				}					
 				
 				String[] temp = line.split( ",");
 				
@@ -272,7 +279,7 @@ public class MultiObjectiveSelection {
 	
 	public static void main(String[] args) {
 		MultiObjectiveSelection selectionTool = new MultiObjectiveSelection( );
-		selectionTool.readParetoFront( "data/output/front.txt");
+		selectionTool.readParetoFront( "data/output/front.txt", true );
 		
 		ArrayList<String> candidateIDs = selectionTool.obtainCandidateIDs();
 		SolutionSet paretoFroniter;

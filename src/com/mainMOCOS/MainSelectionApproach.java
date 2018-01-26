@@ -1,5 +1,8 @@
 package com.mainMOCOS;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -31,13 +34,23 @@ public class MainSelectionApproach extends SelectionSchema{
 			paretoFroniter = selectionTool.multiObjectiveWorkerSelection(candidateIDs, 12345L, testSetIndex, taskId, project );
 			selectionTool.storeParetoFront(paretoFroniter, Constants.PARETO_FRONT_FOLDER + "/" + taskId + "-front.txt");
 			
-			//QualityIndicator qualityTool = new QualityIndicator();
-			//qualityTool.obtainQualityIndicators(paretoFroniter, taskId );
+			QualityIndicator qualityTool = new QualityIndicator();
+			double[] qualityIndicators = qualityTool.obtainQualityIndicators(paretoFroniter, taskId );
+			
+			BufferedWriter writer = new BufferedWriter( new FileWriter ( Constants.PARETO_FRONT_FOLDER +"/" + "qualityIndicator.csv", true ));
+			for ( int i =0; i < qualityIndicators.length; i++ )
+				writer.write( qualityIndicators[i] + ",");
+			writer.newLine();
+			writer.flush();
+			writer.close();
 			
 			HashMap<Integer, ArrayList<ArrayList<String>>> selectionResults = selectionTool.obtainWorkerSelectionResults(paretoFroniter, taskId );
 			
 			evaTool.obtainBugDetectionRate(selectionResults, project, true, "MOCOS" );
 		} catch (ClassNotFoundException | JMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -49,7 +62,7 @@ public class MainSelectionApproach extends SelectionSchema{
 		//selectionApproach.workerSelectionForMultipleProjects( Constants.TEST_SET_INDEX );
 		
 		//for pareto front
-		Integer beginTestProjIndex = 533, endTestProjIndex = 536, testSetIndex = 20;
+		Integer beginTestProjIndex = 559, endTestProjIndex = 561, testSetIndex = 20;
 		TestProjectReader projReader = new TestProjectReader();
 		ArrayList<TestProject> historyProjectList = projReader.loadTestProjectAndTaskListBasedId( 1, beginTestProjIndex -1, Constants.TOTAL_PROJECT_FOLDER, Constants.TOTAL_TASK_DES_FOLDER );
 		System.out.println( "historyProjectList is : " + historyProjectList.size() );

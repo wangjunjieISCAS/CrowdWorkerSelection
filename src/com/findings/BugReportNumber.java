@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 
+import com.data.Constants;
 import com.data.TestProject;
 import com.data.TestReport;
 import com.dataProcess.TestProjectReader;
@@ -94,6 +95,16 @@ public class BugReportNumber {
 			}
 		}		
 		
+		HashMap<Integer, Integer> bugNumberWorkerNumber = new HashMap<Integer, Integer>();
+		for ( String worker: bugsPerWorker.keySet() ) {
+			int bugNumber = bugsPerWorker.get( worker );
+			int count = 1;
+			if ( bugNumberWorkerNumber.containsKey( bugNumber )) {
+				count += bugNumberWorkerNumber.get( bugNumber );
+			}
+			bugNumberWorkerNumber.put( bugNumber, count );
+		}
+		
 		//output to file
 		BufferedWriter writer;
 		try {
@@ -116,6 +127,16 @@ public class BugReportNumber {
 				writer.newLine();
 			}
 			writer.close();
+			
+			writer = new BufferedWriter( new FileWriter ( "data/output/findings/reportBugNumForWorker-organized by bug number.csv" ));
+			writer.write( "bugNumber" + "," + "workerNumber" );
+			writer.newLine();
+			for ( Integer number : bugNumberWorkerNumber.keySet()  ) {
+				writer.write( number + "," + bugNumberWorkerNumber.get( number ));
+				writer.newLine();
+			}
+			writer.flush();
+			writer.close();
 		}catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -125,6 +146,6 @@ public class BugReportNumber {
 	public static void main ( String[] args ) {
 		String projectFolder = "data/input/total crowdsourced reports";
 		BugReportNumber numberTool = new BugReportNumber();
-		numberTool.NumberCounter( projectFolder );
+		numberTool.NumberCounter( Constants.TOTAL_PROJECT_FOLDER );
 	}
 }

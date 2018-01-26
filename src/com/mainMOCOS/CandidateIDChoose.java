@@ -217,6 +217,7 @@ public class CandidateIDChoose {
 	
 	public ArrayList<String> obtainCandidateIDsBasedLastActivityAndRelevance ( ArrayList<TestProject> historyProjectList, LinkedHashMap<String, CrowdWorker> candidateWorkerList, TestProject project ) {
 		ArrayList<String> candidateIDs = new ArrayList<String>();
+		int totalWorkerThres = 100;
 		
 		ArrayList<String> candWorkersActivity = this.obtainCandidateIDsBasedLastActivity( historyProjectList, candidateWorkerList, project);
 		ArrayList<String> candWorkersRelevance = this.obtainCandidateIDsBasedRelevance(candidateWorkerList, project, 1000 );
@@ -225,6 +226,9 @@ public class CandidateIDChoose {
 			String userId = candWorkersActivity.get( i );
 			if ( candWorkersRelevance.contains( userId )) {
 				candidateIDs.add( userId );
+			}
+			if ( candidateIDs.size() >= totalWorkerThres ) {
+				break;
 			}
 		}
 		
